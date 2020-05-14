@@ -12,7 +12,7 @@ const Courses = () => {
   useEffect(() => {
     const fetchAllCourses = async () => {
       try {
-        const responseData = await sendRequest('http://localhost:5000/api/courses');
+        const responseData = await sendRequest( process.env.REACT_APP_BACKEND_URL+ '/courses');
         setLoadedCourses(responseData);
         
       } catch (err) {
