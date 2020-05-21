@@ -1,10 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Link } from "react-scroll";
 
 import "./Navlinks.css";
 
 const Navlinks = (props) => {
+  
+  let location = useLocation();
+  console.log(location.pathname);
+
   return (
     <ul className="nav-links">
       <li>
@@ -13,13 +17,13 @@ const Navlinks = (props) => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/courses">Courses</NavLink>
+        <NavLink to="/Courses">Courses</NavLink>
       </li>
       <li>
-        <NavLink to="/blogs">Blogs</NavLink>
+        <NavLink to="/Blogs">Blogs</NavLink>
       </li>
       <li>
-        <Link
+        {/* <Link
           activeClass="active"
           to="contact"
           spy={true}
@@ -28,10 +32,11 @@ const Navlinks = (props) => {
           duration={500}
         >
           Contact
-        </Link>
+        </Link> */}
+        <NavLink to="/Contact">Contact</NavLink>
       </li>
-      <li>
-        <Link
+      {/* <li>
+      <Link
           activeClass="active"
           to="about"
           spy={true}
@@ -40,8 +45,8 @@ const Navlinks = (props) => {
           duration={500}
         >
           About
-        </Link>
-      </li>
+        </Link> 
+      </li> */}
       <li>
         <NavLink to="/auth">Sign In</NavLink>
       </li>

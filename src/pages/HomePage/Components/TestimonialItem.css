@@ -1,0 +1,29 @@
+.item{
+    margin: 0.5rem;
+    width: 20%;
+    min-width: 17.5rem;
+    display: inline-block;
+}
+
+.item h4{
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+    padding: 1rem;
+}
+
+.item img{
+    display: inline-block;
+    border-radius: 5rem;
+    width: 10%;
+    vertical-align: middle;
+}
+
+.testimonial-head {
+    height: 10%;
+}
+
+.testimonial-review {
+    height: 80%;
+    white-space: normal;
+}

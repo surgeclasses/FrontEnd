@@ -1,6 +1,5 @@
 import React from "react";
 
-import "./HomePage.css";
 
 const Blogs = () => {
   return (

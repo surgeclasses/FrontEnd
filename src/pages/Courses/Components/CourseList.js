@@ -1,7 +1,6 @@
 import React from "react";
 
 import "./CourseList.css";
-import "./CourseItem";
 import CourseItem from "./CourseItem";
 
 const CourseList = (props) => {

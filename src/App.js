@@ -2,11 +2,13 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 
-import HomePage from './front-page/pages/HomePage'
-import Courses from './front-page/pages/Courses'
-import Blogs from './front-page/pages/Blogs'
-import Auth from './front-page/pages/Auth'
-import Navbar from './front-page/components/Navbar'
+import HomePage from './pages/HomePage/HomePage'
+import Courses from './pages/Courses/Courses'
+import Blogs from './pages/Blogs/Blogs'
+import Auth from './pages/Auth/Auth'
+import Contact from './pages/Contact/Contact'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -25,8 +27,12 @@ function App() {
     <Route path="/Auth" exact> 
       <Auth/>
     </Route>
+    <Route path="/Contact" exact> 
+      <Contact/>
+    </Route>
     <Redirect to="/"/>
     </Switch>
+    <Footer/>
   </Router>
   );
 }

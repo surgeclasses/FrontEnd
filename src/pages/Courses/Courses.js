@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import { useHttpClient}  from "../../hooks/http-hook"; 
-import CourseList from "../components/CourseList";
+import CourseList from "./Components/CourseList";
 
-import "./HomePage.css";
 
 const Courses = () => {
   const [loadedCourses, setLoadedCourses] = useState();

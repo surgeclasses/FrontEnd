@@ -1,0 +1,77 @@
+.top {
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  left: 0;
+}
+.top-background {
+  background-image: url("../../assets/dummy_banner.jpg");
+  background-size: cover;
+  filter: opacity(70%);
+  -webkit-filter: opacity(70%);
+  height: 35rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-text {
+  color: white;
+  font-weight: bold;
+  width: 25rem;
+  position: absolute;
+  top: 15rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  left: 5rem;
+  z-index: 2;
+  height: 25rem;
+}
+
+.top-courses {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.horizontal-scroll {
+  height: 20rem;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.section-title {
+  width: 100%;
+  text-align: center;
+}
+
+.about-section {
+  padding: 1rem;
+  margin-top: 2rem;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.about-image {
+  display: inline-block;
+  height: 10rem;
+  width: 25%;
+  vertical-align: middle;
+}
+
+.about-text {
+  vertical-align: middle;
+  width: 60%;
+  padding-left: 1rem;
+  display: inline-block;
+  text-align: justify;
+}
+
+.hot-technologies{
+    text-align: center;
+    margin: 2rem;
+}
+
+.testimonial-section{
+}

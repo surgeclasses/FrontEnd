@@ -1,0 +1,19 @@
+.course-item{
+    margin: 0.5rem;
+    width: 25rem;
+    min-width: 17.5rem;
+    display: inline-block;
+}
+
+.course-item h4{
+    display: flex;
+    text-overflow: ellipsis;
+    /* width: 100%; */
+    height: 100%;
+    padding: 1rem;
+
+}
+
+.course-banner{
+    width: 100%;
+}

@@ -1,6 +1,5 @@
 import React from "react";
 
-import "./HomePage.css";
 
 const Auth = () => {
   return (
