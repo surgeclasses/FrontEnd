@@ -1,57 +1,79 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Link } from "react-scroll";
+import firebase from "firebase";
 
+import { AuthContext } from "../context/auth-context";
 import "./Navlinks.css";
+import cartIcon from "../assets/cart.png";
 
 const Navlinks = (props) => {
-  
-  let location = useLocation();
-  console.log(location.pathname);
+  const auth = useContext(AuthContext);
 
-  return (
-    <ul className="nav-links">
-      <li>
-        <NavLink to="/" exact>
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/Courses">Courses</NavLink>
-      </li>
-      <li>
-        <NavLink to="/Blogs">Blogs</NavLink>
-      </li>
-      <li>
-        {/* <Link
-          activeClass="active"
-          to="contact"
-          spy={true}
-          smooth={true}
-          offset={-70}
-          duration={500}
-        >
-          Contact
-        </Link> */}
-        <NavLink to="/Contact">Contact</NavLink>
-      </li>
-      {/* <li>
-      <Link
-          activeClass="active"
-          to="about"
-          spy={true}
-          smooth={true}
-          offset={-70}
-          duration={500}
-        >
-          About
-        </Link> 
-      </li> */}
-      <li>
-        <NavLink to="/auth">Sign In</NavLink>
-      </li>
-    </ul>
-  );
+  const signOutHandler = () => {
+    auth.logout();
+    firebase.auth().signOut();
+  };
+
+  let navLinks;
+
+  if (auth.isLoggedIn) {
+    navLinks = (
+      <ul className="nav-links">
+        {/* <li>
+          <NavLink to="/" exact>
+            Home
+          </NavLink>
+        </li> */}
+        <li>
+          <NavLink to="/Courses">My Courses</NavLink>
+        </li>
+        <li>
+          <NavLink to="/Blogs">Blogs</NavLink>
+        </li>
+        <li>
+          <NavLink to="/Contact">Contact</NavLink>
+        </li>
+        <li>
+          <NavLink to="/UserHome">
+            {firebase.auth().currentUser.displayName.split(' ')[0]}
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/Cart">
+            <img className="cart-icon" src={cartIcon} />
+          </NavLink>
+        </li>
+        <li>
+          <button onClick={signOutHandler}>Sign Out</button>
+        </li>
+      </ul>
+    );
+  } else {
+    navLinks = (
+      <ul className="nav-links">
+        <li>
+          <NavLink to="/" exact>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/Courses">Courses</NavLink>
+        </li>
+        <li>
+          <NavLink to="/Blogs">Blogs</NavLink>
+        </li>
+        <li>
+          <NavLink to="/Contact">Contact</NavLink>
+        </li>
+        <li>
+          <NavLink to="/Auth">Sign In</NavLink>
+        </li>
+      </ul>
+    );
+  }
+
+  return navLinks;
 };
 
 export default Navlinks;
