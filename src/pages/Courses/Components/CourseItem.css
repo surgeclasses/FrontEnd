@@ -17,3 +17,10 @@
 .course-banner{
     width: 100%;
 }
+
+.live-tag{
+    position: absolute;
+    height: 2rem;
+    right: 0rem;
+    top: 1rem;
+}

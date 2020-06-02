@@ -1,7 +1,8 @@
 import React from "react";
 
 import Card from "../../../components/Card";
-import banner from '../../../assets/dummy_banner.jpg'
+import banner from '../../../assets/dummy_banner.jpg';
+import tagImg from '../../../assets/live-tag.png';
 
 import "./CourseItem.css";
 
@@ -10,8 +11,9 @@ const CourseItem = (props) => {
     <li className="course-item">
       <Card>
         <img className="course-banner" src={banner}/>
+        { props.isLive &&<img className="live-tag" src={tagImg}/>}
         <h4>{props.title}</h4>
-        <p>₹{props.regfee} worth course in ₹{props.disfee}</p>
+        <p>{props.description}<br/>₹{props.fee}</p>
       </Card>
     </li>
   );

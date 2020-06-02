@@ -18,6 +18,7 @@ import Footer from "./components/Footer";
 import { AuthContext } from "./context/auth-context";
 import Lecture from "./pages/Lecture/Lecture";
 import Forum from "./pages/Forum/Forum";
+import AddCourse from "./pages/AddCourse/AddCourse";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,7 +54,9 @@ function App() {
         <Route path="/Forum" >
           <Forum />
         </Route>
-        
+        <Route path="/AddCourse">
+          <AddCourse/>
+        </Route>
         <Route path="/Contact" exact>
           <Contact />
         </Route>
@@ -77,6 +80,9 @@ function App() {
         </Route>
         <Route path="/Contact" exact>
           <Contact />
+        </Route>
+        <Route path="/AddCourse">
+          <AddCourse/>
         </Route>
         <Redirect to="/Auth" />
       </Switch>

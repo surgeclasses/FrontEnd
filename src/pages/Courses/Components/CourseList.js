@@ -14,13 +14,15 @@ const CourseList = (props) => {
   return (
     <ul className="course-list">
       {props.items.map((course) => {
+
         return (
           <CourseItem
             key={course.id}
             id={course.id}
             title={course.title}
-            regfee={course.regfee}
-            disfee={course.disfee}
+            fee={course.fee}
+            isLive={course.isLive}
+            description={course.description}
           />
         );
       })}
