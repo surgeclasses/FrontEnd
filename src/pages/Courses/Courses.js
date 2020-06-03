@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import './Courses.css'
+import "./Courses.css";
 import { useHttpClient } from "../../hooks/http-hook";
 import CourseList from "./Components/CourseList";
 
@@ -31,7 +31,12 @@ const Courses = () => {
   return (
     <div className="body">
       <h1>Courses</h1>
-      <button className="button button-default button-right" onClick={buttonClickHandler}>Add Course</button>
+      <button
+        className="button button-default button-right"
+        onClick={buttonClickHandler}
+      >
+        Add Course
+      </button>
       {loadedCourses && <CourseList items={loadedCourses} />}
     </div>
   );

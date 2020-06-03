@@ -19,6 +19,7 @@ import { AuthContext } from "./context/auth-context";
 import Lecture from "./pages/Lecture/Lecture";
 import Forum from "./pages/Forum/Forum";
 import AddCourse from "./pages/AddCourse/AddCourse";
+import AddBlog from "./pages/AddBlog/AddBlog";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -57,6 +58,9 @@ function App() {
         <Route path="/AddCourse">
           <AddCourse/>
         </Route>
+        <Route path="/AddBlog">
+          <AddBlog/>
+        </Route>
         <Route path="/Contact" exact>
           <Contact />
         </Route>
@@ -83,6 +87,9 @@ function App() {
         </Route>
         <Route path="/AddCourse">
           <AddCourse/>
+        </Route>
+        <Route path="/AddBlog">
+          <AddBlog/>
         </Route>
         <Redirect to="/Auth" />
       </Switch>

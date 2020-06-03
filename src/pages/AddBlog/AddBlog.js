@@ -8,9 +8,9 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import Modal from "../../components/Modal";
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from "../../util/validators";
 import { useForm } from "../../hooks/form-hook";
-import "./AddCourse.css";
+import "./AddBlog.css";
 
-const AddCourse = () => {
+const AddBlog = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
@@ -18,27 +18,23 @@ const AddCourse = () => {
         value: "",
         isValid: false,
       },
-      fee: {
+      technology: {
         value: 0,
         isValid: false,
       },
-      description: {
-        value: "",
-        isValid: false,
-      },
-      instructor: {
-        value: "",
-        isValid: false,
-      },
-      duration: {
+      content: {
         value: 0,
         isValid: false,
       },
-      isLive: {
-        value: false,
-        isValid: true,
+      keywords: {
+        value: "",
+        isValid: false,
       },
-      startDate: {
+      metadata: {
+        value: "",
+        isValid: false,
+      },
+      date: {
         value: "",
         isValid: false,
       }
@@ -53,23 +49,22 @@ const AddCourse = () => {
     console.log(formState.inputs); // send this to the backend!
     try {
       await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/courses`,
+        `${process.env.REACT_APP_BACKEND_URL}/blogs`,
         "POST",
         JSON.stringify({
           title: formState.inputs.title.value,
-          fee: formState.inputs.fee.value,
-          description: formState.inputs.description.value,
-          instructor: formState.inputs.instructor.value,
-          duration: formState.inputs.duration.value,
-          isLive: formState.inputs.isLive.value,
-          startDate: formState.inputs.startDate.value,
+          technology: formState.inputs.technology.value,
+          keywords: formState.inputs.keywords.value,
+          content: formState.inputs.content.value,
+          metadata: formState.inputs.metadata.value,
+          date: formState.inputs.date.value,
         }),
         {
           "Content-Type": "application/json",
         }
       );
-      
-      history.push("/AddCourse");
+
+      history.push("/AddBlog");
     } catch (err) {
       console.log(err);
     }
@@ -77,7 +72,7 @@ const AddCourse = () => {
 
   return (
     <div className="body">
-      <h1 className="center">Add A New Course</h1>
+      <h1 className="center">Add A New Blog</h1>
       <Modal error={error} onClear={clearError} />
       <div className="form-container">
         <form className="form" onSubmit={submitHandler}>
@@ -92,49 +87,47 @@ const AddCourse = () => {
             onInput={inputHandler}
           />
           <Input
-            id="fee"
+            id="technology"
             element="input"
-            label="Fee"
+            label="Technology"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid course fee."
+            errorText="Please enter valid technology name."
             onInput={inputHandler}
           />
           <Input
-            id="description"
+            id="keywords"
+            element="input"
+            label="Keywords"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter valid keywords."
+            onInput={inputHandler}
+          />
+          <Input
+            id="content"
             element="textarea"
-            label="Description"
-            validators={[VALIDATOR_MINLENGTH(20)]}
-            errorText="Please enter a valid description (at least 20 characters)."
+            label="Content"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid content."
             onInput={inputHandler}
           />
           <Input
-            id="instructor"
+            id="metadata"
             element="input"
-            label="Instructor"
+            label="Metadata"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid instructor name."
+            errorText="Please enter a valid metadata."
             onInput={inputHandler}
           />
           <Input
-            id="duration"
+            id="date"
             element="input"
-            label="Duration (Hours)"
+            label="Date"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid course duration (in Hours)."
-            onInput={inputHandler}
-          />
-          <input id="isLive" type="checkbox" name="isLive" value={true} />
-          <label for="isLive">Is Course Live</label>
-          <Input
-            id="startDate"
-            element="input"
-            label="Start Date"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid starting date."
+            errorText="Please enter a valid date."
             onInput={inputHandler}
           />
           <Button type="submit" disabled={!formState.isValid}>
-            ADD COURSE
+            ADD BLOG
           </Button>
         </form>
       </div>
@@ -142,4 +135,4 @@ const AddCourse = () => {
   );
 };
 
-export default AddCourse;
+export default AddBlog;
