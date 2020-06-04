@@ -17,12 +17,17 @@ const CourseList = (props) => {
 
         return (
           <CourseItem
-            key={course.id}
-            id={course.id}
+            key={course._id}
+            id={course._id}
             title={course.title}
             fee={course.fee}
             isLive={course.isLive}
             description={course.description}
+            instructor={course.instructor}
+            duration={course.duration}
+            startDate={course.startDate}
+            discountPercent={course.discountPercent}
+            avgRating={course.avgRating}
           />
         );
       })}

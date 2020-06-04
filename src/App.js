@@ -20,6 +20,7 @@ import Lecture from "./pages/Lecture/Lecture";
 import Forum from "./pages/Forum/Forum";
 import AddCourse from "./pages/AddCourse/AddCourse";
 import AddBlog from "./pages/AddBlog/AddBlog";
+import CourseDetails from './pages/Courses/Components/CourseDetails';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -78,6 +79,9 @@ function App() {
         </Route>
         <Route path="/Courses" exact>
           <Courses />
+        </Route>
+        <Route path="/CourseDetails/:cid" exact>
+          <CourseDetails />
         </Route>
         <Route path="/Auth" exact>
           <Auth />

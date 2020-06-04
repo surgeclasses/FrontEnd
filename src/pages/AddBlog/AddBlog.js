@@ -64,7 +64,7 @@ const AddBlog = () => {
         }
       );
 
-      history.push("/AddBlog");
+      history.push("/Blogs");
     } catch (err) {
       console.log(err);
     }

@@ -57,15 +57,16 @@ const Contact = () => {
 
   return (
     <div className="body">
-      <h2 className="center">Contact Form</h2>
       <Modal error={error} onClear={clearError} />
       <div className="form-container">
-        <form className="form" onSubmit={submitHandler}>
+        <form className="contact-form" onSubmit={submitHandler}>
           {isLoading && <LoadingSpinner asOverlay />}
+          <h2 className="center">Contact Form</h2>
+          <hr />
           <Input
             id="name"
             element="input"
-            label="Name"
+            placeholder="Name"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid title."
             onInput={inputHandler}
@@ -73,7 +74,7 @@ const Contact = () => {
           <Input
             id="email"
             element="input"
-            label="Email"
+            placeholder="Email"
             type="email"
             validators={[VALIDATOR_EMAIL()]}
             errorText="Please enter valid technology name."
@@ -83,23 +84,30 @@ const Contact = () => {
             id="query"
             element="textarea"
             label="Query"
+            placeholder="Ask your query here..."
+            rows="5"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter valid keywords."
             onInput={inputHandler}
           />
-          <Button className="center" type="submit" disabled={!formState.isValid}>
+          <Button
+            className="center"
+            type="submit"
+            disabled={!formState.isValid}
+          >
             SUBMIT
           </Button>
         </form>
+        <hr />
         <div className="map-frame">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d779.9493284219864!2d77.6519686226367!3d12.918772108467094!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1591222728026!5m2!1sen!2sin"
-            width="100%"
-            height="400"
+            className="map"
+            // src="https://maps.google.com/maps?q=12.918668, 77.652067&z=15&output=embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d972.2074071748577!2d77.65151982915206!3d12.91866930659018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU1JzA3LjIiTiA3N8KwMzknMDcuNCJF!5e0!3m2!1sen!2sin!4v1591262722159!5m2!1sen!2sin"
+            width="600"
+            height="450"
             frameborder="0"
             allowfullscreen="true"
-            aria-hidden="false"
-            tabindex="0"
           ></iframe>
         </div>
       </div>

@@ -1,0 +1,12 @@
+.categories-container{
+    padding: 1rem;
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bloglist-container{
+    padding: 2rem;
+    width: 55%;
+    display: inline-block;
+}

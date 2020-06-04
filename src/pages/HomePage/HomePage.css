@@ -31,7 +31,7 @@
 }
 
 .horizontal-scroll {
-  height: 20rem;
+  height: fit-content;
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -68,7 +68,7 @@
   text-align: justify;
 }
 
-.hot-technologies{
+.technologies-section{
     text-align: center;
     margin: 2rem;
 }

@@ -58,8 +58,8 @@ const HotTechnologies = () => {
   }, []);
 
   return (
-    <div className="hot-technologies">
-      <h3 className="section-title">Hot Technologies</h3>
+    <div>
+      <h3 className="section-title">Technologies</h3>
       {technologyList && <List items={technologyList} />}
     </div>
   );

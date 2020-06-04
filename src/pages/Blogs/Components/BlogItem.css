@@ -1,7 +1,6 @@
 .blog-item {
     margin: 0.5rem;
-    width: 25rem;
-    min-width: 17.5rem;
+    width: 90%;
     display: inline-block;
     line-height: 50%;
 }

@@ -5,7 +5,9 @@ import "./Blogs.css";
 import { useHttpClient } from "../../hooks/http-hook";
 import BlogList from "./Components/BlogList";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import Modal from '../../components/Modal';
+import Modal from "../../components/Modal";
+import HotTechnologies from '../HomePage/Components/HotTechnologies';
+import Input from "../../components/Input";
 
 const Blogs = () => {
   const [loadedBlogs, setLoadedBlogs] = useState();
@@ -30,10 +32,19 @@ const Blogs = () => {
     history.push("/AddBlog");
   };
 
+  const searchHandler = () => {
+    
+  }
+
   return (
     <div className="body">
-      <h2 className="center">Blogs Page</h2>
-      
+      {/* <input
+            id="query"
+            type="text"
+            placeholder="Search"
+            onT={searchHandler}
+          /> */}
+
       <Modal error={error} onClear={clearError} />
       <button
         className="button button-default button-right"
@@ -41,8 +52,13 @@ const Blogs = () => {
       >
         Add Blog
       </button>
-      {isLoading && <LoadingSpinner />}
-      {loadedBlogs && <BlogList items={loadedBlogs} />}
+      <div className="categories-container">
+        <HotTechnologies />
+      </div>
+      <div className="bloglist-container">
+        {isLoading && <LoadingSpinner />}
+        {loadedBlogs && <BlogList items={loadedBlogs} />}
+      </div>
     </div>
   );
 };

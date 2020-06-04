@@ -1,0 +1,45 @@
+.course-head {
+  background-image: "../../../assets/dummy_banner.jpg";
+  background-color: #555555;
+  color: white;
+  padding: 2rem;
+  margin-top: 6rem;
+}
+
+.course-intro {
+  width: 80%;
+  line-height: 0.3rem;
+  display: inline-block;
+}
+
+.course-highlights {
+  color: black;
+  width: fit-content;
+}
+
+.course-head h2 {
+  font-weight: lighter;
+  font-style: italic;
+}
+.course-head h3 {
+  font-weight: lighter;
+  display: inline-block;
+  background-color: white;
+  height: 1.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+  border-radius: 3px;
+  border-left: 1px solid gray;
+}
+
+.purchase-card {
+  right: 2rem;
+  display: inline-block;
+  position: absolute;
+  color: black;
+  padding: 1rem;
+}
+
+.course-overview{
+    padding: 2rem;
+}
