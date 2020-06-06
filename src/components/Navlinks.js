@@ -35,16 +35,6 @@ const Navlinks = (props) => {
           <NavLink to="/Contact">Contact</NavLink>
         </li>
         <li>
-          <NavLink to="/UserHome">
-            {firebase.auth().currentUser.displayName.split(' ')[0]}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/Cart">
-            <img className="cart-icon" src={cartIcon} />
-          </NavLink>
-        </li>
-        <li>
           <button onClick={signOutHandler}>Sign Out</button>
         </li>
       </ul>

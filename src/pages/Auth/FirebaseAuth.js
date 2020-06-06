@@ -31,7 +31,7 @@ class FirebaseAuth extends Component {
       let isSignedIn = !!user;
       if (isSignedIn) {
         auth.login();
-        auth.user = firebase.auth().currentUser.uid;
+        auth.userid = firebase.auth().currentUser.uid;
       } else {
         auth.logout();
       }

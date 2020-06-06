@@ -5,9 +5,9 @@ import "./CourseDetails.css";
 import { useHttpClient } from "../../../hooks/http-hook";
 import Modal from "../../../components/Modal";
 import Card from "../../../components/Card";
-import banner from "../../../assets/dummy_banner.jpg";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
-const CourseDetails = ({ match, location }) => {
+const CourseDetails = () => {
   const [loadedCourse, setLoadedCourse] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -30,6 +30,7 @@ const CourseDetails = ({ match, location }) => {
   return (
     <div className="body">
       <Modal error={error} clearError={clearError} />
+      { isLoading && <LoadingSpinner /> }
       {loadedCourse && (
         <Fragment>
           <div className="course-head">

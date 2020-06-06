@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 
-import { useForm } from "../../hooks/form-hook";
 import "./Auth.css";
 import Card from "../../components/Card";
 import FirebaseAuth from "./FirebaseAuth";
 import UserHome from "../UserHome/UserHome";
-import {AuthContext} from "../../context/auth-context";
+import { AuthContext } from "../../context/auth-context";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
@@ -19,9 +18,7 @@ const Auth = () => {
           <FirebaseAuth className="firebase-auth-card" />
         </Card>
       )}
-      {
-        auth.isLoggedIn && <UserHome/>
-      }
+      {auth.isLoggedIn && <UserHome />}
     </div>
   );
 };

@@ -10,3 +10,23 @@
     width: 55%;
     display: inline-block;
 }
+
+.search-input{
+    width: 60%;
+    font: inherit;
+    border: 1px solid #ccc;
+    border-radius: 2rem;
+    background: #f8f8f8;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    margin-left: 3rem;
+    display: inline-block;
+}
+
+
+.search-input:focus {
+  outline: none;
+  background: #ebebeb;
+  border-color: #510077;  
+  border-radius: 2rem;
+}

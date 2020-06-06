@@ -6,7 +6,7 @@ import { useHttpClient } from "../../hooks/http-hook";
 import BlogList from "./Components/BlogList";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Modal from "../../components/Modal";
-import HotTechnologies from '../HomePage/Components/HotTechnologies';
+import Technologies from "./Components/Technologies";
 import Input from "../../components/Input";
 
 const Blogs = () => {
@@ -32,28 +32,27 @@ const Blogs = () => {
     history.push("/AddBlog");
   };
 
-  const searchHandler = () => {
-    
-  }
+  const searchHandler = () => {};
 
   return (
     <div className="body">
-      {/* <input
-            id="query"
-            type="text"
-            placeholder="Search"
-            onT={searchHandler}
-          /> */}
-
-      <Modal error={error} onClear={clearError} />
+      <input
+        className="search-input"
+        id="search-query"
+        type="text"
+        placeholder="Search"
+        onT={searchHandler}
+      />
       <button
         className="button button-default button-right"
         onClick={buttonClickHandler}
       >
         Add Blog
       </button>
+        <br />
+      <Modal error={error} onClear={clearError} />
       <div className="categories-container">
-        <HotTechnologies />
+        <Technologies />
       </div>
       <div className="bloglist-container">
         {isLoading && <LoadingSpinner />}

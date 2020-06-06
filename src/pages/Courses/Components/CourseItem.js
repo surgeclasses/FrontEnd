@@ -10,6 +10,7 @@ import "./CourseItem.css";
 const CourseItem = (props) => {
   const history = useHistory();
   const courseId = props.id;
+  // console.log(props);
   const itemClickListener = () => {
     // history.push({ pathname: "/CourseDetails", state: props });
     history.push('/CourseDetails/'+courseId);

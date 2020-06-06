@@ -21,6 +21,8 @@ import Forum from "./pages/Forum/Forum";
 import AddCourse from "./pages/AddCourse/AddCourse";
 import AddBlog from "./pages/AddBlog/AddBlog";
 import CourseDetails from './pages/Courses/Components/CourseDetails';
+import UserNav from './components/UserNav';
+import ReadBlog from './pages/Blogs/Components/ReadBlog';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,6 +45,9 @@ function App() {
         </Route>
         <Route path="/Blogs" >
           <Blogs />
+        </Route>
+        <Route path="/Blog/:bid" >
+          <ReadBlog />
         </Route>
         <Route path="/Courses" exact>
           <Courses />
@@ -74,8 +79,11 @@ function App() {
         <Route path="/" exact>
           <HomePage />
         </Route>
-        <Route path="/Blogs" >
+        <Route path="/Blogs" exact>
           <Blogs />
+        </Route>
+        <Route path="/Blog/:bid" >
+          <ReadBlog />
         </Route>
         <Route path="/Courses" exact>
           <Courses />
@@ -106,6 +114,7 @@ function App() {
     >
       <Router>
         <Navbar />
+        { isLoggedIn && <UserNav/>}
         {routes}
         <Footer />
       </Router>

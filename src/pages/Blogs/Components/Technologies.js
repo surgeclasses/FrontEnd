@@ -39,30 +39,30 @@ const technologyList = [
 ];
 
 //Use this method to call api and fetch the list of technologies
-const HotTechnologies = () => {
-  const [loadedCourses, setLoadedCourses] = useState();
+const Technologies = () => {
+  const [loadedTechnologies, setLoadedTechnologies] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   useEffect(() => {
-    const fetchAllCourses = async () => {
+    const fetchAllTechnologies = async () => {
       try {
         const responseData = await sendRequest(
-          process.env.REACT_APP_BACKEND_URL + "/courses"
+          process.env.REACT_APP_BACKEND_URL + "/technologies"
         );
-        setLoadedCourses(responseData);
+        setLoadedTechnologies(responseData);
       } catch (err) {
         console.log(err);
       }
     };
-    fetchAllCourses();
+    // fetchAllTechnologies();
   }, []);
 
   return (
     <div>
-      <h3 className="section-title">Hot Technologies</h3>
+      <h3 className="section-title">Technologies</h3>
       {technologyList && <List items={technologyList} />}
     </div>
   );
 };
 
-export default HotTechnologies;
+export default Technologies;

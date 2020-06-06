@@ -1,0 +1,21 @@
+
+.user-nav-links{
+    float: right;
+}
+
+.cart-icon {
+  height: 1.5em;
+  width: 1.5em;
+  padding: 0.2em;
+  /* filter: invert(100%); */
+}
+
+.user-dp {
+  display: inline-block;
+  border-radius: 5rem;
+  height: 3rem;
+  width: 3rem;
+  padding: 0.2rem;
+  margin-right: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+}

@@ -17,7 +17,7 @@ const BlogList = (props) => {
         return (
           <BlogItem
             key={blog.id}
-            id={blog.id}
+            id={blog._id}
             title={blog.title}
             keywords={blog.keywords}
             technology={blog.technology}

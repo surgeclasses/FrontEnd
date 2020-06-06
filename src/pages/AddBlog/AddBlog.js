@@ -63,7 +63,6 @@ const AddBlog = () => {
           "Content-Type": "application/json",
         }
       );
-
       history.push("/Blogs");
     } catch (err) {
       console.log(err);
