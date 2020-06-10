@@ -27,10 +27,6 @@ const Blogs = () => {
     fetchAllBlogs();
   }, []);
 
-  const history = useHistory();
-  const buttonClickHandler = () => {
-    history.push("/AddBlog");
-  };
 
   const searchHandler = () => {};
 
@@ -43,12 +39,6 @@ const Blogs = () => {
         placeholder="Search"
         onT={searchHandler}
       />
-      <button
-        className="button button-default button-right"
-        onClick={buttonClickHandler}
-      >
-        Add Blog
-      </button>
         <br />
       <Modal error={error} onClear={clearError} />
       <div className="categories-container">

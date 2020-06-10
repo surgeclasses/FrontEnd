@@ -1,38 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import firebase from 'firebase';
+import firebase from "firebase";
 
 import "./UserNav.css";
+import { AuthContext } from "../context/auth-context";
 import cartIcon from "../assets/cart.png";
 
 const UserNav = (props) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const auth = useContext(AuthContext);
 
-  //   const openDrawer = () => {
-  //     setDrawerIsOpen(true);
-  //   };
-
-  //   const closeDrawer = () => {
-  //     setDrawerIsOpen(false);
-  //   };
+  const signOutHandler = () => {
+    auth.logout();
+    firebase.auth().signOut();
+  };
 
   return (
-    <React.Fragment>
-      <header className="user-header">
-        <nav className="user-nav-links">
-          {/* <img
-            src={firebase.auth().currentUser.photoURL}
-          /> */}
-          {/* <Link to="/Cart">
-            <img className="cart-icon" src={cartIcon} />
-          </Link> */}
-          <img
-            className="user-dp"
-            src={firebase.auth().currentUser.photoURL}
-          />
-        </nav>
-      </header>
-    </React.Fragment>
+    <div className="user-nav">
+      <img className="user-dp" src={firebase.auth().currentUser.photoURL} />          
+            <div class="speech-bubble">
+              <ul>
+                <li>My Courses</li>
+                <li>Become Instructor</li>
+                <li>Update Profile</li>
+                <li onClick={signOutHandler}>Sign Out</li>
+              </ul>
+            </div>
+    </div>
   );
 };
 

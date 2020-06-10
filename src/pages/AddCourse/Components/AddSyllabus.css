@@ -1,0 +1,38 @@
+.syllabus-form-container{
+    background-color: white;
+    border-radius: 1rem;
+    margin-top: 6rem;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.topics-input{
+    display: inline-block;
+    max-width: 80%;
+    width: 70%;
+    font: inherit;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    padding: 0.25rem;
+    margin: 1rem;
+    vertical-align: middle;
+}
+
+.plus-icon{
+    display: inline-block;
+    width: 2rem;
+    vertical-align: middle;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.syllabus-list{
+    list-style: none;
+}
+
+.module-list{
+    list-style: none;
+}

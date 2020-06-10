@@ -7,12 +7,10 @@ const About = () => {
     <div className="about-section">
       <h3 className="section-title">About Us</h3>
       <img className="about-image" src={imageUrl} alt="About Us"/>
-      <p className="about-text">About section of the page About section of the page About section of the page About section of the page 
-      About section of the page About section of the page About section of the page About section of the page About section of the page 
-      About section of the page About section of the page About section of the page About section of the page 
-      About section of the page About section of the page About section of the page About section of the page About section of the page About section of the page
-      About section of the page About section of the page About section of the page About section of the page 
-      About section of the page About section of the page About section of the page </p>
+      <p className="about-text">About section here About section here About section here About section here About section here 
+      About section here About section here About section here About section here About section here 
+      About section here About section here About section here About section here About section here 
+      About section here About section here About section here About section here About section here </p>
     </div>
   );
 };

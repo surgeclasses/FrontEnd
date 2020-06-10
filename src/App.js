@@ -12,20 +12,27 @@ import UserHome from "./pages/UserHome/UserHome";
 import Courses from "./pages/Courses/Courses";
 import Blogs from "./pages/Blogs/Blogs";
 import Auth from "./pages/Auth/Auth";
+import Admin from "./pages/Admin/Admin";
 import Contact from "./pages/Contact/Contact";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { AuthContext } from "./context/auth-context";
+import { AdminContext } from "./context/admin-context";
 import Lecture from "./pages/Lecture/Lecture";
 import Forum from "./pages/Forum/Forum";
 import AddCourse from "./pages/AddCourse/AddCourse";
 import AddBlog from "./pages/AddBlog/AddBlog";
-import CourseDetails from './pages/Courses/Components/CourseDetails';
-import UserNav from './components/UserNav';
-import ReadBlog from './pages/Blogs/Components/ReadBlog';
+import AddTechnology from "./pages/Admin/Components/AddTechnology";
+import CourseDetails from "./pages/Courses/Components/CourseDetails";
+import UserNav from "./components/UserNav";
+import ReadBlog from "./pages/Blogs/Components/ReadBlog";
+import UpdateCourse from "./pages/AddCourse/Components/UpdateCourse";
+import ModifyCourses from "./pages/AddCourse/Components/ModifyCourses";
+import AddSyllabus from "./pages/AddCourse/Components/AddSyllabus";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const login = useCallback(() => {
     setIsLoggedIn(true);
@@ -33,6 +40,14 @@ function App() {
 
   const logout = useCallback(() => {
     setIsLoggedIn(false);
+  });
+
+  const loginAdmin = useCallback(() => {
+    setIsAdmin(true);
+  });
+
+  const logoutAdmin = useCallback(() => {
+    setIsAdmin(false);
   });
 
   let routes;
@@ -43,34 +58,57 @@ function App() {
         <Route path="/" exact>
           <UserHome />
         </Route>
-        <Route path="/Blogs" >
+        <Route path="/Blogs">
           <Blogs />
         </Route>
-        <Route path="/Blog/:bid" >
+        <Route path="/Blog/:bid">
           <ReadBlog />
         </Route>
         <Route path="/Courses" exact>
           <Courses />
         </Route>
+        <Route path="/CourseDetails/:cid" exact>
+          <CourseDetails />
+        </Route>
         <Route path="/UserHome" exact>
           <UserHome />
         </Route>
-        <Route path="/Lecture" >
+        <Route path="/Lecture">
           <Lecture />
         </Route>
-        <Route path="/Forum" >
+        <Route path="/Forum">
           <Forum />
-        </Route>
-        <Route path="/AddCourse">
-          <AddCourse/>
-        </Route>
-        <Route path="/AddBlog">
-          <AddBlog/>
         </Route>
         <Route path="/Contact" exact>
           <Contact />
         </Route>
         <Redirect to="/" />
+      </Switch>
+    );
+  } else if (isAdmin) {
+    routes = (
+      <Switch>
+        <Route path="/Admin">
+          <Admin />
+        </Route>
+        <Route path="/AddCourse">
+          <AddCourse />
+        </Route>
+        <Route path="/AddBlog">
+          <AddBlog />
+        </Route>
+        <Route path="/AddTechnology">
+          <AddTechnology />
+        </Route>
+        <Route path="/EditCourse" exact>
+          <ModifyCourses />
+        </Route>
+        <Route path="/UpdateCourse/:cid" exact>
+          <UpdateCourse />
+        </Route>
+        <Route path="/AddSyllabus/:cid" exact>
+          <AddSyllabus />
+        </Route>
       </Switch>
     );
   } else {
@@ -82,7 +120,7 @@ function App() {
         <Route path="/Blogs" exact>
           <Blogs />
         </Route>
-        <Route path="/Blog/:bid" >
+        <Route path="/Blog/:bid">
           <ReadBlog />
         </Route>
         <Route path="/Courses" exact>
@@ -97,11 +135,8 @@ function App() {
         <Route path="/Contact" exact>
           <Contact />
         </Route>
-        <Route path="/AddCourse">
-          <AddCourse/>
-        </Route>
-        <Route path="/AddBlog">
-          <AddBlog/>
+        <Route path="/Admin">
+          <Admin />
         </Route>
         <Redirect to="/Auth" />
       </Switch>
@@ -112,12 +147,16 @@ function App() {
     <AuthContext.Provider
       value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}
     >
-      <Router>
-        <Navbar />
-        { isLoggedIn && <UserNav/>}
-        {routes}
-        <Footer />
-      </Router>
+      <AdminContext.Provider
+        value={{ isLoggedIn: isAdmin, login: loginAdmin, logout: logoutAdmin }}
+      >
+        <Router>
+          <Navbar />
+          {isLoggedIn && <UserNav />}
+          {routes}
+          <Footer />
+        </Router>
+      </AdminContext.Provider>
     </AuthContext.Provider>
   );
 }

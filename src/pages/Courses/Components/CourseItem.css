@@ -1,26 +1,32 @@
-.course-item{
-    margin: 0.5rem;
-    width: 25rem;
-    min-width: 17.5rem;
-    display: inline-block;
+.course-item {
+  margin: 0.5rem;
+  width: 20rem;
+  min-width: 17.5rem;
+  display: inline-block;
 }
 
-.course-item h4{
-    display: flex;
-    text-overflow: ellipsis;
-    /* width: 100%; */
-    height: 100%;
-    padding: 1rem;
-
+.course-item h4 {
+  display: flex;
+  text-overflow: ellipsis;
+  /* width: 100%; */
+  height: 100%;
+  padding: 1rem;
 }
 
-.course-banner{
-    width: 100%;
+.course-banner {
+  width: 100%;
 }
 
-.live-tag{
-    position: absolute;
-    height: 2rem;
-    right: 0rem;
-    top: 1rem;
+.live-tag {
+  height: 1rem;
+  float: right;
+  margin-right: -1rem;
+  margin-top: -7rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+
+.course-card {
+  width: 90%;
+  margin-top: -1rem;
+  margin-left: 2.5%;
 }

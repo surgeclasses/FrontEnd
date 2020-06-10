@@ -26,7 +26,7 @@
 .nav-links a:hover,
 .nav-links a:active,
 .nav-links a.active {
-  background: darkseagreen;
+  background: #32abdd;
   border-color: #292929;
   border-radius: 0.5rem;
   color: #292929;
@@ -84,3 +84,6 @@
   }
 }
 
+.signed-nav{
+  margin-right: 12rem;
+}

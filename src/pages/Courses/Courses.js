@@ -23,20 +23,10 @@ const Courses = () => {
     fetchAllCourses();
   }, []);
 
-  const history = useHistory();
-  const buttonClickHandler = () => {
-    history.push("/AddCourse");
-  };
 
   return (
     <div className="body">
       <h1>Courses</h1>
-      <button
-        className="button button-default button-right"
-        onClick={buttonClickHandler}
-      >
-        Add Course
-      </button>
       {loadedCourses && <CourseList items={loadedCourses} />}
     </div>
   );

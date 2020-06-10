@@ -27,6 +27,44 @@ const CourseDetails = () => {
     fetchCourse();
   }, []);
 
+  
+  const ListItem = ({ value }) => <li>{value}</li>;
+
+  const List = ({ items }) => (
+    <ul className="module-list">
+      {items.map((item, i) => (
+        <ListItem key={i} value={item} />
+      ))}
+    </ul>
+  );
+
+  const FullListItem = ({ module }) => {
+    if (!!module) {
+      return (
+        <li>
+          <h2>{module.title}</h2>
+          <List items={module.topics} />
+        </li>
+      );
+    } else {
+      return "";
+    }
+  };
+
+  const FullList = ({ items }) => {
+    if (items.length > 0) {
+      return (
+        <ul className="syllabus-list">
+          {items.map((item, i) => (
+            <FullListItem key={i} module={item} />
+          ))}
+        </ul>
+      );
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div className="body">
       <Modal error={error} clearError={clearError} />
@@ -49,29 +87,10 @@ const CourseDetails = () => {
               <button className="button button-default">Apply</button>
             </Card>
           </div>
-          <div>
-            <p className="course-overview">
-              {loadedCourse.overview}
-              <h2>Program Overview<br/>Key Highlights</h2>
-              Designed for Working Professionals<br/>
-              500+ Hours of Learning 12+<br/>
-              Projects and Assignments <br/>
-              Fortnightly Group Mentorship with
-              Industry Mentors <br/>
-              One-on-One with Industry Mentors <br/>
-              3 Guaranteed Job
-              Interviews <br/>
-              Dedicated Student Success Mentor <br/>
-              IIIT Bangalore & LJMU
-              Alumni Status <br/>
-              Global Access to job opportunities <br/>
-              Job Placement
-              Assistance with Top Firm
-            </p>
+          <div className="course-overview">
+              <h2>Course Contents</h2>
+            {loadedCourse.syllabus && <FullList items={loadedCourse.syllabus} />}
           </div>
-          {/* {loadedCourse.topics.map((topic) => {
-              return (<Card><p>{topic}</p></Card>);
-          })} */}
         </Fragment>
       )}
     </div>

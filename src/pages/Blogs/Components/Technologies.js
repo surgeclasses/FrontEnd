@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useHttpClient } from "../../../hooks/http-hook";
 import List from "../../../components/List";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const technologyList = [
   {
@@ -35,7 +36,7 @@ const technologyList = [
   {
     id: "t8",
     title: "Neural Networks",
-  }
+  },
 ];
 
 //Use this method to call api and fetch the list of technologies
@@ -54,13 +55,14 @@ const Technologies = () => {
         console.log(err);
       }
     };
-    // fetchAllTechnologies();
+    fetchAllTechnologies();
   }, []);
 
   return (
     <div>
       <h3 className="section-title">Technologies</h3>
-      {technologyList && <List items={technologyList} />}
+      {isLoading && <LoadingSpinner />}
+      {loadedTechnologies && <List items={loadedTechnologies} />}
     </div>
   );
 };

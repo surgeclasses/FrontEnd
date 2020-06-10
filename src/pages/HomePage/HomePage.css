@@ -16,7 +16,7 @@
 .bg-text {
   color: white;
   font-weight: bold;
-  width: 25rem;
+  max-width: 25rem;
   position: absolute;
   top: 15rem;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -43,26 +43,28 @@
 
 .section-title {
   width: 100%;
-  text-align: center;
 }
 
 .about-section {
   padding: 1rem;
   margin-top: 2rem;
   background-color: white;
+  text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 .about-image {
   display: inline-block;
-  height: 10rem;
-  width: 25%;
+  max-width: inherit;
+  min-width: inherit;
+  max-height: 8.5rem;
   vertical-align: middle;
 }
 
 .about-text {
   vertical-align: middle;
-  width: 60%;
+  min-width: 20rem;
+  max-width: 40rem;
   padding-left: 1rem;
   display: inline-block;
   text-align: justify;

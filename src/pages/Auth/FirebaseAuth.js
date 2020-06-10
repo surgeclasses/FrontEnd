@@ -43,11 +43,7 @@ class FirebaseAuth extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.isSignedIn ? (
-          <span>
-            <div>Signed In!</div>            
-          </span>
-        ) : (
+        {!this.state.isSignedIn && (
           <StyledFirebaseAuth
             uiConfig={this.uiConfig}
             firebaseAuth={firebase.auth()}

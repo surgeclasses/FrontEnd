@@ -41,7 +41,7 @@ const AddCourse = () => {
       startDate: {
         value: "",
         isValid: false,
-      }
+      },
     },
     false
   );
@@ -68,7 +68,7 @@ const AddCourse = () => {
           "Content-Type": "application/json",
         }
       );
-      
+
       history.push("/AddCourse");
     } catch (err) {
       console.log(err);

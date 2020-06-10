@@ -1,21 +1,82 @@
-
-.user-nav-links{
-    float: right;
+.user-nav {
+  right: 0;
+  z-index: 5;
+  position: fixed;
+  margin-top: -4rem;
+  
 }
-
+/* 
 .cart-icon {
   height: 1.5em;
   width: 1.5em;
   padding: 0.2em;
-  /* filter: invert(100%); */
-}
+  filter: invert(100%);
+} */
 
 .user-dp {
   display: inline-block;
   border-radius: 5rem;
   height: 3rem;
   width: 3rem;
+  object-fit: cover;
   padding: 0.2rem;
   margin-right: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+}
+
+.speech-bubble {
+  width: max-content;
+  position: absolute;
+  background: #ffffff;
+  border-radius: 0.4em;
+  padding: 0.2rem;
+  right: 2rem;
+  visibility: hidden;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+  -ms-transition: all 0.1s ease-out;
+  -o-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+
+.speech-bubble ul li{
+  width: 100%;
+  list-style: none;
+  text-decoration: none;
+  margin-left: -2rem;
+  margin-right: 1rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+.speech-bubble ul li:hover {
+  border: 1px solid gray;
+  border-radius: 0.4em;
+}
+
+.user-dp:hover + .speech-bubble {
+  visibility: visible;
+}
+
+.speech-bubble:hover {
+  visibility: visible;
+}
+
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 80%;
+  width: 0;
+  height: 0;
+  border: 1.125em solid transparent;
+  border-bottom-color: #ffffff;
+  border-top: 0;
+  margin-left: -1.125em;
+  margin-top: -1.125em;
 }

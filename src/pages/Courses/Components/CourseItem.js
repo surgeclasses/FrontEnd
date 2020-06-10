@@ -13,14 +13,14 @@ const CourseItem = (props) => {
   // console.log(props);
   const itemClickListener = () => {
     // history.push({ pathname: "/CourseDetails", state: props });
-    history.push('/CourseDetails/'+courseId);
+    history.push("/CourseDetails/" + courseId);
   };
 
   return (
     <li className="course-item" onClick={itemClickListener}>
-      <Card>
-        <img className="course-banner" src={banner} />
-        {props.isLive && <img className="live-tag" src={tagImg} />}
+      <img className="course-banner" src={banner} />
+      <Card className="course-card">
+      {props.isLive && <img className="live-tag" src={tagImg} />}
         <h4>{props.title}</h4>
         <p>
           {props.description}
