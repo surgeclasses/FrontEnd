@@ -26,8 +26,8 @@ const Courses = () => {
 
   return (
     <div className="body">
-      <h1>Courses</h1>
-      {loadedCourses && <CourseList items={loadedCourses} />}
+      <h1 className="center">Offered Courses</h1>
+      {loadedCourses && <CourseList className="course-list" items={loadedCourses} />}
     </div>
   );
 };

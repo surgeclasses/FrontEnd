@@ -32,8 +32,7 @@
   color: #292929;
 }
 
-/* .icon-container, */
-.nav-links button {
+.profile-button {
   cursor: pointer;
   border: 1px solid #292929;
   color: #292929;
@@ -42,17 +41,12 @@
   font: inherit;
 }
 
-/* .icon-container:focus, */
-.nav-links button:focus {
-  outline: none;
-}
-
-/* .icon-container:hover,
-.icon-container:active, */
-.nav-links button:hover,
-.nav-links button:active {
-  background: #292929;
-  color: white;
+.profile-button:hover,
+.profile-button:active {
+  background: #32abdd !important ;
+  border-color: #292929;
+  border-radius: 0.5rem;
+  color: #292929;
 }
 
 @media (min-width: 768px) {

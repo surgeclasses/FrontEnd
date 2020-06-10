@@ -15,6 +15,7 @@ import { useForm } from "../../../hooks/form-hook";
 
 const UpdateCourse = () => {
   const [loadedCourse, setLoadedCourse] = useState();
+  const [isLive, setIsLive] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -92,6 +93,7 @@ const UpdateCourse = () => {
           },
           true
         );
+        setIsLive(responseData.isLive);
       } catch (err) {
         console.log(err);
       }
@@ -114,7 +116,7 @@ const UpdateCourse = () => {
           description: formState.inputs.description.value,
           instructor: formState.inputs.instructor.value,
           duration: formState.inputs.duration.value,
-          isLive: formState.inputs.isLive.value,
+          isLive: isLive,
           startDate: formState.inputs.startDate.value,
         }),
         {
@@ -130,6 +132,10 @@ const UpdateCourse = () => {
 
   const editSyllabusHandler = () => {
     history.push("/AddSyllabus/" + loadedCourse._id);
+  };
+
+  const liveChangeHandler = (event) => {
+    setIsLive(event.target.checked);
   };
 
   return (
@@ -190,9 +196,9 @@ const UpdateCourse = () => {
               id="isLive"
               type="checkbox"
               name="isLive"
-              value={true}
-              onChange={inputHandler}
+              value={loadedCourse.isLive}
               checked={loadedCourse.isLive}
+              onChange={liveChangeHandler}
             />
             <label for="isLive">Is Course Live</label>
             <Input

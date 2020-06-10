@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import { useHttpClient } from "../../hooks/http-hook";
@@ -11,6 +11,9 @@ import { useForm } from "../../hooks/form-hook";
 import "./AddCourse.css";
 
 const AddCourse = () => {
+  const [loadedTechnologies, setLoadedTechnologies] = useState();
+  const [selectedTechnology, setSelectedTechnology] = useState();
+  const [isLive, setIsLive] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
@@ -46,11 +49,27 @@ const AddCourse = () => {
     false
   );
 
+  useEffect(() => {
+    const fetchAllTechnologies = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/technologies"
+        );
+        setLoadedTechnologies(responseData);
+        setSelectedTechnology(responseData[0]._id);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllTechnologies();
+  }, []);
+
   const history = useHistory();
 
   const submitHandler = async (event) => {
     event.preventDefault();
     console.log(formState.inputs); // send this to the backend!
+    console.log(selectedTechnology); // send this to the backend!
     try {
       await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/courses`,
@@ -58,10 +77,11 @@ const AddCourse = () => {
         JSON.stringify({
           title: formState.inputs.title.value,
           fee: formState.inputs.fee.value,
+          technology: selectedTechnology,
           description: formState.inputs.description.value,
           instructor: formState.inputs.instructor.value,
           duration: formState.inputs.duration.value,
-          isLive: formState.inputs.isLive.value,
+          isLive: isLive,
           startDate: formState.inputs.startDate.value,
         }),
         {
@@ -73,6 +93,14 @@ const AddCourse = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const techSelectHandler = (event) => {
+    setSelectedTechnology(event.target.value);
+  };
+
+  const liveChangeHandler = (event) => {
+    setIsLive(event.target.checked);
   };
 
   return (
@@ -99,6 +127,19 @@ const AddCourse = () => {
             errorText="Please enter a valid course fee."
             onInput={inputHandler}
           />
+          <select
+            className="selector"
+            onChange={techSelectHandler}
+            name="technology"
+            id="technology"
+          >
+            {loadedTechnologies &&
+              loadedTechnologies.map((technology) => {
+                return (
+                  <option value={technology._id}>{technology.title}</option>
+                );
+              })}
+          </select>
           <Input
             id="description"
             element="textarea"
@@ -123,7 +164,12 @@ const AddCourse = () => {
             errorText="Please enter a valid course duration (in Hours)."
             onInput={inputHandler}
           />
-          <input id="isLive" type="checkbox" name="isLive" value={true} />
+          <input
+            id="isLive"
+            type="checkbox"
+            name="isLive"
+            onChange={liveChangeHandler}
+          />
           <label for="isLive">Is Course Live</label>
           <Input
             id="startDate"
