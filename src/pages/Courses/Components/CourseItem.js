@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import Card from "../../../components/Card";
-import banner from "../../../assets/dummy_banner.jpg";
+import banner from "../../../assets/course_img.jpg";
 import tagImg from "../../../assets/live-tag.png";
 
 import "./CourseItem.css";

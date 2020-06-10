@@ -15,12 +15,13 @@
 .item img{
     display: inline-block;
     border-radius: 5rem;
-    width: 10%;
+    width: 13%;
     vertical-align: middle;
 }
 
 .testimonial-head {
     height: 10%;
+    margin-left: 1rem;
 }
 
 .testimonial-review {

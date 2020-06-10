@@ -3,7 +3,7 @@
   left: 0;
 }
 .top-background {
-  background-image: url("../../assets/dummy_banner.jpg");
+  background-image: url("../../assets/banner.jpg");
   background-size: cover;
   filter: opacity(70%);
   -webkit-filter: opacity(70%);
@@ -19,7 +19,7 @@
   max-width: 25rem;
   position: absolute;
   top: 15rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.60);
   left: 5rem;
   z-index: 2;
   height: 25rem;
@@ -57,7 +57,7 @@
   display: inline-block;
   max-width: inherit;
   min-width: inherit;
-  max-height: 8.5rem;
+  max-height: 15rem;
   vertical-align: middle;
 }
 

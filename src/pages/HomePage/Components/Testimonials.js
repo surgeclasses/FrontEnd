@@ -6,38 +6,32 @@ const testimonialList = [
     id: "t1",
     name: "Some Name",
     review: "Some content here for the review from the above named user.",
-    imgUrl: "https://picsum.photos/id/237/200/300",
+    imgUrl: "https://dummyimage.com/300.png/09f/fff",
   },
   {
-    id: "t1",
+    id: "t2",
     name: "Some Name",
     review: "Some content here for the review from the above named user.",
-    imgUrl: "https://picsum.photos/id/237/200/300",
+    imgUrl: "https://dummyimage.com/300.png/09f/fff",
   },
   {
-    id: "t1",
+    id: "t3",
     name: "Some Name",
     review: "Some content here for the review from the above named user.",
-    imgUrl: "https://picsum.photos/id/237/200/300",
+    imgUrl: "https://dummyimage.com/300.png/09f/fff",
   },
   {
-    id: "t1",
+    id: "t4",
     name: "Some Name",
     review: "Some content here for the review from the above named user.",
-    imgUrl: "https://picsum.photos/id/237/200/300",
+    imgUrl: "https://dummyimage.com/300.png/09f/fff",
   },
   {
-    id: "t1",
+    id: "t5",
     name: "Some Name",
     review: "Some content here for the review from the above named user.",
-    imgUrl: "https://picsum.photos/id/237/200/300",
-  },
-  {
-    id: "t1",
-    name: "Some Name",
-    review: "Some content here for the review from the above named user.",
-    imgUrl: "https://picsum.photos/id/237/200/300",
-  },
+    imgUrl: "https://dummyimage.com/300.png/09f/fff",
+  }
 ];
 
 const Testimonials = () => {

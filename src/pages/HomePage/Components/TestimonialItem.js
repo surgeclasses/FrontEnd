@@ -9,7 +9,7 @@ const TestimonialItem = (props) => {
     <li className="item">
       <Card>
         <div className="testimonial-head">
-          <img alt="User Image" src={props.imgUrl} />
+          <img  src={props.imgUrl} />
           <h4>{props.name}</h4>
         </div>
         <p className="testimonial-review">{props.review}</p>

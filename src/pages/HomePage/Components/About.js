@@ -1,6 +1,6 @@
 import React from "react";
 
-import imageUrl from '../../../assets/dummy_banner.jpg'
+import imageUrl from '../../../assets/about_img.jpg'
 
 const About = () => {
   return (
