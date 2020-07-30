@@ -27,7 +27,7 @@ const Courses = () => {
   return (
     <div className="body">
       <h1 className="center">Offered Courses</h1>
-      {loadedCourses && <CourseList className="course-list" items={loadedCourses} />}
+      {loadedCourses && <CourseList items={loadedCourses} />}
     </div>
   );
 };

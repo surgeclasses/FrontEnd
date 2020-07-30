@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
 
 import Card from "../../../components/Card";
 import banner from "../../../assets/course_img.jpg";
@@ -19,13 +20,12 @@ const CourseItem = (props) => {
   return (
     <li className="course-item" onClick={itemClickListener}>
       <img className="course-banner" src={banner} />
+      {/* <div className="banner-overlay">Content</div> */}
       <Card className="course-card">
-      {props.isLive && <img className="live-tag" src={tagImg} />}
+        {props.isLive && <img className="live-tag" src={tagImg} />}
         <h4>{props.title}</h4>
-        <p>
-          {props.description}
-          <br />₹{props.fee}
-        </p>
+        <p>{ReactHtmlParser(props.description)}</p>
+        <span>₹{props.fee}</span>
       </Card>
     </li>
   );

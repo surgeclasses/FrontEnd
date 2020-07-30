@@ -46,7 +46,7 @@ const AddTechnology = () => {
 
   return (
     <div className="body">
-      <h1 className="center">Add A New Blog</h1>
+      <h1 className="center">Add A New Technology</h1>
       <Modal error={error} onClear={clearError} />
       <div className="form-container">
         <form className="form" onSubmit={submitHandler}>

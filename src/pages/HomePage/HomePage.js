@@ -19,13 +19,6 @@ const HomePage = () => {
         <HotTechnologies />
       </div>
       <Testimonials />
-      {/* <section id="contact">
-        <div>
-          <p>
-            Contact section of the page
-          </p>
-        </div>
-      </section> */}
     </div>
   );
 };

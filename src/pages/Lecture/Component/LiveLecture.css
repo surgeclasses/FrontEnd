@@ -1,0 +1,60 @@
+.session-container{
+    width: 100%;
+    background-color: darkslategray;
+    height: 30rem
+}
+
+.class-list{
+    display: inline-block;
+    list-style: none;
+    margin-left: -2.5rem;
+    width: max-content;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    max-height: 30rem;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.class-list::-webkit-scrollbar {
+    display: none;
+}
+
+.class-list-block{
+    background-color: white;
+    width: max-content;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 2px;
+}
+
+.class-title{
+    display: inline-block;
+}
+
+.class-date{
+    display: inline-block;
+    font-size: smaller;
+    margin-left: 1rem;
+}
+
+.session-area{
+    color: white;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    min-width: 50%;
+    max-width: 50%;
+}
+
+.session-area button{
+    margin: 5px;
+}
+
+.covered-topics{
+    display: inline-block;
+    white-space: normal;
+    line-height: 0em;
+}

@@ -1,8 +1,9 @@
 import { createContext } from "react";
 
-const authModel = {
+let authModel = {
   userid: "",
   isLoggedIn: false,
+  isInstructor: false,
   login: () => {},
   logout: () => {},
 };

@@ -1,15 +1,21 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import firebase from "firebase";
+import ReactHtmlParser from "react-html-parser";
+import { CSSTransition } from "react-transition-group";
 
 import "./CourseDetails.css";
 import { useHttpClient } from "../../../hooks/http-hook";
 import Modal from "../../../components/Modal";
 import Card from "../../../components/Card";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import tagImg from "../../../assets/live-tag.png";
 
 const CourseDetails = () => {
   const [loadedCourse, setLoadedCourse] = useState();
+  const [isApplied, setIsApplied] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const history = useHistory();
 
   let { cid } = useParams();
 
@@ -27,23 +33,75 @@ const CourseDetails = () => {
     fetchCourse();
   }, []);
 
-  
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL +
+            "/user/" +
+            firebase.auth().currentUser.email
+        );
+        userData.attendingCourses.map((courseId) => {
+          if (courseId == cid) setIsApplied(true);
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  const applyCourse = async () => {
+    try {
+      await sendRequest(
+        process.env.REACT_APP_BACKEND_URL + "/user/addmycourse",
+        "PATCH",
+        JSON.stringify({
+          email: firebase.auth().currentUser.email,
+          courseId: loadedCourse._id,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const startCourse = () => {
+    history.push("/Lectures/" + cid);
+  };
+
   const ListItem = ({ value }) => <li>{value}</li>;
 
-  const List = ({ items }) => (
-    <ul className="module-list">
-      {items.map((item, i) => (
-        <ListItem key={i} value={item} />
-      ))}
-    </ul>
+  const List = ({ items, show }) => (
+    <CSSTransition
+      in={show}
+      timeout={200}
+      classNames="slide-in-top"
+      mountOnEnter
+      unmountOnExit
+    >
+      <ul className="module-list">
+        {items.map((item, i) => (
+          <ListItem key={i} value={item} />
+        ))}
+      </ul>
+    </CSSTransition>
   );
 
   const FullListItem = ({ module }) => {
+    const [isListOpen, setIsListOpen] = useState(false);
+    const openList = (event) => {
+      setIsListOpen(!isListOpen);
+    };
     if (!!module) {
       return (
         <li>
-          <h2>{module.title}</h2>
-          <List items={module.topics} />
+          <br />
+          <h3 onClick={openList}>{module.title}</h3>
+          {<List show={isListOpen} items={module.topics} />}
         </li>
       );
     } else {
@@ -68,13 +126,16 @@ const CourseDetails = () => {
   return (
     <div className="body">
       <Modal error={error} clearError={clearError} />
-      { isLoading && <LoadingSpinner /> }
+      {isLoading && <LoadingSpinner />}
       {loadedCourse && (
         <Fragment>
           <div className="course-head">
             <div className="course-intro">
               <h1>{loadedCourse.title}</h1>
-              <h2>{loadedCourse.description}</h2>
+              {loadedCourse.isLive && <img src={tagImg} />}
+              <h2 className="course-description">
+                {ReactHtmlParser(loadedCourse.description)}
+              </h2>
               <div className="course-highlights">
                 <h3>Instructor: {loadedCourse.instructor}</h3>
                 <h3>{loadedCourse.avgRating}/5</h3>
@@ -83,13 +144,31 @@ const CourseDetails = () => {
               </div>
             </div>
             <Card className="purchase-card">
-              <h2>Fee: ₹{loadedCourse.fee}</h2>
-              <button className="button button-default">Apply</button>
+              {!isApplied && <h2>Fee: ₹{loadedCourse.fee}</h2>}
+              {!isApplied && (
+                <button
+                  onClick={applyCourse}
+                  disabled={isApplied}
+                  className="button button-default"
+                >
+                  Apply
+                </button>
+              )}
+              {isApplied && (
+                <button onClick={startCourse} className="button button-default">
+                  Start
+                </button>
+              )}
             </Card>
           </div>
+          <div className="full-course-description">
+            <p>{ReactHtmlParser(loadedCourse.description)}</p>
+          </div>
           <div className="course-overview">
-              <h2>Course Contents</h2>
-            {loadedCourse.syllabus && <FullList items={loadedCourse.syllabus} />}
+            <h2>Course Contents</h2>
+            {loadedCourse.syllabus && (
+              <FullList items={loadedCourse.syllabus} />
+            )}
           </div>
         </Fragment>
       )}

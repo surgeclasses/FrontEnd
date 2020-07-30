@@ -6,7 +6,9 @@ import { AuthContext } from "../../context/auth-context";
 
 firebase.initializeApp({
   apiKey: "AIzaSyDLoqcbTDMFuurtAyDgVEKZ6qwo0j0Osjk",
+  // authDomain: "surgeclasses.com",
   authDomain: "fir-auth-tutorial-ed11f.firebaseapp.com",
+  projectId: "surge-7a29b",
 });
 
 class FirebaseAuth extends Component {
@@ -31,7 +33,6 @@ class FirebaseAuth extends Component {
       let isSignedIn = !!user;
       if (isSignedIn) {
         auth.login();
-        auth.userid = firebase.auth().currentUser.uid;
       } else {
         auth.logout();
       }

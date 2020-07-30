@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { useHttpClient } from "../../hooks/http-hook";
 import Input from "../../components/Input";
@@ -12,10 +14,14 @@ import "./AddCourse.css";
 
 const AddCourse = () => {
   const [loadedTechnologies, setLoadedTechnologies] = useState();
+  const [loadedInstructors, setLoadedInstructors] = useState();
   const [selectedTechnology, setSelectedTechnology] = useState();
+  const [selectedInstructor, setSelectedInstructor] = useState();
   const [isLive, setIsLive] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [formState, inputHandler] = useForm(
+  const [editorState, setEditorState] = useState();
+
+  const [formState, inputHandler, setFormData] = useForm(
     {
       title: {
         value: "",
@@ -25,12 +31,11 @@ const AddCourse = () => {
         value: 0,
         isValid: false,
       },
-      description: {
-        value: "",
-        isValid: false,
-      },
       instructor: {
-        value: "",
+        value: {
+          name: "",
+          id: "",
+        },
         isValid: false,
       },
       duration: {
@@ -49,6 +54,10 @@ const AddCourse = () => {
     false
   );
 
+  const descriptionInputHandler = (e, editor) => {
+    setEditorState(editor.getData());
+  };
+
   useEffect(() => {
     const fetchAllTechnologies = async () => {
       try {
@@ -61,15 +70,28 @@ const AddCourse = () => {
         console.log(err);
       }
     };
+    const fetchAllInstructors = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/instructor"
+        );
+        setLoadedInstructors(responseData);
+        setSelectedInstructor({
+          name: responseData.name,
+          id: responseData[0]._id,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllInstructors();
     fetchAllTechnologies();
-  }, []);
+  }, [selectedInstructor, selectedTechnology]);
 
   const history = useHistory();
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    console.log(formState.inputs); // send this to the backend!
-    console.log(selectedTechnology); // send this to the backend!
     try {
       await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/courses`,
@@ -78,8 +100,8 @@ const AddCourse = () => {
           title: formState.inputs.title.value,
           fee: formState.inputs.fee.value,
           technology: selectedTechnology,
-          description: formState.inputs.description.value,
-          instructor: formState.inputs.instructor.value,
+          description: editorState,
+          instructor: selectedInstructor,
           duration: formState.inputs.duration.value,
           isLive: isLive,
           startDate: formState.inputs.startDate.value,
@@ -99,6 +121,10 @@ const AddCourse = () => {
     setSelectedTechnology(event.target.value);
   };
 
+  const instructorSelectHandler = (event) => {
+    setSelectedInstructor(event.target.value);
+  };
+
   const liveChangeHandler = (event) => {
     setIsLive(event.target.checked);
   };
@@ -115,6 +141,7 @@ const AddCourse = () => {
             element="input"
             type="text"
             label="Title"
+            initialValue=""
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid title."
             onInput={inputHandler}
@@ -123,6 +150,7 @@ const AddCourse = () => {
             id="fee"
             element="input"
             label="Fee"
+            initialValue=""
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid course fee."
             onInput={inputHandler}
@@ -140,18 +168,36 @@ const AddCourse = () => {
                 );
               })}
           </select>
-          <Input
-            id="description"
-            element="textarea"
-            label="Description"
-            validators={[VALIDATOR_MINLENGTH(20)]}
-            errorText="Please enter a valid description (at least 20 characters)."
-            onInput={inputHandler}
-          />
+          <h4 className="center">Description</h4>
+          <div className="editor">
+            <CKEditor
+              editor={ClassicEditor}
+              initialValue=""
+              onChange={descriptionInputHandler}
+            />
+          </div>
+          <select
+            className="selector"
+            onChange={instructorSelectHandler}
+            name="instructor"
+            id="instructor"
+          >
+            {loadedInstructors &&
+              loadedInstructors.map((instructor) => {
+                return (
+                  <option
+                    value={{ name: instructor.name, id: instructor._id }}
+                  >
+                    {instructor.name}
+                  </option>
+                );
+              })}
+          </select>
           <Input
             id="instructor"
             element="input"
             label="Instructor"
+            initialValue=""
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid instructor name."
             onInput={inputHandler}
@@ -160,6 +206,7 @@ const AddCourse = () => {
             id="duration"
             element="input"
             label="Duration (Hours)"
+            initialValue=""
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid course duration (in Hours)."
             onInput={inputHandler}
@@ -175,6 +222,7 @@ const AddCourse = () => {
             id="startDate"
             element="input"
             label="Start Date"
+            initialValue=""
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid starting date."
             onInput={inputHandler}

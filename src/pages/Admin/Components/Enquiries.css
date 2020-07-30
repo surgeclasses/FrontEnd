@@ -1,0 +1,10 @@
+.items-left{
+    display: inline-block;
+    width: 80%;
+}
+
+.check-icon{
+    display: inline-block;
+    height: 3rem;
+    vertical-align: top;
+}

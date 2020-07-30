@@ -1,20 +1,42 @@
 .course-item {
   margin: 0.5rem;
   width: 20rem;
+  height: max-content;
   min-width: 17.5rem;
   display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
 }
 
 .course-item h4 {
   display: flex;
-  text-overflow: ellipsis;
-  /* width: 100%; */
-  height: 100%;
   padding: 1rem;
+  white-space: normal;
+}
+
+.course-item p {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  max-height: 3em;
+  line-height: 1em;
+  margin-top: 0em;
 }
 
 .course-banner {
   width: 100%;
+}
+
+.banner-overlay {
+  background-color: black;
+  width: inherit;
+  height: 9rem;
+  margin-top: -9rem;
+  position: absolute;
+  opacity: 70%;
 }
 
 .live-tag {

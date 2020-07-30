@@ -22,10 +22,11 @@ const UserHome = () => {
               "/user/" +
               firebase.auth().currentUser.email
           );
+          console.log(responseData);
+          auth.userid = responseData._id;
           if (!isLoading) {
-            hasResult = !!responseData;
+            setHasResult(!!responseData);
           }
-          console.log("User Response: " + responseData);
         } catch (err) {
           console.log(err);
         }

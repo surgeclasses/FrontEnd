@@ -23,7 +23,7 @@ const TopCourses = () => {
 
   return (
     <div className="top-courses">
-      <h3 className="section-title">Top Courses</h3>
+      <h3 className="section-title">Courses</h3>
       <div className="horizontal-scroll">
         {loadedCourses && <CourseList items={loadedCourses} />}
       </div>

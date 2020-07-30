@@ -1,0 +1,25 @@
+.topics-list{
+    list-style: none;
+    padding: 0;
+}
+
+.module-block{
+    background-color: #dddddd;
+    width: 60%;
+    margin: 2px;
+}
+
+.module-title{
+    background-color: white;
+    margin: 0;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+    border-radius: 0.3rem;
+}
+
+.topics-item{
+    padding: 0.5rem;
+    width: inherit;
+    background-color: white;
+    margin: 0.2rem;
+}

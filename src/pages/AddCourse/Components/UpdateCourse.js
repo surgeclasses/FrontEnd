@@ -1,7 +1,9 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-// import "./CourseDetails.css";
+import "./UpdateCourse.css";
 import { useHttpClient } from "../../../hooks/http-hook";
 import Modal from "../../../components/Modal";
 import LoadingSpinner from "../../../components/LoadingSpinner";
@@ -14,9 +16,15 @@ import {
 import { useForm } from "../../../hooks/form-hook";
 
 const UpdateCourse = () => {
+  const [loadedTechnologies, setLoadedTechnologies] = useState();
+  const [loadedInstructors, setLoadedInstructors] = useState();
+  const [selectedInstructor, setSelectedInstructor] = useState();
+  const [selectedTechnology, setSelectedTechnology] = useState();
   const [loadedCourse, setLoadedCourse] = useState();
   const [isLive, setIsLive] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [editorState, setEditorState] = useState();
+
   const [formState, inputHandler, setFormData] = useForm(
     {
       title: {
@@ -67,11 +75,7 @@ const UpdateCourse = () => {
               isValid: true,
             },
             fee: {
-              value: responseData.title,
-              isValid: true,
-            },
-            description: {
-              value: responseData.title,
+              value: responseData.fee,
               isValid: true,
             },
             instructor: {
@@ -94,10 +98,40 @@ const UpdateCourse = () => {
           true
         );
         setIsLive(responseData.isLive);
+        setEditorState(responseData.description);
       } catch (err) {
         console.log(err);
       }
     };
+
+    const fetchAllTechnologies = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/technologies"
+        );
+        setLoadedTechnologies(responseData);
+        setSelectedTechnology(responseData[0]._id);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const fetchAllInstructors = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/instructor"
+        );
+        setLoadedInstructors(responseData);
+        setSelectedInstructor({
+          name: responseData[0].name,
+          id: responseData[0]._id,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllInstructors();
+    fetchAllTechnologies();
     fetchCourse();
   }, []);
 
@@ -113,8 +147,9 @@ const UpdateCourse = () => {
         JSON.stringify({
           title: formState.inputs.title.value,
           fee: formState.inputs.fee.value,
-          description: formState.inputs.description.value,
-          instructor: formState.inputs.instructor.value,
+          description: editorState,
+          technology: selectedTechnology,
+          instructor: selectedInstructor,
           duration: formState.inputs.duration.value,
           isLive: isLive,
           startDate: formState.inputs.startDate.value,
@@ -130,12 +165,24 @@ const UpdateCourse = () => {
     }
   };
 
+  const techSelectHandler = (event) => {
+    setSelectedTechnology(event.target.value);
+  };
+
   const editSyllabusHandler = () => {
     history.push("/AddSyllabus/" + loadedCourse._id);
   };
 
+  const instructorSelectHandler = (event) => {
+    setSelectedInstructor(event.target.value);
+  };
+
   const liveChangeHandler = (event) => {
     setIsLive(event.target.checked);
+  };
+  
+  const descriptionInputHandler = (e, editor) => {
+    setEditorState(editor.getData());
   };
 
   return (
@@ -165,24 +212,44 @@ const UpdateCourse = () => {
               errorText="Please enter a valid course fee."
               onInput={inputHandler}
             />
-            <Input
-              id="description"
-              element="textarea"
-              label="Description"
-              initialValue={loadedCourse.description}
-              validators={[VALIDATOR_MINLENGTH(20)]}
-              errorText="Please enter a valid description (at least 20 characters)."
-              onInput={inputHandler}
-            />
-            <Input
-              id="instructor"
-              element="input"
-              label="Instructor"
-              initialValue={loadedCourse.instructor}
-              validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a valid instructor name."
-              onInput={inputHandler}
-            />
+            <select
+              className="selector"
+              onChange={techSelectHandler}
+              name="technology"
+              id="technology"
+            >
+              {loadedTechnologies &&
+                loadedTechnologies.map((technology) => {
+                  return (
+                    <option value={technology._id}>{technology.title}</option>
+                  );
+                })}
+            </select>
+            <h4 className="center">Description</h4>
+            <div className="editor">
+              <CKEditor
+                editor={ClassicEditor}
+                onChange={descriptionInputHandler}
+                data={loadedCourse.description}
+              />
+            </div>
+          <select
+            className="selector"
+            onChange={instructorSelectHandler}
+            name="instructor"
+            id="instructor"
+          >
+            {loadedInstructors &&
+              loadedInstructors.map((instructor) => {
+                return (
+                  <option
+                    value={{ name: instructor.name, id: instructor._id }}
+                  >
+                    {instructor.name}
+                  </option>
+                );
+              })}
+          </select>
             <Input
               id="duration"
               element="input"

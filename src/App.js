@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useContext } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -6,6 +6,7 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
+import firebase from "firebase";
 
 import HomePage from "./pages/HomePage/HomePage";
 import UserHome from "./pages/UserHome/UserHome";
@@ -29,10 +30,16 @@ import ReadBlog from "./pages/Blogs/Components/ReadBlog";
 import UpdateCourse from "./pages/AddCourse/Components/UpdateCourse";
 import ModifyCourses from "./pages/AddCourse/Components/ModifyCourses";
 import AddSyllabus from "./pages/AddCourse/Components/AddSyllabus";
+import Instructor from "./pages/Instructor/Instructor";
+import ManageCourse from "./pages/Instructor/Components/ManageCourse";
+import MyCourses from "./pages/UserHome/Components/MyCourses";
+import Enquiries from "./pages/Admin/Components/Enquiries";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isInstructor, setIsInstructor] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const auth = useContext(AuthContext);
 
   const login = useCallback(() => {
     setIsLoggedIn(true);
@@ -50,11 +57,20 @@ function App() {
     setIsAdmin(false);
   });
 
+  useEffect(() => {
+    if (!!firebase.auth().currentUser) {
+      login();
+    }
+  }, [login, isLoggedIn]);
+
   let routes;
 
   if (isLoggedIn) {
     routes = (
       <Switch>
+        <Route path="/ManageCourse/:cid">
+          <ManageCourse />
+        </Route>
         <Route path="/" exact>
           <UserHome />
         </Route>
@@ -67,13 +83,16 @@ function App() {
         <Route path="/Courses" exact>
           <Courses />
         </Route>
+        <Route path="/MyCourses" exact>
+          <MyCourses />
+        </Route>
         <Route path="/CourseDetails/:cid" exact>
           <CourseDetails />
         </Route>
         <Route path="/UserHome" exact>
           <UserHome />
         </Route>
-        <Route path="/Lecture">
+        <Route path="/Lectures/:cid">
           <Lecture />
         </Route>
         <Route path="/Forum">
@@ -81,6 +100,9 @@ function App() {
         </Route>
         <Route path="/Contact" exact>
           <Contact />
+        </Route>
+        <Route path="/Instructor" exact>
+          <Instructor />
         </Route>
         <Redirect to="/" />
       </Switch>
@@ -90,6 +112,9 @@ function App() {
       <Switch>
         <Route path="/Admin">
           <Admin />
+        </Route>
+        <Route path="/Enquiries">
+          <Enquiries />
         </Route>
         <Route path="/AddCourse">
           <AddCourse />
@@ -145,7 +170,12 @@ function App() {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}
+      value={{
+        isLoggedIn: isLoggedIn,
+        isInstructor: isInstructor,
+        login: login,
+        logout: logout,
+      }}
     >
       <AdminContext.Provider
         value={{ isLoggedIn: isAdmin, login: loginAdmin, logout: logoutAdmin }}

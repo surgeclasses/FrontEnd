@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
 
 import "./ModifyCourses.css";
 import { useHttpClient } from "../../../hooks/http-hook";
@@ -52,10 +53,9 @@ const ModifyCourses = () => {
               >
                 <Card>
                   <h4>{course.title}</h4>
-                  <p>
-                    {course.description}
-                    <br />₹{course.fee}
-                  </p>
+                  <p className="course-description">{ReactHtmlParser(course.description)}</p>
+                  <br />
+                  <span>₹{course.fee}</span>
                 </Card>
               </li>
             );

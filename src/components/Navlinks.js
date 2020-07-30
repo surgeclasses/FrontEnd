@@ -49,7 +49,12 @@ const Navlinks = (props) => {
           <NavLink to="/AddTechnology">Tech</NavLink>
         </li>
         <li>
-          <button className="profile-button" onClick={adminSignOutHandler}>SignOut</button>
+          <NavLink to="/Enquiries">Enquiry</NavLink>
+        </li>
+        <li>
+          <button className="profile-button" onClick={adminSignOutHandler}>
+            SignOut
+          </button>
         </li>
       </ul>
     );
