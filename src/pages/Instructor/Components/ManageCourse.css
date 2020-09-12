@@ -11,8 +11,14 @@
     margin: 1rem;
 }
 
+.syllabus-checklist{
+    list-style: none;
+}
+
 .module-block{
     cursor: pointer;
+    width: 30rem;
+
 }
 
 .topics-item img{

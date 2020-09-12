@@ -10,6 +10,7 @@ import Modal from "../../../components/Modal";
 import Card from "../../../components/Card";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import tagImg from "../../../assets/live-tag.png";
+import { FaRegStar } from "react-icons/fa";
 
 const CourseDetails = () => {
   const [loadedCourse, setLoadedCourse] = useState();
@@ -25,13 +26,14 @@ const CourseDetails = () => {
         const responseData = await sendRequest(
           process.env.REACT_APP_BACKEND_URL + "/courses/" + cid
         );
+        console.log(responseData);
         setLoadedCourse(responseData);
       } catch (err) {
         console.log(err);
       }
     };
     fetchCourse();
-  }, []);
+  }, [cid]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -85,7 +87,7 @@ const CourseDetails = () => {
     >
       <ul className="module-list">
         {items.map((item, i) => (
-          <ListItem key={i} value={item} />
+          <ListItem key={i} value={item.topic} />
         ))}
       </ul>
     </CSSTransition>
@@ -93,7 +95,7 @@ const CourseDetails = () => {
 
   const FullListItem = ({ module }) => {
     const [isListOpen, setIsListOpen] = useState(false);
-    const openList = (event) => {
+    const openList = () => {
       setIsListOpen(!isListOpen);
     };
     if (!!module) {
@@ -137,8 +139,10 @@ const CourseDetails = () => {
                 {ReactHtmlParser(loadedCourse.description)}
               </h2>
               <div className="course-highlights">
-                <h3>Instructor: {loadedCourse.instructor}</h3>
-                <h3>{loadedCourse.avgRating}/5</h3>
+                <h3>Instructor: {loadedCourse.instructor.name}</h3>
+                <div className='star-rating'>
+                  5 <FaRegStar />
+                </div>
                 <h3>{loadedCourse.duration} Hours</h3>
                 <h3>Course Starts: {loadedCourse.startDate}</h3>
               </div>

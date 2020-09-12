@@ -8,6 +8,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import Modal from "../../components/Modal";
 import Technologies from "./Components/Technologies";
 import Input from "../../components/Input";
+import Card from "../../components/Card";
 
 const Blogs = () => {
   const [loadedBlogs, setLoadedBlogs] = useState();
@@ -27,7 +28,6 @@ const Blogs = () => {
     fetchAllBlogs();
   }, []);
 
-
   const searchHandler = () => {};
 
   return (
@@ -39,7 +39,7 @@ const Blogs = () => {
         placeholder="Search"
         onT={searchHandler}
       />
-        <br />
+      <br />
       <Modal error={error} onClear={clearError} />
       <div className="categories-container">
         <Technologies />
@@ -47,6 +47,11 @@ const Blogs = () => {
       <div className="bloglist-container">
         {isLoading && <LoadingSpinner />}
         {loadedBlogs && <BlogList items={loadedBlogs} />}
+        {!loadedBlogs && (
+          <Card>
+            <h3 className="center">Coming Soon...</h3>
+          </Card>
+        )}
       </div>
     </div>
   );

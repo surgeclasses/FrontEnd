@@ -10,6 +10,7 @@ import plusIcon from "../../../assets/plus-icon.png";
 
 const AddSyllabus = () => {
   const [loadedCourse, setLoadedCourse] = useState();
+  // const [isUpdated, setIsUpdated] = useState(false);
   const [topic, setTopic] = useState();
   const [title, setTitle] = useState();
   const [module, setModule] = useState({
@@ -31,7 +32,6 @@ const AddSyllabus = () => {
         console.log(responseData);
         console.log(loadedCourse);
         if (!!responseData.syllabus) setSyllabus(responseData.syllabus);
-        
       } catch (err) {
         console.log(err);
       }
@@ -42,17 +42,16 @@ const AddSyllabus = () => {
   const history = useHistory();
 
   const submitHandler = async (event) => {
-    
-      let newSyllabus = [
-        ...syllabus,
-        { title: module.title, topics: [...module.topics] },
-      ];
-      setSyllabus(newSyllabus);
-      setModule({
-        title: "",
-        topics: [],
-      });
-    
+    let newSyllabus = [
+      ...syllabus,
+      { title: module.title, topics: [...module.topics] },
+    ];
+    setSyllabus(newSyllabus);
+    setModule({
+      title: "",
+      topics: [],
+    });
+
     try {
       let updatedCourse = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/courses/syllabus/${cid}`,
@@ -66,7 +65,7 @@ const AddSyllabus = () => {
       );
       console.log("Updated Course:\n");
       console.log(updatedCourse);
-      history.push("/AddSyllabus/" + cid);
+      // history.push("/AddSyllabus/" + cid);
     } catch (err) {
       console.log(err);
     }
@@ -90,19 +89,19 @@ const AddSyllabus = () => {
 
   const addTopicHandler = () => {
     if (topic != "") {
-      let newTopics = [...module.topics, topic];
+      let newTopics = [...module.topics, { topic: topic }];
       setModule({ title: module.title, topics: newTopics });
       console.log(module);
       console.log(syllabus);
     }
   };
 
-  const ListItem = ({ value }) => <li>{value}</li>;
+  const ListItem = ({ value }) => <li>{value.topic}</li>;
 
   const List = ({ items }) => (
     <ul className="module-list">
       {items.map((item, i) => (
-        <ListItem key={i} value={item} />
+        <ListItem key={i} value={item.topic} />
       ))}
     </ul>
   );
@@ -179,6 +178,9 @@ const AddSyllabus = () => {
           </div>
           <br />
           <Button onClick={submitHandler}>Done</Button>
+          {loadedCourse && !loadedCourse.isLive && syllabus && (
+            <Button to={`/AddVideos/${cid}`}>Add Videos</Button>
+          )}
         </div>
       )}
     </div>

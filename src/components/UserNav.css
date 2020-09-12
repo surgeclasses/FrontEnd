@@ -43,7 +43,7 @@
 }
 
 .speech-bubble ul li{
-  width: 100%;
+  /* width: 100%; */
   list-style: none;
   text-decoration: none;
   margin-left: -2rem;

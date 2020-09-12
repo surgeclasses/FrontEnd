@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { CSSTransition } from "react-transition-group";
+import Moment from "react-moment";
 
 import "./ManageCourse.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,9 +12,10 @@ import checkIcon from "../../../assets/check-icon.png";
 import VideoUpload from "./VideoUpload";
 import FileUpload from "./FileUpload";
 
+const coveredTopics = [];
+
 const Lecture = () => {
   const { cid } = useParams();
-  let classes = {};
   const [loadedCourse, setLoadedCourse] = useState();
   const [loadedBatch, setLoadedBatch] = useState();
   const [chosenIndex, setChosenIndex] = useState();
@@ -21,7 +23,6 @@ const Lecture = () => {
   const [startDate, setStartDate] = useState();
   const [nextClassDate, setNextClassDate] = useState();
   const [classLink, setClassLink] = useState();
-  const [coveredTopics, setCoveredTopics] = useState([]);
   const [videoUrl, setVideoUrl] = useState("");
   const [filesPath, setFilesPath] = useState("");
   const [currentStage, setCurrentStage] = useState();
@@ -34,7 +35,6 @@ const Lecture = () => {
           process.env.REACT_APP_BACKEND_URL + "/courses/batch/" + batchId
         );
         setLoadedBatch(responseData);
-        classes = { ...responseData.classes.classes };
       } catch (err) {
         console.log(err);
       }
@@ -64,7 +64,7 @@ const Lecture = () => {
   const ListItem = ({ value, index }) => {
     const [isClicked, setIsClicked] = useState(false);
     const clickHandler = () => {
-      setCoveredTopics([...coveredTopics, value]);
+      coveredTopics.push(value);
       setIsClicked(true);
     };
     return (
@@ -93,14 +93,16 @@ const Lecture = () => {
 
   const FullListItem = ({ module }) => {
     const [isListOpen, setIsListOpen] = useState(false);
-
+    const clickHandler = () => {
+      setIsListOpen(!isListOpen);
+    };
     if (!!module) {
       return (
         <li className="module-block">
-          <h3 className="module-title" onClick={setIsListOpen(!isListOpen)}>
+          <h3 className="module-title" onClick={clickHandler}>
             {module.title}
           </h3>
-          <List show={isListOpen} items={module.topics} />
+          {<List show={isListOpen} items={module.topics} />}
         </li>
       );
     }
@@ -110,7 +112,7 @@ const Lecture = () => {
   const FullList = ({ items }) => {
     if (items.length > 0) {
       return (
-        <ul className="syllabus-list">
+        <ul className="syllabus-checklist">
           {items.map((item, i) => (
             <FullListItem key={i} module={item} />
           ))}
@@ -167,7 +169,9 @@ const Lecture = () => {
               onClick={() => classClickHandler(i)}
             >
               <h3 className="class-title">{item.title}</h3>
-              <sub className="class-date">{item.date}</sub>
+              <Moment className="class-date" format="D MMM YYYY">
+                {item.date}
+              </Moment>
             </li>
           ))}
         </ul>
@@ -231,7 +235,7 @@ const Lecture = () => {
     currentClass.videoUrl = videoUrl;
     currentClass.filesPath = filesPath;
 
-    const title = `Class  + ${chosenIndex + 2}`;
+    const title = `Class ${chosenIndex + 2}`;
 
     try {
       const responseData = await sendRequest(
@@ -248,7 +252,6 @@ const Lecture = () => {
         }
       );
       setLoadedBatch(responseData);
-      classes = responseData.classes.classes;
       setCurrentStage(0);
     } catch (err) {
       console.log(err);
@@ -288,16 +291,17 @@ const Lecture = () => {
                 </button>
               </div>
             )}
-            {currentStage == 0 && (
-              <button
-                onClick={() => {
-                  setCurrentStage(1);
-                }}
-                className="button"
-              >
-                Start Class
-              </button>
-            )}
+            {currentStage == 0 &&
+              (!loadedBatch.classes.classes[chosenIndex].isComplete ? (
+                <button
+                  onClick={() => {
+                    setCurrentStage(1);
+                  }}
+                  className="button"
+                >
+                  Start Class
+                </button>
+              ): <h3>This Class is Over</h3>)}
             {currentStage == 1 && (
               <div>
                 <input

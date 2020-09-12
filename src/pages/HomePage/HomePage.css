@@ -7,7 +7,7 @@
   background-size: cover;
   filter: opacity(70%);
   -webkit-filter: opacity(70%);
-  height: 35rem;
+  height: 30rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,10 +19,31 @@
   max-width: 25rem;
   position: absolute;
   top: 15rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.60);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   left: 5rem;
   z-index: 2;
   height: 25rem;
+}
+
+.features {
+  width: 100% auto;
+  margin-top: -1rem;
+  z-index: 3;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+}
+
+.features ul {
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+
+.features li{
+  padding: 1.5rem;
+  display: inline-block;
 }
 
 .top-courses {
@@ -70,7 +91,7 @@
   text-align: justify;
 }
 
-.technologies-section{
-    text-align: center;
-    margin: 2rem;
+.technologies-section {
+  text-align: center;
+  margin: 2rem;
 }

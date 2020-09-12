@@ -15,27 +15,32 @@
   margin: 1rem;
 }
 
+.main-navigation__header-nav .nav-links li:not(:last-child){
+  border-right: 1px solid seagreen;
+}
+
 .nav-links a,
 .nav-links a a {
-  border: 1px solid transparent;
-  color: #292929;
+  border-bottom: 1px solid transparent;
+  color: black !important;
   text-decoration: none;
-  padding: 0.5rem;
+  padding: 0rem 1rem 0.5rem 1rem;
 }
 
 .nav-links a:hover,
 .nav-links a:active,
 .nav-links a.active {
-  background: #32abdd;
-  border-color: #292929;
-  border-radius: 0.5rem;
-  color: #292929;
+  /* background: #32abdd; */
+  border-color: seagreen;
+  /* border-radius: 0.5rem; */
+  color: seagreen !important;
+  font-weight: bold;
 }
 
 .profile-button {
   cursor: pointer;
-  border: 1px solid #292929;
-  color: #292929;
+  border: 1px solid seagreen;
+  color: seagreen;
   background: transparent;
   padding: 0.5rem;
   font: inherit;
@@ -43,10 +48,10 @@
 
 .profile-button:hover,
 .profile-button:active {
-  background: #32abdd !important ;
-  border-color: #292929;
+  /* background: #32abdd !important ; */
+  border-color: seagreen;
   border-radius: 0.5rem;
-  color: #292929;
+  color: seagreen;
 }
 
 @media (min-width: 768px) {

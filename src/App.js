@@ -30,6 +30,7 @@ import ReadBlog from "./pages/Blogs/Components/ReadBlog";
 import UpdateCourse from "./pages/AddCourse/Components/UpdateCourse";
 import ModifyCourses from "./pages/AddCourse/Components/ModifyCourses";
 import AddSyllabus from "./pages/AddCourse/Components/AddSyllabus";
+import AddVideos from "./pages/AddCourse/Components/AddVideos";
 import Instructor from "./pages/Instructor/Instructor";
 import ManageCourse from "./pages/Instructor/Components/ManageCourse";
 import MyCourses from "./pages/UserHome/Components/MyCourses";
@@ -40,6 +41,15 @@ function App() {
   const [isInstructor, setIsInstructor] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const auth = useContext(AuthContext);
+
+  useEffect(() => {    
+      firebase.auth().onAuthStateChanged(user => {
+        if(!!user)
+          login();
+        else
+          logout();
+      })
+  },[]);
 
   const login = useCallback(() => {
     setIsLoggedIn(true);
@@ -60,6 +70,8 @@ function App() {
   useEffect(() => {
     if (!!firebase.auth().currentUser) {
       login();
+    }else{
+      logout();
     }
   }, [login, isLoggedIn]);
 
@@ -133,6 +145,9 @@ function App() {
         </Route>
         <Route path="/AddSyllabus/:cid" exact>
           <AddSyllabus />
+        </Route>
+        <Route path="/AddVideos/:cid" exact>
+          <AddVideos />
         </Route>
       </Switch>
     );

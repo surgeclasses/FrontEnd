@@ -1,0 +1,14 @@
+.topic-title{
+    display: inline-block;
+    width: 60%;
+}
+
+.topic-item{
+    background-color: white;
+    margin: 2px;
+}
+
+.topic-item button{
+    display: inline-block !important;
+    width: fit-content;
+}

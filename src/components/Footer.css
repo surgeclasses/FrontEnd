@@ -1,5 +1,5 @@
 .footer{
-    height: 10rem;
+    height: 3rem;
     padding: 2rem;
     background: #004466;
     color: white;
@@ -9,7 +9,7 @@
 }
 
 .footer-content{
-    height: 80%;
+    height: 30%;
 }
 
 .copyright{

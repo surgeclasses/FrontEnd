@@ -57,11 +57,11 @@ const UserNav = (props) => {
       <img className="user-dp" src={firebase.auth().currentUser.photoURL} />
       <div class="speech-bubble">
         <ul>
-          <li onClick={goToMyCourses}>My Courses</li>
+          {/*<li onClick={goToMyCourses}>My Courses</li>
           <li onClick={beInstructorHandler}>
             {isInstructor ? "Instructor Profile" : "Become Instructor"}
           </li>
-          <li>Update Profile</li>
+  <li>Update Profile</li>*/}
           <li onClick={signOutHandler}>Sign Out</li>
         </ul>
       </div>

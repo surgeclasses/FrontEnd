@@ -21,7 +21,7 @@ const UpdateCourse = () => {
   const [selectedInstructor, setSelectedInstructor] = useState();
   const [selectedTechnology, setSelectedTechnology] = useState();
   const [loadedCourse, setLoadedCourse] = useState();
-  const [isLive, setIsLive] = useState();
+  const [isLive, setIsLive] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [editorState, setEditorState] = useState();
 
@@ -29,34 +29,34 @@ const UpdateCourse = () => {
     {
       title: {
         value: "",
-        isValid: true,
+        isValid: false,
       },
       fee: {
         value: "",
-        isValid: true,
+        isValid: false,
       },
       description: {
         value: "",
-        isValid: true,
+        isValid: false,
       },
       instructor: {
         value: "",
-        isValid: true,
+        isValid: false,
       },
       duration: {
         value: "",
-        isValid: true,
+        isValid: false,
       },
       isLive: {
         value: "",
-        isValid: true,
+        isValid: false,
       },
       startDate: {
         value: "",
-        isValid: true,
+        isValid: false,
       },
     },
-    true
+    false
   );
 
   let { cid } = useParams();
@@ -130,6 +130,7 @@ const UpdateCourse = () => {
         console.log(err);
       }
     };
+    
     fetchAllInstructors();
     fetchAllTechnologies();
     fetchCourse();
@@ -169,16 +170,16 @@ const UpdateCourse = () => {
     setSelectedTechnology(event.target.value);
   };
 
-  const editSyllabusHandler = () => {
-    history.push("/AddSyllabus/" + loadedCourse._id);
-  };
+  // const editSyllabusHandler = () => {
+  //   history.push("/AddSyllabus/" + loadedCourse._id);
+  // };
 
   const instructorSelectHandler = (event) => {
     setSelectedInstructor(event.target.value);
   };
 
   const liveChangeHandler = (event) => {
-    setIsLive(event.target.checked);
+    setIsLive(prevIsLive => !prevIsLive);
   };
   
   const descriptionInputHandler = (e, editor) => {
@@ -263,8 +264,7 @@ const UpdateCourse = () => {
               id="isLive"
               type="checkbox"
               name="isLive"
-              value={loadedCourse.isLive}
-              checked={loadedCourse.isLive}
+              checked={isLive}
               onChange={liveChangeHandler}
             />
             <label for="isLive">Is Course Live</label>
@@ -278,7 +278,7 @@ const UpdateCourse = () => {
               onInput={inputHandler}
             />
             <Button type="submit">Update Course</Button>
-            <Button onClick={editSyllabusHandler}>Edit Syllabus</Button>
+            <Button to={`/AddSyllabus/${loadedCourse._id}`}>Edit Syllabus</Button>
           </form>
         </div>
       )}

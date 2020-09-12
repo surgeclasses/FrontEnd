@@ -1,61 +1,99 @@
 import React, { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
+import { Player, ControlBar } from "video-react";
+import Moment from "react-moment";
 
 import "./LiveLecture.css";
+import "../../../../node_modules/video-react/dist/video-react.css";
+
+import { useHttpClient } from "../../../hooks/http-hook";
 import LiveVideo from "./LiveVideo";
 import Chat from "./Chat";
 import Button from "../../../components//Button";
 
 const DUMMY_CLASSES = [
   {
-    title: "Class 1",
-    date: "15-July-2020",
+    title: "Loading...",
+    date: "",
     isComplete: true,
     isRunning: false,
-    meetUrl: "urlForMeet",
-    topicsCovered: ["Some topic", "Some other topic", "Another topic"],
-    videoUrl: "someUrlOfVideoHere",
-    filesPath: "urlForFilesAndResources",
-  },
-  {
-    title: "Class 2",
-    date: "17-July-2020",
-    isComplete: true,
-    isRunning: false,
-    meetUrl: "urlForMeet",
-    topicsCovered: ["Some topic", "Some other topic", "Another topic"],
-    videoUrl: "someUrlOfVideoHere",
-    filesPath: "urlForFilesAndResources",
-  },
-  {
-    title: "Class 3",
-    date: "19-July-2020",
-    isComplete: true,
-    isRunning: false,
-    meetUrl: "urlForMeet",
-    topicsCovered: ["Some topic", "Some other topic", "Another topic"],
-    videoUrl: "someUrlOfVideoHere",
-    filesPath: "urlForFilesAndResources",
-  },
-  {
-    title: "Class 4",
-    date: "21-July-2020",
-    isComplete: false,
-    isRunning: true,
-    meetUrl: "https://meet.google.com/xwb-znxk-foy",
-    topicsCovered: ["Some topic", "Some other topic", "Another topic"],
-    videoUrl: "someUrlOfVideoHere",
-    filesPath: "urlForFilesAndResources",
+    meetUrl: "",
+    topicsCovered: [""],
+    videoUrl: "",
+    filesPath: "",
   },
 ];
+
+// [
+//   {
+//     title: "Class 1",
+//     date: "15-July-2020",
+//     isComplete: true,
+//     isRunning: false,
+//     meetUrl: "urlForMeet",
+//     topicsCovered: ["Some topic", "Some other topic", "Another topic"],
+//     videoUrl: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+//     filesPath: "urlForFilesAndResources",
+//   },
+//   {
+//     title: "Class 2",
+//     date: "17-July-2020",
+//     isComplete: true,
+//     isRunning: false,
+//     meetUrl: "urlForMeet",
+//     topicsCovered: ["Some topic", "Some other topic", "Another topic"],
+//     videoUrl: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+//     filesPath: "urlForFilesAndResources",
+//   },
+//   {
+//     title: "Class 3",
+//     date: "19-July-2020",
+//     isComplete: true,
+//     isRunning: false,
+//     meetUrl: "urlForMeet",
+//     topicsCovered: ["Some topic", "Some other topic", "Another topic"],
+//     videoUrl: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+//     filesPath: "urlForFilesAndResources",
+//   },
+//   {
+//     title: "Class 4",
+//     date: "21-July-2020",
+//     isComplete: false,
+//     isRunning: true,
+//     meetUrl: "https://meet.google.com/xwb-znxk-foy",
+//     topicsCovered: ["Some topic", "Some other topic", "Another topic"],
+//     videoUrl: "someUrlOfVideoHere",
+//     filesPath: "urlForFilesAndResources",
+//   },
+// ];
+
+const backendUrl = process.env.REACT_APP_ASSET_URL;
 
 const LiveLecture = (props) => {
   // const cid = props.course._id;
   const [loadedCourse, setLoadedCourse] = useState(props.course);
+  const [batch, setBatch] = useState({});
   const [isComplete, setIsComplete] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const [currentItem, setCurrentItem] = useState();
+  const [showVideo, setShowVideo] = useState(false);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+  useEffect(() => {
+    const fetchBatch = async (batchId) => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/courses/batch/" + batchId
+        );
+        setBatch(responseData);
+        DUMMY_CLASSES = { ...responseData.classes.classes };
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchBatch(loadedCourse.batch);
+  }, []);
 
   useEffect(() => {
     const findCurrentItem = async () => {
@@ -81,9 +119,13 @@ const LiveLecture = (props) => {
     else setIsPending(!item.isRunning);
   };
 
-  const goToMeeting= () => {
-    window.open(currentItem.meetUrl, '_blank');
-  }
+  const goToMeeting = () => {
+    window.open(currentItem.meetUrl, "_blank");
+  };
+
+  const downloadFiles = () => {
+    window.open(backendUrl + "/" + currentItem.filesPath, "_blank");
+  };
 
   const ListItem = ({ value }) => <li className="topics-item">{value}</li>;
 
@@ -141,7 +183,9 @@ const LiveLecture = (props) => {
           {classes.map((item, i) => (
             <li className="class-list-block" onClick={() => openClass(item)}>
               <h3 className="class-title">{item.title}</h3>
-              <sub className="class-date">{item.date}</sub>
+              <Moment className="class-date" format="D MMM YYYY">
+                {item.date}
+              </Moment>
             </li>
           ))}
         </ul>
@@ -155,24 +199,53 @@ const LiveLecture = (props) => {
       {loadedCourse && loadedCourse.isLive && (
         <div>
           <div className="session-container">
-            {DUMMY_CLASSES && <ClassList classes={DUMMY_CLASSES} />}
+            {batch.classes && <ClassList classes={batch.classes.classes} />}
             <div className="session-area">
               {isComplete && (
                 <div>
+                  {showVideo && (
+                    <div className="video-view">
+                      <Player
+                        fluid={true}
+                        // width={1000} // works only with fluid false
+                        // height={650}
+                        autoHide
+                        src={backendUrl + "/" + currentItem.videoUrl}
+                      />
+                    </div>
+                  )}
                   <h2>Topics Covered</h2>
                   {currentItem.topicsCovered.map((item, i) => (
-                    <p className="covered-topics">{item}{", "}</p>
+                    <p className="covered-topics">
+                      {item}
+                      {", "}
+                    </p>
                   ))}
-                  <p>{currentItem.date}</p>
-                  <Button className="button-default">Watch Video</Button>
-                  <Button className="button-default">Download Files</Button>
+                  <p>
+                    <Moment className="class-date" format="D MMM YYYY">
+                      {currentItem.date}
+                    </Moment>
+                  </p>
+                  <Button
+                    onClick={() => setShowVideo(true)}
+                    className="button-default"
+                  >
+                    Watch Video
+                  </Button>
+                  <Button onClick={downloadFiles} className="button-default">
+                    Download Files
+                  </Button>
                 </div>
               )}
               {isRunning && (
                 <div>
                   <h2>Next Session</h2>
-                  <p>{currentItem.date}</p>
-                  <Button onClick={goToMeeting} className="button-default">Running...</Button>
+                  <Moment className="class-date" format="D MMM YYYY">
+                    {currentItem.date}
+                  </Moment>
+                  <Button onClick={goToMeeting} className="button-default">
+                    Running...
+                  </Button>
                   <br />
                   <sup>Click to Join Class</sup>
                 </div>
@@ -180,7 +253,9 @@ const LiveLecture = (props) => {
               {isPending && (
                 <div>
                   <h2>Next Session</h2>
-                  <p>{currentItem.date}</p>
+                  <Moment className="class-date" format="D MMM YYYY">
+                    {currentItem.date}
+                  </Moment>
                   <Button className="button-default">Waiting</Button>
                 </div>
               )}

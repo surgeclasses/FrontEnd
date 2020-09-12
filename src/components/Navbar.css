@@ -6,7 +6,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: #32abdd;
+  background: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
   padding: 0 1rem;
   z-index: 5;
@@ -38,7 +38,7 @@ main {
   display: block;
   width: 3rem;
   height: 2.5px;
-  background: white;
+  background: seagreen;
 }
 
 .main-navigation__brand{
@@ -53,14 +53,14 @@ main {
 
 
 .main-navigation__title {
-  color: white;
+  color: seagreen;
   display: inline-block;
   vertical-align: middle;
 }
 
 .main-navigation__title a {
   text-decoration: none;
-  color: white;
+  /* color: white; */
 }
 
 .classes-subscript {
