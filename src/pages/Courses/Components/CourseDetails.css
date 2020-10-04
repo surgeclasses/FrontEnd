@@ -36,12 +36,21 @@
   height: 0.7rem;
   padding: 0.5rem;
   vertical-align: top;
+  position: absolute;
   display: inline-block;
 }
 
 .course-highlights {
   color: black;
   width: fit-content;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* height: 1.5rem; */
+  /* padding: 1rem; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+  border-radius: 3px;
 }
 
 .course-head h2 {
@@ -49,17 +58,12 @@
   font-style: italic;
 }
 
-.course-head h3 {
+.course-highlights-item {
   font-weight: lighter;
-  display: inline-block;
-  background-color: white;
-  height: 1.5rem;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
-  border-radius: 3px;
-  border-left: 1px solid gray;
+  /* border-left: 1px solid gray; */
 }
-
+/* 
 .star-rating{
   display: inline-block;
   background-color: white;
@@ -68,14 +72,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
   border-radius: 3px;
   border-left: 1px solid gray;
-}
+} */
 
 .purchase-card {
   display: inline-block;
   color: black;
   padding: 1rem;
-  margin-left: 5%;
-  vertical-align: top;
+  margin: 1rem;
 }
 
 .course-overview{

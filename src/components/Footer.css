@@ -1,7 +1,7 @@
 .footer{
     height: 3rem;
     padding: 2rem;
-    background: #004466;
+    background: var(--footerColor);
     color: white;
     bottom: 0;
     left: 0;

@@ -16,31 +16,32 @@
 }
 
 .main-navigation__header-nav .nav-links li:not(:last-child){
-  border-right: 1px solid seagreen;
+  border-right: 1px solid var(--secondaryColor);
 }
 
 .nav-links a,
 .nav-links a a {
   border-bottom: 1px solid transparent;
-  color: black !important;
+  color: var(--secondaryColor) !important;
   text-decoration: none;
   padding: 0rem 1rem 0.5rem 1rem;
+  transition: all 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links a:active,
 .nav-links a.active {
   /* background: #32abdd; */
-  border-color: seagreen;
+  border-color: white;
   /* border-radius: 0.5rem; */
-  color: seagreen !important;
+  color: white !important;
   font-weight: bold;
 }
 
 .profile-button {
   cursor: pointer;
-  border: 1px solid seagreen;
-  color: seagreen;
+  border: 1px solid var(--secondaryColor);
+  color: var(--secondaryColor);
   background: transparent;
   padding: 0.5rem;
   font: inherit;
@@ -49,9 +50,9 @@
 .profile-button:hover,
 .profile-button:active {
   /* background: #32abdd !important ; */
-  border-color: seagreen;
+  border-color: white;
   border-radius: 0.5rem;
-  color: seagreen;
+  color: white;
 }
 
 @media (min-width: 768px) {

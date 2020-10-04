@@ -10,7 +10,7 @@ import Modal from "../../../components/Modal";
 import Card from "../../../components/Card";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import tagImg from "../../../assets/live-tag.png";
-import { FaRegStar } from "react-icons/fa";
+import { FaRegStar, FaUserTie, FaChalkboardTeacher, FaRegClock, FaRegCalendarAlt } from "react-icons/fa";
 
 const CourseDetails = () => {
   const [loadedCourse, setLoadedCourse] = useState();
@@ -139,12 +139,18 @@ const CourseDetails = () => {
                 {ReactHtmlParser(loadedCourse.description)}
               </h2>
               <div className="course-highlights">
-                <h3>Instructor: {loadedCourse.instructor.name}</h3>
-                <div className='star-rating'>
+                <div className="course-highlights-item">
+                  <FaChalkboardTeacher/> {loadedCourse.instructor.name}
+                </div>
+                <div className="course-highlights-item">
                   5 <FaRegStar />
                 </div>
-                <h3>{loadedCourse.duration} Hours</h3>
-                <h3>Course Starts: {loadedCourse.startDate}</h3>
+                <div className="course-highlights-item">
+                  <FaRegClock/> {loadedCourse.duration} Hours
+                </div>
+                <div className="course-highlights-item">
+                  <FaRegCalendarAlt/> {loadedCourse.startDate}
+                </div>
               </div>
             </div>
             <Card className="purchase-card">
@@ -155,7 +161,7 @@ const CourseDetails = () => {
                   disabled={isApplied}
                   className="button button-default"
                 >
-                  Apply
+                  Enrol
                 </button>
               )}
               {isApplied && (

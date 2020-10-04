@@ -1,16 +1,18 @@
 .top {
-  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: var(--matteRed); /* Fallback color */
+  
+  /* background-image: url("../../assets/banner.jpg"); */
+  /* background-size: cover; */
+  /* filter: opacity(70%); */
+  /* -webkit-filter: opacity(70%); */
+  height: 35rem;
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+
   left: 0;
-}
-.top-background {
-  background-image: url("../../assets/banner.jpg");
-  background-size: cover;
-  filter: opacity(70%);
-  -webkit-filter: opacity(70%);
-  height: 30rem;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  border-top-left-radius: 25rem;
+  margin-top: -5rem;
+  z-index: -1;
 }
 
 .bg-text {
@@ -18,32 +20,33 @@
   font-weight: bold;
   max-width: 25rem;
   position: absolute;
-  top: 15rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  top: 18rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
   left: 5rem;
-  z-index: 2;
+  z-index: 7;
   height: 25rem;
 }
 
 .features {
-  width: 100% auto;
-  margin-top: -1rem;
-  z-index: 3;
+  width: 100%;
+  /* margin-top: -1rem; */
+  /* z-index: 3; */
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
 }
 
 .features ul {
   list-style: none;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   display: flex;
   flex-direction: row;
+  padding: 0 0.5rem;
 }
 
 .features li{
-  padding: 1.5rem;
-  display: inline-block;
+  padding: 1.5rem 0;
+  text-align: center;
+  display: block;
 }
 
 .top-courses {

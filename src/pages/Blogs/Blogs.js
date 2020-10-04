@@ -7,7 +7,6 @@ import BlogList from "./Components/BlogList";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Modal from "../../components/Modal";
 import Technologies from "./Components/Technologies";
-import Input from "../../components/Input";
 import Card from "../../components/Card";
 
 const Blogs = () => {
@@ -31,7 +30,7 @@ const Blogs = () => {
   const searchHandler = () => {};
 
   return (
-    <div className="body">
+    <div className="body page">
       <input
         className="search-input"
         id="search-query"

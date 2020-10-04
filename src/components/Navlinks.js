@@ -26,7 +26,7 @@ const Navlinks = (props) => {
     navLinks = (
       <ul className="nav-links signed-nav">
         <li>
-          <NavLink to="/MyCourses">My Courses</NavLink>
+          <NavLink to="/Courses">Courses</NavLink>
         </li>
         <li>
           <NavLink to="/Blogs">Blogs</NavLink>

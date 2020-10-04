@@ -1,1 +1,7 @@
 node_modules
+.env
+.env.production
+build
+firebase.json
+.firebase
+.firebaserc

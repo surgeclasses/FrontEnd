@@ -5,9 +5,8 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { AuthContext } from "../../context/auth-context";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyDLoqcbTDMFuurtAyDgVEKZ6qwo0j0Osjk",
-  // authDomain: "surgeclasses.com",
-  authDomain: "fir-auth-tutorial-ed11f.firebaseapp.com",
+  apiKey: "AIzaSyAVj74BhyKXgG-8r-YnBhhHmM-MOg_XBdA",
+  authDomain: "surgeclasses.com",
   projectId: "surge-7a29b",
 });
 

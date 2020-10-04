@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 
 import "./Navlinks";
 import "./Navbar.css";
@@ -11,6 +11,8 @@ import Logo from "../assets/logo.png";
 const Navbar = (props) => {
   const history = new useHistory();
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const location = useLocation();
+  // console.log(location.pathname);
 
   const openDrawer = () => {
     setDrawerIsOpen(true);
@@ -34,14 +36,14 @@ const Navbar = (props) => {
         </nav>
       </SideDrawer>
 
-      <header className="main-header">
+      <header className={`main-header ${(location.pathname!=='/') && 'home-header'}`}>
         <button className="main-navigation__menu-btn" onClick={openDrawer}>
           <span />
           <span />
           <span />
         </button>
         <div className="main-navigation__brand" onClick={goToHome}>
-          <img src={Logo} className="logo" />
+          {/*<img src={Logo} className="logo" /> */}
           <h1 className="main-navigation__title">
             Surge
             <sub className="classes-subscript">

@@ -1,3 +1,8 @@
+.page{
+  /* display: flex; */
+  height: calc(100vh - 4rem);
+}
+
 .categories-container {
   padding: 1rem;
   max-width: 20rem;
