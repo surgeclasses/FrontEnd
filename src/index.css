@@ -5,15 +5,89 @@
 }
 
 :root{
-  --primaryColor: #140D4F;
+  /* --primaryColor: #140D4F; */
   /* --secondaryColor: #FCBF49; */
-  --secondaryColor: #0B0033;
+  /* --secondaryColor: #0B0033; */
   /* --lightBackground: #D8DCFF; */
-  --lightBackground: #DAE3E7;
+  /* --lightBackground: #DAE3E7; */
   /* --matteRed: #C3423F; */
-  --matteRed: #DFCDB9;
+
+  /* --primaryColor: #140D4F;
+  --secondaryColor: #4F6D7A;
+  --lightBackground: #F1FAEE;
+  --matteRed: #F1FAEE;
   --paleYellow: #FED766;
-  --footerColor: #4F6D7A;
+  --footerColor: #F1FAEE; */
+
+  /* --primaryColor: #EF5B5B;
+  --secondaryColor: #EF5B5B;
+  --lightBackground: #C3C9D5;
+  --matteRed: #C3C9D5;
+  --paleYellow: #FED766;
+  --footerColor: #C3C9D5; */
+
+  /* --primaryColor: #EF5B5B;
+  --secondaryColor: #EF5B5B;
+  --lightBackground: #FFF2F1;
+  --matteRed: #FFF2F1;
+  --paleYellow: #FED766;
+  --footerColor: #FFF2F1; */
+
+  /* --primaryColor: #EF5B5B;
+  --secondaryColor: #EF5B5B;
+  --lightBackground: #FFF2F1;
+  --matteRed: #FFF2F1;
+  --paleYellow: #FED766;
+  --footerColor: #FFF2F1; */
+
+  /* --primaryColor: #FFFFFF;
+  --secondaryColor: #FFFFFF;
+  --lightBackground: #000000;
+  --matteRed: #000000;
+  --paleYellow: #FED766;
+  --footerColor: #000000; */
+
+  /* --primaryColor: #FFFFFF;
+  --secondaryColor: #FFFFFF;
+  --lightBackground: #0A0A0A;
+  --matteRed: #0A0A0A;
+  --paleYellow: #FED766;
+  --footerColor: #0A0A0A; */
+
+  /* --primaryColor: #FFFFFF;
+  --secondaryColor: #FFFFFF;
+  --lightBackground: #7A7A7A;
+  --matteRed: #7A7A7A;
+  --paleYellow: #FED766;
+  --footerColor: #7A7A7A; */
+
+  /* --primaryColor: #FFFFFF;
+  --secondaryColor: #FFFFFF;
+  --lightBackground: #7A7A7A;
+  --matteRed: #7A7A7A;
+  --paleYellow: #FED766;
+  --footerColor: #7A7A7A; */
+
+  /* --primaryColor: #FFFFFF;
+  --secondaryColor: #FFFFFF;
+  --lightBackground: #B8B8B8;
+  --matteRed: #B8B8B8;
+  --paleYellow: #FED766;
+  --footerColor: #B8B8B8; */
+
+  /* --primaryColor: #FFFFFF;
+  --secondaryColor: #FFFFFF;
+  --lightBackground: #2F3337;
+  --matteRed: #2F3337;
+  --paleYellow: #FED766;
+  --footerColor: #2F3337; */
+
+  --primaryColor: #2F3337;
+  --secondaryColor: #FFFFFF;
+  --lightBackground: #FFFFFF;
+  --matteRed: #FFFFFF;
+  --paleYellow: #FED766;
+  --footerColor: #2F3337;
 }
 
 body {

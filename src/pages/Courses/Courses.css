@@ -1,0 +1,31 @@
+.programs-sidebar {
+    width: 100%;
+}
+
+.programs-title {
+    width: 100%;
+}
+
+.programs-sidebar > h3{
+    margin: 2px 0 2px 2px;
+    text-align: center;
+}
+
+.programs {
+    list-style-type: none;
+}
+
+.programs > li {
+    text-decoration: none;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+    display: inline;
+    /* border: #2F3337; */
+}
+
+.show-course {
+    width: 80%;
+    height: 100%;
+    /* margin-left: -17%; */
+}

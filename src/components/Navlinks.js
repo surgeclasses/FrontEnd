@@ -61,20 +61,23 @@ const Navlinks = (props) => {
   } else {
     navLinks = (
       <ul className="nav-links">
-        <li>
+        {/* <li>
           <NavLink to="/" exact>
             Home
           </NavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <li> 5ef07f2dbe4c7b29184c3809
           <NavLink to="/Courses">Courses</NavLink>
+        </li> */}
+        <li> 
+          <NavLink to="/CourseDetails/5ef347fb30245c415414dd1e">Courses</NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/Blogs">Blogs</NavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <NavLink to="/Contact">Contact</NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to="/Auth">Sign In</NavLink>
         </li>

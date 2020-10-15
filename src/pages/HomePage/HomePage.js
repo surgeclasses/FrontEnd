@@ -7,20 +7,22 @@ import TopCourses from "./Components/TopCourses";
 import HotTechnologies from "./Components/HotTechnologies";
 import Testimonials from "./Components/Testimonials";
 import Features from "./Components/Features";
+import Contact from "../Contact/Contact"
 
 const HomePage = () => {
   return (
     <div className="body">
       <Intro />
-      <Features/>
-      <TopCourses />
+      {/* <Features/> */}
+      {/* <TopCourses /> */}
       <section id="about">
         <About />
       </section>
-      <div className="technologies-section">
+      <Contact />
+      {/* <div className="technologies-section">
         <HotTechnologies />
-      </div>
-      <Testimonials />
+      </div> */}
+      {/* <Testimonials /> */}
     </div>
   );
 };

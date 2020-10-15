@@ -45,10 +45,10 @@ const Navbar = (props) => {
         <div className="main-navigation__brand" onClick={goToHome}>
           {/*<img src={Logo} className="logo" /> */}
           <h1 className="main-navigation__title">
-            Surge
-            <sub className="classes-subscript">
+            Surge Classes
+            {/* <sub className="classes-subscript">
               <sub>classes</sub>
-            </sub>           
+            </sub>            */}
           </h1>
         </div>
         <nav className="main-navigation__header-nav">

@@ -99,7 +99,7 @@ const Contact = () => {
           </Button>
         </form>
         <hr />
-        <div className="map-frame">
+        {/* <div className="map-frame">
           <iframe
             className="map"
             // src="https://maps.google.com/maps?q=12.918668, 77.652067&z=15&output=embed"
@@ -109,7 +109,7 @@ const Contact = () => {
             frameborder="0"
             allowfullscreen="true"
           ></iframe>
-        </div>
+        </div> */}
       </div>
     </div>
   );

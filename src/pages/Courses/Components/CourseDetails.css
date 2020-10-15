@@ -1,9 +1,44 @@
+.programs-bar {
+  width: 100%;
+}
+
+.programs-title {
+  text-align: center;
+  width: 100%;
+}
+
+.programs {
+  margin: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.programs p{
+  white-space: normal;
+  padding: 5px;
+  text-align: center;
+}
+
+.list-card {
+  margin: 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 0.1rem;
+  background: white;
+}
+
 .course-head {
   background-image: "../../../assets/dummy_banner.jpg";
   background-color: #555555;
   color: white;
   padding: 2rem;
   margin-top: 4rem;
+  /* margin-left: 17%; */
 }
 
 .course-intro {

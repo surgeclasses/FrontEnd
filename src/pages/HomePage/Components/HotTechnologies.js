@@ -24,7 +24,7 @@ const HotTechnologies = () => {
 
   return (
     <div>
-      <h3 className="section-title">Technologies</h3>
+      <h3 className="section-title">COURSES</h3>
       {loadedTechnologies && <List items={loadedTechnologies} />}
     </div>
   );

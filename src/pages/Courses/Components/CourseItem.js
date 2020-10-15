@@ -19,7 +19,7 @@ const CourseItem = (props) => {
 
   return (
     <li className="course-item" onClick={itemClickListener}>
-      <img className="course-banner" src={banner} />
+      {/* <img className="course-banner" src={banner} /> */}
       {/* <div className="banner-overlay">Content</div> */}
       <Card className="course-card">
         {props.isLive && <img className="live-tag" src={tagImg} />}
