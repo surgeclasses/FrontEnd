@@ -1,0 +1,162 @@
+.forum-container{
+    margin: 2rem;
+}
+
+.question-input{
+    padding: 0.5rem;
+    width: 98%;
+}
+
+.description-input{
+    padding: 0.5rem;
+    height: 10rem;
+    margin-top: 1rem;
+}
+
+.ask-button{
+    width: 30%;
+    margin-left: 1rem;
+}
+
+.questions-list{
+    width: 90%;
+    list-style: none;
+    margin-left: -2rem;
+}
+
+.question-block{
+    background-color: white;
+    width: 90%;
+    padding: 1rem;
+    margin: 5px;
+    border-radius: 0.5rem;
+}
+
+.upvotes{
+    font-size: smaller;
+    font-weight: bolder;
+    color: gray;
+    display: inline-block;
+}
+
+.question-block h3{
+    border: 1px solid lightgray;
+    padding: 5px;
+    border-radius: 3px;
+    width: 85%;
+    display: flex;
+    white-space: normal;
+    display: inline-block;
+}
+
+.question-description{
+    max-width: 80%;
+    display: flex;
+}
+
+.answers-item{
+    list-style: none;
+    background-color: white;
+    /* padding: 1rem; */
+    margin-top: 1rem;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26); */
+    border: 1px solid #dddddd;
+    margin-left: -3rem;
+}
+
+.answer-upvotes{
+    font-size: smaller;
+    font-weight: bolder;
+    color: gray;
+    display: inline-block;
+    padding: 5px;
+}
+
+.answer-count{    
+    font-size: smaller;
+    font-weight: bolder;
+    color: gray;
+}
+
+.answer-content{
+    display: inline-block;
+    width: 90%;
+    padding: 5px;
+}
+
+.upvotes{
+    display: inline-block;
+    padding: 1rem;
+    vertical-align: top;
+}
+
+.upvotes-icon{
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    /* border: 1px solid gray;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26); */
+}
+
+.count {
+    font-size: large;
+    color: gray;
+    display: inline-block;
+}
+
+.date-span {
+    font-size: smaller;
+    font-weight: bold;
+    padding: 2px;
+    color: gray;
+    vertical-align: top;
+}
+
+.answers-span{
+    display: inline-block;
+    border: 0.5px solid lightgray;
+    /* border-radius: 3px; */
+    padding: 5px;
+    width: max-content;
+    cursor: pointer;
+}
+
+.comments-list{
+    list-style: none;
+}
+
+.comments-item{
+    width: inherit;
+    height: max-content;
+    padding: 5px;
+    background-color: #eeeeee;
+    margin-left: -2.5rem;
+    margin-top: 5px;
+}
+
+.comments-item h5{
+    /* font-weight: normal; */
+    /* background-color: white; */
+    width: max-content;
+    padding: 2px;
+    margin-top: 0px;
+}
+
+.comments-item p{
+    padding: 2px;
+}
+
+.mark-upvotes{
+    display: inline-block;
+    padding: 5px;
+    border: 0.5px solid lightgray;
+    cursor: pointer;
+}
+
+.post-comment{
+    display: inline-block;
+    padding: 5px;
+    border: 0.5px solid lightgray;
+    cursor: pointer;
+}

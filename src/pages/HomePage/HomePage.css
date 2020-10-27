@@ -1,0 +1,100 @@
+.top {
+  background-color: var(--matteRed); /* Fallback color */
+  
+  /* background-image: url("../../assets/banner.jpg"); */
+  /* background-size: cover; */
+  /* filter: opacity(70%); */
+  /* -webkit-filter: opacity(70%); */
+  height: 35rem;
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+
+  left: 0;
+  border-top-left-radius: 25rem;
+  /* margin-top: -5rem; */
+  z-index: -1;
+}
+
+.bg-text {
+  color: white;
+  font-weight: bold;
+  max-width: 25rem;
+  position: absolute;
+  top: 18rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  left: 5rem;
+  z-index: 7;
+  height: 25rem;
+}
+
+.features {
+  width: 100%;
+  /* margin-top: -1rem; */
+  /* z-index: 3; */
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+}
+
+.features ul {
+  list-style: none;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  padding: 0 0.5rem;
+}
+
+.features li{
+  padding: 1.5rem 0;
+  text-align: center;
+  display: block;
+}
+
+.top-courses {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.horizontal-scroll {
+  height: fit-content;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.section-title {
+  width: 100%;
+}
+
+.about-section {
+  padding: 1rem;
+  /* margin-top: 2rem; */
+  /* background-color: white; */
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.about-image {
+  display: inline-block;
+  max-width: inherit;
+  min-width: inherit;
+  max-height: 15rem;
+  vertical-align: middle;
+}
+
+.about-text {
+  vertical-align: middle;
+  min-width: 20rem;
+  max-width: 40rem;
+  padding-left: 1rem;
+  display: inline-block;
+  text-align: justify;
+}
+
+.technologies-section {
+  text-align: center;
+  margin: 2rem;
+}

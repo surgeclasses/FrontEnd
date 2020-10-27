@@ -1,0 +1,30 @@
+.form-container {
+  padding: 1rem;
+}
+
+.form {
+  list-style: none;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 90%;
+  max-width: 40rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 6px;
+  background: white;
+}
+
+.selector {
+  width: 92%;
+  font: inherit;
+  /* background: #f8f8f8; */
+  padding: 0.25rem;
+  margin: 1rem;
+  margin-left: -0.2rem;
+}
+
+.editor{
+  border: 1px solid #ccc;
+  width: 92%;
+  margin: 1rem;
+  height: 4rem;
+}

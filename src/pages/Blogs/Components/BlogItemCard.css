@@ -1,0 +1,7 @@
+.blogitem {
+  position: relative;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+  border-radius: 6px;
+  background: white;
+}

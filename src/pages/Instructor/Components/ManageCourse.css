@@ -1,0 +1,38 @@
+.manage-section{
+    width: 90%;
+    padding: 2rem;
+}
+
+.form-input{
+    font: inherit;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    padding: 0.25rem;
+    margin: 1rem;
+}
+
+.syllabus-checklist{
+    list-style: none;
+}
+
+.module-block{
+    cursor: pointer;
+    width: 30rem;
+
+}
+
+.topics-item img{
+    height: 1rem;
+    width: 1rem;
+}
+
+.class-list-section{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.class-stages-section{
+    display: inline-block;
+    vertical-align: top;
+    margin: 2rem;
+}

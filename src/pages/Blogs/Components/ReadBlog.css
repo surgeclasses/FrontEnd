@@ -1,0 +1,10 @@
+.full-blog-container{
+    margin: 2rem;
+    padding: 2rem;
+    width: 60%;
+    display: inline-block;
+}
+
+.right{
+    float: right;
+}

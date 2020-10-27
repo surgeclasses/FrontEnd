@@ -1,0 +1,320 @@
+.programs-bar {
+  width: 100%;
+  padding-top: 5rem;
+}
+
+.programs-title {
+  text-align: center;
+  width: 100%;
+}
+
+.programs {
+  margin: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.programs p{
+  white-space: normal;
+  padding: 5px;
+  text-align: center;
+}
+
+.list-card {
+  margin: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 1rem;
+  background: white;
+}
+
+.course-head {
+  background-image: "../../../assets/dummy_banner.jpg";
+  background-color: #555555;
+  color: white;
+  padding: 2rem;
+  /* margin-top: 1rem; */
+  /* margin-left: 17%; */
+}
+
+.course-intro {
+  max-width: 80%;
+  display: inline-block;
+}
+.course-intro h1{
+  display: inline-block;
+  white-space: normal;
+  max-width: 80%;
+}
+
+.course-description{
+  white-space: normal;
+  overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+   max-height: 4.5em;
+   line-height: 1.5em;
+}
+
+.full-course-description{
+  margin: 2rem;
+  text-align: justify;
+}
+
+.course-intro img{  
+  height: 0.7rem;
+  padding: 0.5rem;
+  vertical-align: top;
+  position: absolute;
+  display: inline-block;
+}
+
+.course-highlights {
+  color: black;
+  width: fit-content;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* height: 1.5rem; */
+  /* padding: 1rem; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+  border-radius: 3px;
+}
+
+.course-head h2 {
+  font-weight: lighter;
+  font-style: italic;
+}
+
+.course-highlights-item {
+  font-weight: lighter;
+  padding: 1rem;
+  /* border-left: 1px solid gray; */
+}
+/* 
+.star-rating{
+  display: inline-block;
+  background-color: white;
+  height: 1.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+  border-radius: 3px;
+  border-left: 1px solid gray;
+} */
+
+.purchase-card {
+  display: inline-block;
+  color: black;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.course-overview{
+    padding: 2rem;
+}
+
+.syllabus-list{
+  list-style: none;
+  width: 70%;
+}
+
+.syllabus-list h3{
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.module-list{
+  list-style: none;
+  margin-left: -2rem;
+  visibility: inherit;
+}
+
+.module-list li{
+  padding: 5px;
+}
+
+
+.banner{
+  background: bisque;
+  width: 56%;
+  border-color: rgb(255, 154, 2);
+  border-radius: 0.3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  color: black;
+  font-weight: bold;
+  
+  
+}
+
+.banner2{
+ background: url(../../../../src/assets/header_image.jpg);
+ width: 10%;
+ border-color: rgb(8, 121, 121);
+ border-radius: 0.5rem;
+ margin-top: 2rem;
+ margin-bottom: 2rem;
+ 
+ margin-left: 20rem;
+ color: black;
+ font-weight: bold;
+}
+
+.banner2 button {
+ padding: 0.8rem;
+  background: bisque;
+  border-radius: 0.5rem;
+  width: 100%;
+  font-style: normal;
+  font-weight: bolder;
+  
+}
+.item {
+ display: flex;
+ flex-direction: row;
+ 
+}
+
+.icon{
+ margin-right: 1.5rem;
+ padding: 0.8rem;
+}
+.course-header {
+ background: url(../../../../src/assets/back.jpg);
+ width: 100%;
+ height:100%;
+ color: azure;
+}
+
+.course-header h1{
+  padding: 2rem;
+  font-weight: bold;
+  
+}
+
+.course-header h2 {
+  font-size: larger;
+  font-style: italic;
+  color: rgb(207, 214, 214);
+  margin-left: 2rem;
+  width: 65%;
+  margin-bottom: 2.5rem;
+  
+}
+
+.section2{
+ margin-top: 2rem; 
+ margin-bottom: 3.5rem; 
+}
+
+.section2 h2{
+ text-align: center;
+ font-size: xx-large;
+}
+
+.section2 h3{
+ margin-left: 2rem;
+ font-size: xx-large;
+ font-weight: normal;
+}
+.point{
+ margin-left: 2rem;
+ margin-bottom: 1rem;
+}
+.point li{
+ list-style-type: none;
+ margin-bottom: 1rem;
+ 
+}
+
+.section3 {
+
+ margin-top: 0rem;
+ margin-bottom: 3rem;
+ font-size: medium;
+
+}
+.section3 h2{
+ background: url(../../../../src/assets/download\ \(1\).jpg);
+ border-radius: 0.5rem;
+ border-color: rgb(18, 47, 134);
+ border: solid;
+ color: white;
+ padding: 1.5rem;
+ margin-left: 0rem;
+}
+
+.section3 p{
+ font-weight: lighter;
+ font-size: smaller;
+}
+
+.syllabus {
+ text-align: right;
+ margin-right: 5rem;
+}
+
+.syllabus button{
+  padding: 0.7rem;
+  background: url(../../../../src/assets/banner1.jpg);
+  border-radius: 0.4rem;
+  border-color: rgb(248, 122, 4);
+  border: solid;
+  font-weight: bold;
+  font-style: italic;
+  
+}
+
+.partition{
+ display: flex;
+ flex-direction: row;
+}
+
+.enroll{
+ margin-right: 0rem;
+ padding: 2rem;
+}
+
+.content{
+ margin-left: 2rem;
+}
+
+.content h2{
+ font-size: x-large;
+ margin-bottom: 2rem;
+}
+.content li{
+ background: url(../../../../src/assets/download\ \(1\).jpg);
+ border-radius: 0.3rem;
+ padding: 0.8rem;
+ margin-left: 2rem;
+ margin-bottom: 0.5rem;
+ width: 60%;
+ color: azure;
+ font-weight: bold;
+ font-size: large;
+ list-style-type: decimal;
+}
+
+.list{
+ margin-left: 1rem;
+}
+
+.list li{
+background: azure;
+color: black;
+padding: 0.2rem;
+list-style-type: lower-alpha;
+font-size: medium;
+}

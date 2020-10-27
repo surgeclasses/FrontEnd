@@ -1,0 +1,31 @@
+.chat-section{
+    display: inline-block;
+    vertical-align: top;
+    background-color: #32abdd;
+    width: 20%;
+    height:30rem;
+    margin: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+}
+
+.chat-section h3{
+    line-height: 0rem;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.chat-area{
+    width: 96%;
+    margin: 0.15rem;
+    height: 24rem;
+}
+
+.chat-input{
+    margin-top: 0.1rem;
+    width: 90%;
+    margin-left: 0.15rem;
+    margin-right: 0.1rem;
+    margin-bottom: 0.1rem;
+    padding: 0.5rem;
+}
