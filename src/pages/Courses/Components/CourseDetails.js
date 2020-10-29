@@ -140,6 +140,7 @@ const CourseDetails = () => {
         const responseData = await sendRequest(
           process.env.REACT_APP_BACKEND_URL + "/technologies"
         );
+        console.log(responseData)
         setLoadedTechnologies(responseData);
       } catch (err) {
         console.log(err);
