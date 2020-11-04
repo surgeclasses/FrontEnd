@@ -8,13 +8,20 @@ import HotTechnologies from "./Components/HotTechnologies";
 import Testimonials from "./Components/Testimonials";
 import Features from "./Components/Features";
 import Contact from "../Contact/Contact"
+import CourseSlider from "./Components/CourseSlider";
 
 const HomePage = () => {
   return (
     <div className="body">
       <Intro />
       {/* <Features/> */}
-      {/* <TopCourses /> */}
+      {/*<div className="block-overlay">
+      <br/>
+  </div> */}
+      <div className="gradient-overlay">
+      <TopCourses />
+      {/* <CourseSlider /> */}
+      </div>
       <section id="about">
         <About />
       </section>

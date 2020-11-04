@@ -41,4 +41,9 @@
 
 .section-title {
   text-align: center;
+  font-size: 50px;
+    font-weight: 900;
+    padding-bottom: 1rem;
+    color: white;
+    font-family: sans-serif;
 }
