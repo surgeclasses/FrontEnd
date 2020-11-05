@@ -35,15 +35,19 @@ const content = [
 
 const Intro = () => {
   return (
-    // <div className="top">
-    //     <div class="bg-text">
-    <div>
+    <div className="top" style={{backgroundImage: `url('https://i.imgur.com/DvmN8Hx.jpg')`}}>
+        <div class="bg-text">
+          <h1>Surge Classes is here</h1>
+          <h3>
+            Surge Classes is here. The place to learn and gain experience in various technologies
+          </h3>
+        </div>
         <div>
           {/* <h1>Surge Classes is here</h1> */}
           {/* <h3>
           Surge Classes is here. The place to learn and gain experience in various technologies
           </h3> */}
-          <Slider className="slider-wrapper">
+          {/* <Slider className="slider-wrapper">
             {content.map((item, index) => (
               <div
                 key={index}
@@ -65,7 +69,7 @@ const Intro = () => {
                 </section>                
               </div>
             ))}
-          </Slider>
+          </Slider> */}
         </div>
     </div>
   );
