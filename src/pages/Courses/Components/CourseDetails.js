@@ -1,32 +1,36 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import firebase from "firebase";
 import ReactHtmlParser from "react-html-parser";
 import { CSSTransition } from "react-transition-group";
 import HotTechnologies from '../../HomePage/Components/HotTechnologies'
-
+import {Scrollbars} from 'react-custom-scrollbars'
+import Syllabus from './syllabus123.pdf'
+import Pic1 from '../../../assets/htlm.png'
+import Pic2 from '../../../assets/css.jpg'
+import Pic3 from '../../../assets/react.png'
+import Pic4 from '../../../assets/node.png'
+import Pic5 from '../../../assets/express.png'
+import Pic6 from '../../../assets/mongodb.png'
 import "./CourseDetails.css";
 import { useHttpClient } from "../../../hooks/http-hook";
 import Modal from "../../../components/Modal";
 import Card from "../../../components/Card";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import tagImg from "../../../assets/live-tag.png";
-import { FaRegStar, FaChalkboardTeacher, FaRegClock, FaRegCalendarAlt, FaProjectDiagram, FaRProject, FaIndustry, FaLanguage, FaReact, FaNode, FaHtml5, FaJava, FaStar, FaNodeJs, FaFile, FaRegFilePdf, FaRegMoneyBillAlt} from "react-icons/fa";
+import { FaRegStar, FaChalkboardTeacher, FaRegClock, FaRegCalendarAlt, FaProjectDiagram, FaRProject, FaIndustry, FaLanguage, FaReact, FaNode, FaRegFilePdf, FaRegMoneyBillAlt} from "react-icons/fa";
 
-const DUMMY = [
-  'Introduction','MERN Theoretically.',
-  'Target Application and Its Planning.','Frontend','Backend','Database.',
-   'Building the Full Stack.','Additional Features.','Deployment','Closure'
-]
+
 
 const CourseDetails = () => {
+
   const [loadedCourse, setLoadedCourse] = useState();
   const [loadedCourses, setLoadedCourses] = useState();
   const [loadedTechnologies, setLoadedTechnologies] = useState();
   const [isApplied, setIsApplied] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const history = useHistory();
-
+   
   let { cid } = useParams();
 
   useEffect(() => {
@@ -124,9 +128,20 @@ const CourseDetails = () => {
     if (items.length > 0) {
       return (
         <ul className="syllabus-list">
+        <Scrollbars 
+            autoHide
+            autoHideTimeout={1000}
+            autoHideDuration={200}
+            autoHeight
+            autoHeightMin={0}
+            autoHeightMax={200}
+            thumbMinSize={30}
+            universal={true}   
+            style={{width:500, height:300}}>
           {items.map((item, i) => (
             <FullListItem key={i} module={item} />
           ))}
+        </Scrollbars>
         </ul>
       );
     } else {
@@ -134,13 +149,14 @@ const CourseDetails = () => {
     }
   };
 
+   
+  
   useEffect(() => {
     const fetchAllTechnologies = async () => {
       try {
         const responseData = await sendRequest(
           process.env.REACT_APP_BACKEND_URL + "/technologies"
         );
-        console.log(responseData)
         setLoadedTechnologies(responseData);
       } catch (err) {
         console.log(err);
@@ -202,7 +218,7 @@ const CourseDetails = () => {
             <h2>{loadedCourse.description}</h2>
             <div className="partition">
             <div className='banner'>
-                <div className='item'>
+                <div className='items'>
                   <div className="icon"><FaChalkboardTeacher/>{loadedCourse.instructor.name}</div>
                   <div className="icon"><FaRegStar/>{loadedCourse.avgRating}</div>
                   <div className="icon"><FaRegClock/>{loadedCourse.duration}</div>
@@ -211,7 +227,7 @@ const CourseDetails = () => {
                 </div>
             </div>
             <div className="banner2">
-              <button onClick={()=>alert("Successfully Enroll")}>Enroll Now</button>
+            <button onClick={()=>alert("Successfully Enroll")}>Enroll</button>
             </div>
             </div>
             <br/>
@@ -229,7 +245,7 @@ const CourseDetails = () => {
               </div>
             </div>
             <hr/>
-            <div className="section3">
+            <div className="section-course">
             <h2>Who this course is for ?</h2>
             <div className="point">
                   <li><FaIndustry/>     {loadedCourse.whoToLearn.p1}</li>
@@ -240,45 +256,39 @@ const CourseDetails = () => {
                   
               </div>
             </div>
-            <div className="section3">
+            <div className="section-course">
             <h2>Top Skills or Tools you will Learn</h2>
-            {/* <div className="point">
-                  <li><FaHtml5/>     {loadedCourse.skills.p1}</li>
-                  <li><FaJava/>   {loadedCourse.skills.p2}</li>
-                  <li><FaStar/>            {loadedCourse.skills.p3}</li>
-                  <li><FaReact/>            {loadedCourse.skills.p4}</li>
-                  <li><FaNodeJs/>            {loadedCourse.skills.p5}</li>
-                  <li><FaNode/>            {loadedCourse.skills.p6}</li>
-                  <li><FaStar/>            {loadedCourse.skills.p7}</li>
-                  <li><FaFile/>            {loadedCourse.skills.p8}</li>
-                  <li><FaRProject/>            {loadedCourse.skills.p9}</li>
-                  
-              </div> */}
+            <div className="image">
+            <img src={Pic1}></img>
+            <img src={Pic2}></img>
+            <img src={Pic3}></img>
+            <img src={Pic4}></img>
+            <img src={Pic5}></img>
+            <img src={Pic6}></img>
+            </div>
             </div>
             <div className="section3">
             <h2>
                 <div>Syllabus</div>
                 <p>Best-in-class content by leading faculty and industry leaders in the form of videos, cases and projects.</p>
                 <div className='syllabus'>
-                  <button onClick={()=>alert("Syllabus is successfully Download")}><FaRegFilePdf/>  Download Syllabus</button>   
-                </div>
+              <a href={Syllabus} download="surgeclasses.pdf">  
+              <button>
+              <FaRegFilePdf/>Download Syllabus
+              </button>
+              </a> 
+            </div>
             </h2>
-            
             </div>
             <div className="content">
             <h2>Course Contents:</h2>
-            <div>
-            { DUMMY.map(item=>(
-            <React.Fragment>
-            <li onClick={()=>console.log("YAsh")}>{item}</li>
-            <div className="list">
-            <li>What is MERN Stack?</li> 
-            <li>MERN Overview.</li>
-            <li>Course Outline.</li>
+            
+            {loadedCourse.syllabus &&  (
+              <FullList items={loadedCourse.syllabus}/>
+            )}
             </div>
-            </React.Fragment>))}
-            </div>
-            </div>
+            <br/>
+            <br/>
             </div>
           </Fragment>
         )}
