@@ -2,8 +2,11 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top:4rem;
+  /* margin-top:4rem; */
   justify-content: space-evenly;
+  padding-top: 4rem;
+  background: linear-gradient(to bottom, #decdc3, #e5e5e5);
+  padding-bottom: 4rem;
 }
 
 .flex-child {

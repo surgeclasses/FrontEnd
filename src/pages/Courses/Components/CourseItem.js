@@ -21,7 +21,7 @@ const CourseItem = (props) => {
     <li className="course-item" onClick={itemClickListener}>
       {/* <img className="course-banner" src={banner} /> */}
       {/* <div className="banner-overlay">Content</div> */}
-      <Card className="course-card">
+      <Card className="courseList-card">
         {props.isLive && <img className="live-tag" src={tagImg} />}
         <h4>{props.title}</h4>
         <p>{ReactHtmlParser(props.description)}</p>
