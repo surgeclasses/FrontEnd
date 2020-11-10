@@ -104,6 +104,7 @@ const Contact = () => {
                 errorText="Enter a valid Name"
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
+                className="textArea-Name"
               />
               <Input
                 id="last_name"
@@ -113,6 +114,7 @@ const Contact = () => {
                 errorText="Enter a valid Name"
                 validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
+                className="textArea-Name"
               />
             </div>
             <Input
@@ -123,6 +125,7 @@ const Contact = () => {
               validators={[VALIDATOR_EMAIL()]}
               element="input"
               onInput={inputHandler}
+              className="textArea-Field"
             />
             <Input
               id="mobile"
@@ -132,6 +135,7 @@ const Contact = () => {
               errorText="Enter a valid Mobile Number"
               validators={[VALIDATOR_MINLENGTH(10)],[VALIDATOR_MAXLENGTH(10)]}
               onInput={inputHandler}
+              className="textArea-Field"
             />
             <Input
               id="query"
@@ -140,6 +144,7 @@ const Contact = () => {
               errorText="Enter a valid Detail"
               validators={[VALIDATOR_REQUIRE()]}
               onInput={inputHandler}
+              className="textArea-Field"
             />
             </React.Fragment>
             <Button type="submit" disabled={!formState.isValid}>

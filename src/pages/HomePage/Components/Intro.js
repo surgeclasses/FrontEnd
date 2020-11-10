@@ -35,7 +35,7 @@ const content = [
 
 const Intro = () => {
   return (
-    <div className="top" style={{backgroundImage: `url('https://i.imgur.com/DvmN8Hx.jpg')`}}>
+    <div className="top" > {/* style={{backgroundImage: `url('https://i.imgur.com/DvmN8Hx.jpg')`}}> */}
         <div class="bg-text">
           <h1>Surge Classes is here</h1>
           <h3>

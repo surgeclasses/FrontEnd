@@ -52,7 +52,7 @@
 .course-item span {
   font-family: cursive;
   font-weight: bolder;
-  color: #c06c84;
+  color: #27496d;
   font-size: larger;
   border-top-style: dashed;
   outline-style: dashed;
@@ -64,7 +64,7 @@
     padding: 4px;
     margin-top: 4px;
     margin-right: 17px;
-    background-color: #decdc3;
+    background-color: #dae1e7;
 }
 
 .course-banner {
@@ -89,15 +89,15 @@
 }
 
 .courseList-card {
-  width: 90%;
+  width: 95%;
   margin-top: -1rem;
   margin-left: 2.5%;
-  height: 10rem;
+  height: 11rem;
   border: solid;
-  border-color: #c06c84;
-  border-width: 7px;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
+  border-color: #d8d8d8;
+  border-width: 8px;
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
   background-color: #DDE0E3;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
