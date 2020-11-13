@@ -1,5 +1,4 @@
 import React from "react";
-
 // import imageUrl from '../../../assets/about_img.jpg'
 import imageUrl from '../../../assets/about-us.png'
 

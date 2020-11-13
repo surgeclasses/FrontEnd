@@ -1,37 +1,39 @@
-.section-title{
-    font-size: 24;
+.section-title {
+  font-size: 24;
 }
 
 .horizontal-scroll {
-    white-space: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    margin-left: 7rem;
-    margin-right: 7rem;
-  }
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  margin-left: 7rem;
+  margin-right: 7rem;
+}
 
-  .top-courses {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    position: relative;
-  }
+.top-courses {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  position: relative;
+}
 
-  .caret-left{
-      position: absolute;
-      z-index: 3;
-      left:0;
-      font-size: -webkit-xxx-large;
-    padding-top: 60px;
-    color: white;
-    padding-left: 4rem;
-  }
+.caret-left {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  font-size: 4rem;
+  height: 80%;
+  /* padding-top: 60px; */
+  color: white;
+  padding-left: 4rem;
+}
 
-  .caret-right{
-    position: absolute;
-    z-index: 3;
-    right:0;
-    font-size: -webkit-xxx-large;
-    padding-top: 60px;
-    color: white;
-    padding-right: 4rem;
+.caret-right {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  font-size: 4rem;
+  height: 80%;
+  /* padding-top: 60px; */
+  color: white;
+  padding-right: 4rem;
 }

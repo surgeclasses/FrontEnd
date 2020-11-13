@@ -5,11 +5,20 @@
   margin-top:4rem;
   justify-content: space-evenly;
   margin-bottom: 4rem;
+  margin-left: 13rem;
+  margin-right: 13rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
+    overflow: hidden;
+    /* background: rgb(255, 255, 255); */
+   padding: 2rem;
+   width: 55rem;
+   background: rgb(233,234,238);
 }
 
 .flex-child {
   flex: 1;
-  margin-left: 3rem;
+  /* margin-left: 3rem; */
 }  
 
 .nameInOneLine{
@@ -38,8 +47,10 @@ border-color: gray;
 color: darkolivegreen; */
 text-align: left;
 /* background-color: rgb(233,234,236); */
-background-color: #e5e5e5;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+/* background-color: #e5e5e5; */
 border-radius: 1.3rem;
+background-color: rgb(233,234,250);
 }
 
 .contactInfo-heading{
@@ -49,11 +60,12 @@ font-family: system-ui;
 }
 
 .css-infosection{
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   font-family:initial;
   text-align: left;
-  max-width:550px;
-
+  /* max-width:550px; */
+  width: 25rem;
+  padding-left: 2rem;
 }
 
 .contactInfo-block{
@@ -82,6 +94,10 @@ font-family: system-ui;
 .css-h3{
   font-size: 21px;
   font-weight: bolder;
+}
+
+.css-Features{
+  
 }
 
 .css-outerFeature{

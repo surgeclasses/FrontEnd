@@ -5,7 +5,7 @@ import ReactHtmlParser from "react-html-parser";
 import Card from "../../../components/Card";
 import banner from "../../../assets/course_img.jpg";
 import tagImg from "../../../assets/live-tag.png";
-
+import course_img from "../../../assets/course-img.jpg"
 import "./CourseItem.css";
 
 const CourseItem = (props) => {
@@ -23,6 +23,9 @@ const CourseItem = (props) => {
       {/* <div className="banner-overlay">Content</div> */}
       <Card className="courseList-card">
         {props.isLive && <img className="live-tag" src={tagImg} />}
+        <img className="course-image" src={course_img}/>
+        <hr/>
+        {/* <p className="course-image"> Course </p> */}
         <h4>{props.title}</h4>
         <p>{ReactHtmlParser(props.description)}</p>
         <span>₹{props.fee}</span>

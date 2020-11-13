@@ -25,6 +25,7 @@
     font-weight: 900;
     color: #02122C;
     padding-top: 4px;
+    margin-top:4px;
     padding-bottom: 4px;
     padding-left: 2px;
     border-color: #525C6A;
@@ -89,16 +90,23 @@
 }
 
 .courseList-card {
-  width: 95%;
+  width: 30rem;
   margin-top: -1rem;
-  margin-left: 2.5%;
-  height: 11rem;
+  margin-left: -1rem;
+  height: 25rem;
   border: solid;
   border-color: #d8d8d8;
   border-width: 8px;
-  border-bottom-left-radius: 35px;
-  border-bottom-right-radius: 35px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   background-color: #DDE0E3;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+
+.course-image{
+  width: 30rem;
+    /* background-size: cover; */
+    height: 14rem;
+    padding-bottom: 1px;
 }

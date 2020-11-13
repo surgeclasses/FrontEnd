@@ -6,7 +6,12 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Modal from "../../components/Modal";
-import { VALIDATOR_REQUIRE, VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH } from "../../util/validators";
+import {
+  VALIDATOR_REQUIRE,
+  VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_MAXLENGTH,
+} from "../../util/validators";
 import { ImPhone, ImLocation, ImMail2 } from "react-icons/im";
 import { BsCaretRightFill } from "react-icons/bs";
 import { useForm } from "../../hooks/form-hook";
@@ -62,36 +67,39 @@ const Contact = () => {
       );
 
       // history.push("/");
-      setFormData({
-        first_name: {
-          value: "",
-          isValid: false,
+      setFormData(
+        {
+          first_name: {
+            value: "",
+            isValid: false,
+          },
+          last_name: {
+            value: "",
+            isValid: false,
+          },
+          email: {
+            value: "",
+            isValid: false,
+          },
+          mobile: {
+            value: "",
+            isValid: false,
+          },
+          query: {
+            value: "",
+            isValid: false,
+          },
         },
-        last_name: {
-          value: "",
-          isValid: false,
-        },
-        email: {
-          value: "",
-          isValid: false,
-        },
-        mobile: {
-          value: "",
-          isValid: false,
-        },
-        query: {
-          value: "",
-          isValid: false,
-        },
-      },false)
+        false
+      );
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div class="flex-container">
-      <div class="flex-child contactForm">         
+    <div class="flex-container ">
+      <div class="flex-child">
         <form className="contactForm" onSubmit={submitHandler}>
           {isLoading && <LoadingSpinner asOverlay />}
           <React.Fragment>
@@ -133,7 +141,9 @@ const Contact = () => {
               element="input"
               label="Mobile"
               errorText="Enter a valid Mobile Number"
-              validators={[VALIDATOR_MINLENGTH(10)],[VALIDATOR_MAXLENGTH(10)]}
+              validators={
+                ([VALIDATOR_MINLENGTH(10)], [VALIDATOR_MAXLENGTH(10)])
+              }
               onInput={inputHandler}
               className="textArea-Field"
             />
@@ -146,11 +156,13 @@ const Contact = () => {
               onInput={inputHandler}
               className="textArea-Field"
             />
-            </React.Fragment>
-            <Button type="submit" disabled={!formState.isValid}>
-              Send Query
-            </Button>
-          </form>
+          </React.Fragment>
+          <Button type="submit" disabled={!formState.isValid}>
+            Send Query
+          </Button>
+        </form>
+
+        {/*
           <div className="contact-info">
             <h3 className="contactInfo-heading"> Contact Information</h3>
             <br/>
@@ -175,8 +187,10 @@ const Contact = () => {
               <br/>
           </div>
       
-          </div>
-          <div class="flex-child infoSection" className="css-infosection">
+*/}
+      </div>
+      <div class="flex-child infoSection" className="css-infosection">
+        {/*}
             <h1 className="css-h1"> How Can We Help?</h1>
             <h2 className="css-h2"> 
               {" "}
@@ -184,27 +198,65 @@ const Contact = () => {
               find what you need, fill out our contact form.
             </h2>
             <br/>
-              <div className="css-outerFeature">
-                <div className="css-inerFeature">
-                <h3 className="css-h3"> Register for a Demo </h3>
-                <br/>
-                <p className="css-para"> Register for a demo of one of our programs. </p>
+*/}
+        <div className="css-Features">
+        <div className="css-outerFeature">
+          <div className="css-inerFeature">
+            <h3 className="css-h3"> Register for a Demo </h3>
+            <br />
+            <p className="css-para">
+              {" "}
+              Register for a demo of one of our programs.{" "}
+            </p>
+          </div>
+          <BsCaretRightFill className="css-caret" />
+        </div>
+        <br />
+        <hr />
+        <br />
+        <div className="css-outerFeature">
+          <div className="css-inerFeature">
+            <h3 className="css-h3"> Become a Instructor </h3>
+            <br />
+            <p className="css-para"> Join our team of Instructors </p>
+          </div>
+          <BsCaretRightFill className="css-caret" />
+        </div>
+        </div>
+
+        <div className="contact-info">
+          <h3 className="contactInfo-heading"> Contact Information</h3>
+          <br />
+          <p>
+            <div className="contactInfo-block">
+              <ImLocation />
+              <div className="contactInfo-Text">
+                No. 15, 25Th A Main, Mariswamy Layout
+                <br /> Agara, HSR Layout, Sector - 1 <br />
+                Bengaluru{" "}
               </div>
-              <BsCaretRightFill className="css-caret"/>
-          </div>
-          <br/>
-          <hr/>
-          <br/>
-            <div className="css-outerFeature">
-              <div className="css-inerFeature">
-              <h3 className="css-h3"> Become a Instructor </h3>
-              <br/>
-              <p className="css-para"> Join our team of Instructors </p>
             </div>
-              <BsCaretRightFill className="css-caret"/>
+          </p>
+          <br />
+          <p>
+            <div className="contactInfo-block">
+              <ImPhone />{" "}
+              <div className="contactInfo-Text">+91 9014089189 </div>
             </div>
+          </p>
+          <br />
+          <p>
+            <div className="contactInfo-block">
+              <ImMail2 />{" "}
+              <div className="contactInfo-Text">
+                surgeclasses2020@gmail.com{" "}
+              </div>
             </div>
-          </div>
+          </p>
+          <br />
+        </div>
+      </div>
+    </div>
   );
 };
 

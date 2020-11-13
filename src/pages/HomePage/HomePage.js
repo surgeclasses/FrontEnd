@@ -9,6 +9,7 @@ import Testimonials from "./Components/Testimonials";
 import Features from "./Components/Features";
 import Contact from "../Contact/Contact"
 import CourseSlider from "./Components/CourseSlider";
+import AboutPart from "./Components/AboutPart";
 
 const HomePage = () => {
   return (
@@ -23,13 +24,16 @@ const HomePage = () => {
       {/* <CourseSlider /> */}
       </div>
       <section id="about">
-        <About />
+      <AboutPart/>
+      {/*<About /> */}
       </section>
       <Contact />
       {/* <div className="technologies-section">
         <HotTechnologies />
       </div> */}
       {/* <Testimonials /> */}
+      
+      
     </div>
   );
 };
