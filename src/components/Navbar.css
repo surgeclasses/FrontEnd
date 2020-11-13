@@ -51,6 +51,12 @@
   cursor: pointer;
 }
 
+.main-navigation__brand h1{
+  margin-right: 2rem;
+}
+
+
+
 .logo{
   height: 4rem;
   vertical-align: middle;

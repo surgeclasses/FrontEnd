@@ -7,6 +7,10 @@ import { AdminContext } from "../context/admin-context";
 import "./Navlinks.css";
 import cartIcon from "../assets/cart.png";
 
+// <li> 
+//           <NavLink to="/CourseDetails/5ef347fb30245c415414dd1e">Courses</NavLink>
+//         </li>
+
 const Navlinks = (props) => {
   const auth = useContext(AuthContext);
   const admin = useContext(AdminContext);
@@ -69,9 +73,7 @@ const Navlinks = (props) => {
         {/* <li> 5ef07f2dbe4c7b29184c3809
           <NavLink to="/Courses">Courses</NavLink>
         </li> */}
-        <li> 
-          <NavLink to="/CourseDetails/5ef347fb30245c415414dd1e">Courses</NavLink>
-        </li>
+        
         {/* <li>
           <NavLink to="/Blogs">Blogs</NavLink>
         </li> */}

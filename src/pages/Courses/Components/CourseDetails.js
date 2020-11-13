@@ -6,12 +6,12 @@ import { CSSTransition } from "react-transition-group";
 import HotTechnologies from '../../HomePage/Components/HotTechnologies'
 import {Scrollbars} from 'react-custom-scrollbars'
 import Syllabus from './syllabus123.pdf'
-import Pic1 from '../../../assets/htlm.png'
-import Pic2 from '../../../assets/css.jpg'
-import Pic3 from '../../../assets/react.png'
-import Pic4 from '../../../assets/node.png'
-import Pic5 from '../../../assets/express.png'
-import Pic6 from '../../../assets/mongodb.png'
+import Pic1 from '../../../assets/htlm-removebg-preview.png'
+import Pic2 from '../../../assets/css-removebg-preview.png'
+import Pic3 from '../../../assets/react-removebg-preview.png'
+import Pic4 from '../../../assets/node-removebg-preview.png'
+import Pic5 from '../../../assets/express-removebg-preview.png'
+import Pic6 from '../../../assets/mongodb-removebg-preview.png'
 import "./CourseDetails.css";
 import { useHttpClient } from "../../../hooks/http-hook";
 import Modal from "../../../components/Modal";
@@ -128,20 +128,22 @@ const CourseDetails = () => {
     if (items.length > 0) {
       return (
         <ul className="syllabus-list">
+        <div className="list">
         <Scrollbars 
             autoHide
             autoHideTimeout={1000}
             autoHideDuration={200}
             autoHeight
             autoHeightMin={0}
-            autoHeightMax={200}
+            autoHeightMax={500}
             thumbMinSize={30}
             universal={true}   
-            style={{width:500, height:300}}>
+            style={{width:500, height:300} }>
           {items.map((item, i) => (
             <FullListItem key={i} module={item} />
           ))}
         </Scrollbars>
+        </div>
         </ul>
       );
     } else {
@@ -195,78 +197,76 @@ const CourseDetails = () => {
 
   return (
     <div className="body">
-      <div className="programs-bar">
-        <h3 className="programs-title">Offered Programs</h3>
-        <ul className="programs">
-          {loadedTechnologies && loadedTechnologies.map((item, index) => (
-            <li key={index} onClick={()=>itemClickListener(item._id)}>
-              <div className="list-card">
-                <p>{item.title}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div >
+      <div className="head" >
         <Modal error={error} clearError={clearError} />
         {isLoading && <LoadingSpinner />}
         {loadedCourse && (
           <Fragment>
-            <div>
+            <div className="header">
             <div className="course-header">
+            <div className="c-header">
+            <br/>
             <h1 className="h1">{loadedCourse.title} </h1>
             <h2>{loadedCourse.description}</h2>
             <div className="partition">
             <div className='banner'>
                 <div className='items'>
-                  <div className="icon"><FaChalkboardTeacher/>{loadedCourse.instructor.name}</div>
-                  <div className="icon"><FaRegStar/>{loadedCourse.avgRating}</div>
-                  <div className="icon"><FaRegClock/>{loadedCourse.duration}</div>
-                  <div className="icon"><FaRegCalendarAlt/>{loadedCourse.startDate} </div>   
-                  <div className="icon"><FaRegMoneyBillAlt/>Fee: {loadedCourse.fee}</div>   
-                </div>
+                  <div className="icon"><FaChalkboardTeacher style={{marginRight:"0.4rem"}}/>{loadedCourse.instructor.name}</div>
+                  <div className="icon"><FaRegStar style={{marginRight:"0.4rem"}}/>{loadedCourse.avgRating}</div>
+                  <div className="icon"><FaRegClock style={{marginRight:"0.4rem"}}/>{loadedCourse.duration}</div>
+                  <div className="icon"><FaRegCalendarAlt style={{marginRight:"0.4rem"}}/>{loadedCourse.startDate} </div>   
+                  <div className="icon"><FaRegMoneyBillAlt style={{marginRight:"0.4rem"}}/>Fee: ₹{loadedCourse.fee}/-</div>   
+                </div>   
             </div>
             <div className="banner2">
             <button onClick={()=>alert("Successfully Enroll")}>Enroll</button>
             </div>
             </div>
             <br/>
-            </div>    
+            <br/>
+            </div>   
+            </div> 
+            <div className="sec">
             <div className="section2">
+              <br/>
+              <br/>
               <h2>Course Overview</h2>
               <h3>Key Features:</h3>
               <div className="point">
-                  <li><FaIndustry/>     {loadedCourse.keyFeatures.p1}</li>
-                  <li><FaChalkboardTeacher/>   {loadedCourse.keyFeatures.p2}</li>
-                  <li><FaRProject/>            {loadedCourse.keyFeatures.p3}</li>
-                  <li><FaLanguage/>            {loadedCourse.keyFeatures.p4}</li>
-                  <li><FaRegClock/>            {loadedCourse.keyFeatures.p5}</li>
-                  <li><FaProjectDiagram/>   {loadedCourse.keyFeatures.p6}</li>
+                  <li><FaIndustry style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p1}</li>
+                  <li><FaChalkboardTeacher style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p2}</li>
+                  <li><FaRProject style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p3}</li>
+                  <li><FaLanguage style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p4}</li>
+                  <li><FaRegClock style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p5}</li>
+                  <li><FaProjectDiagram style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p6}</li>
               </div>
             </div>
             <hr/>
+            </div>
             <div className="section-course">
+            <br/>
             <h2>Who this course is for ?</h2>
-            <div className="point">
-                  <li><FaIndustry/>     {loadedCourse.whoToLearn.p1}</li>
-                  <li><FaChalkboardTeacher/>   {loadedCourse.whoToLearn.p2}</li>
-                  <li><FaRProject/>            {loadedCourse.whoToLearn.p3}</li>
-                  <li><FaReact/>            {loadedCourse.whoToLearn.p4}</li>
-                  <li><FaNode/>            {loadedCourse.whoToLearn.p5}</li>
+            <div className="point1">
+                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p1}</li>
+                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p2}</li>
+                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p3}</li>
+                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p4}</li>
+                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p5}</li>
                   
               </div>
             </div>
             <div className="section-course">
             <h2>Top Skills or Tools you will Learn</h2>
             <div className="image">
-            <img src={Pic1}></img>
-            <img src={Pic2}></img>
-            <img src={Pic3}></img>
-            <img src={Pic4}></img>
-            <img src={Pic5}></img>
-            <img src={Pic6}></img>
+            <img src={Pic1} width="70" height="70"></img>
+            <img src={Pic2} width="70" height="70"></img>
+            <img src={Pic3} width="135" height="70"></img>
+            <img src={Pic4} width="115" height="70"></img>
+            <img src={Pic5} width="125" height="70"></img>
+            <img src={Pic6} width="140" height="70"></img>
             </div>
             </div>
+            
             <div className="section3">
             <h2>
                 <div>Syllabus</div>
@@ -274,25 +274,25 @@ const CourseDetails = () => {
                 <div className='syllabus'>
               <a href={Syllabus} download="surgeclasses.pdf">  
               <button>
-              <FaRegFilePdf/>Download Syllabus
+              <FaRegFilePdf style={{marginRight:"0.4rem"}}/>Download Syllabus
               </button>
               </a> 
             </div>
             </h2>
             </div>
+            <div className="footer1">
             <div className="content">
             <h2>Course Contents:</h2>
-            
-            {loadedCourse.syllabus &&  (
+             {loadedCourse.syllabus &&  (
               <FullList items={loadedCourse.syllabus}/>
             )}
             </div>
-            <br/>
-            <br/>
+            </div>
             </div>
           </Fragment>
         )}
       </div>
+      
     </div>
   );
 };
