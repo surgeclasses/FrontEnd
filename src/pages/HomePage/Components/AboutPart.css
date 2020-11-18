@@ -1,4 +1,4 @@
-.about-img {
+.about-img{
   /* position: absolute; */
   width: 1840px;
   height: 300px;
@@ -19,6 +19,8 @@
   background-repeat: space;
   /* background-blend-mode: screen; */
   background-blend-mode: lighten;
+  transform: scaleX(-1);
+
 }
 
 .about-WeAre {
@@ -40,6 +42,8 @@
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  transform: scaleX(-1);
+  width: 50rem;
 }
 
 .about-yourneed {
@@ -62,6 +66,8 @@
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  transform: scaleX(-1);
+  width:320px;
 }
 
 .about-surgeText {
@@ -95,6 +101,9 @@
     rgba(255, 255, 255, 0.54) 100%
   );
   border-radius: 33px;
+  transform: scaleX(-1);
+  width: 615px;
+  padding-bottom: 1rem;
 }
 
 .dot {

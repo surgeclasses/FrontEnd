@@ -3,34 +3,46 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import firebase from "firebase";
 import ReactHtmlParser from "react-html-parser";
 import { CSSTransition } from "react-transition-group";
-import HotTechnologies from '../../HomePage/Components/HotTechnologies'
-import {Scrollbars} from 'react-custom-scrollbars'
-import Syllabus from './syllabus123.pdf'
-import Pic1 from '../../../assets/htlm-removebg-preview.png'
-import Pic2 from '../../../assets/css-removebg-preview.png'
-import Pic3 from '../../../assets/react-removebg-preview.png'
-import Pic4 from '../../../assets/node-removebg-preview.png'
-import Pic5 from '../../../assets/express-removebg-preview.png'
-import Pic6 from '../../../assets/mongodb-removebg-preview.png'
+import HotTechnologies from "../../HomePage/Components/HotTechnologies";
+import { Scrollbars } from "react-custom-scrollbars";
+import Syllabus from "./syllabus123.pdf";
+import Pic1 from "../../../assets/htlm-removebg-preview.png";
+import Pic2 from "../../../assets/css-removebg-preview.png";
+import Pic3 from "../../../assets/react-removebg-preview.png";
+import Pic4 from "../../../assets/node-removebg-preview.png";
+import Pic5 from "../../../assets/express-removebg-preview.png";
+import Pic6 from "../../../assets/mongodb-removebg-preview.png";
 import "./CourseDetails.css";
 import { useHttpClient } from "../../../hooks/http-hook";
 import Modal from "../../../components/Modal";
 import Card from "../../../components/Card";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import tagImg from "../../../assets/live-tag.png";
-import { FaRegStar, FaChalkboardTeacher, FaRegClock, FaRegCalendarAlt, FaProjectDiagram, FaRProject, FaIndustry, FaLanguage, FaReact, FaNode, FaRegFilePdf, FaRegMoneyBillAlt} from "react-icons/fa";
+import {
+  FaRegStar,
+  FaChalkboardTeacher,
+  FaRegClock,
+  FaRegCalendarAlt,
+  FaProjectDiagram,
+  FaRProject,
+  FaIndustry,
+  FaLanguage,
+  FaReact,
+  FaNode,
+  FaRegFilePdf,
+  FaRegMoneyBillAlt,
+} from "react-icons/fa";
 
-
+import { AiTwotoneAppstore, AiFillRead } from "react-icons/ai";
 
 const CourseDetails = () => {
-
   const [loadedCourse, setLoadedCourse] = useState();
   const [loadedCourses, setLoadedCourses] = useState();
   const [loadedTechnologies, setLoadedTechnologies] = useState();
   const [isApplied, setIsApplied] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const history = useHistory();
-   
+
   let { cid } = useParams();
 
   useEffect(() => {
@@ -128,22 +140,30 @@ const CourseDetails = () => {
     if (items.length > 0) {
       return (
         <ul className="syllabus-list">
-        <div className="list">
-        <Scrollbars 
-            autoHide
-            autoHideTimeout={1000}
-            autoHideDuration={200}
-            autoHeight
-            autoHeightMin={0}
-            autoHeightMax={500}
-            thumbMinSize={30}
-            universal={true}   
-            style={{width:500, height:300} }>
-          {items.map((item, i) => (
-            <FullListItem key={i} module={item} />
-          ))}
-        </Scrollbars>
-        </div>
+          <div className="list">
+            <Scrollbars
+              className="Scollbars"
+              autoHide
+              autoHideTimeout={1000}
+              autoHideDuration={200}
+              autoHeight
+              autoHeightMin={0}
+              autoHeightMax={500}
+              thumbMinSize={30}
+              universal={true}
+              style={{ width: 500, height: 300 }}
+            >
+              <div className="course-fullList">
+                {items.map((item, i) => (
+                  <FullListItem
+                    className="FullListItem"
+                    key={i}
+                    module={item}
+                  />
+                ))}
+              </div>
+            </Scrollbars>
+          </div>
         </ul>
       );
     } else {
@@ -151,8 +171,6 @@ const CourseDetails = () => {
     }
   };
 
-   
-  
   useEffect(() => {
     const fetchAllTechnologies = async () => {
       try {
@@ -185,89 +203,150 @@ const CourseDetails = () => {
   const itemClickListener = (id) => {
     // history.push({ pathname: "/CourseDetails", state: props });
     // history.push("/CourseDetails/" + courseId);
-    console.log(id)
+    console.log(id);
     const showCourses = loadedCourses.filter((el) => {
-      return el.technology == id
-    })
+      return el.technology == id;
+    });
     // console.log(showCourses)
-    const courseId = showCourses[0]._id
+    const courseId = showCourses[0]._id;
     history.push("/CourseDetails/" + courseId);
   };
 
-
   return (
     <div className="body">
-      <div className="head" >
+      <div className="head">
         <Modal error={error} clearError={clearError} />
         {isLoading && <LoadingSpinner />}
         {loadedCourse && (
           <Fragment>
             <div className="header">
-            <div className="course-header">
-            <div className="c-header">
-            <br/>
-            <h1 className="h1">{loadedCourse.title} </h1>
-            <h2>{loadedCourse.description}</h2>
-            <div className="partition">
-            <div className='banner'>
-                <div className='items'>
-                  <div className="icon"><FaChalkboardTeacher style={{marginRight:"0.4rem"}}/>{loadedCourse.instructor.name}</div>
-                  <div className="icon"><FaRegStar style={{marginRight:"0.4rem"}}/>{loadedCourse.avgRating}</div>
-                  <div className="icon"><FaRegClock style={{marginRight:"0.4rem"}}/>{loadedCourse.duration}</div>
-                  <div className="icon"><FaRegCalendarAlt style={{marginRight:"0.4rem"}}/>{loadedCourse.startDate} </div>   
-                  <div className="icon"><FaRegMoneyBillAlt style={{marginRight:"0.4rem"}}/>Fee: ₹{loadedCourse.fee}/-</div>   
-                </div>   
-            </div>
-            <div className="banner2">
-            <button onClick={()=>alert("Successfully Enroll")}>Enroll</button>
-            </div>
-            </div>
-            <br/>
-            <br/>
-            </div>   
-            </div> 
-            <div className="sec">
-            <div className="section2">
-              <br/>
-              <br/>
-              <h2>Course Overview</h2>
-              <h3>Key Features:</h3>
-              <div className="point">
-                  <li><FaIndustry style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p1}</li>
-                  <li><FaChalkboardTeacher style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p2}</li>
-                  <li><FaRProject style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p3}</li>
-                  <li><FaLanguage style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p4}</li>
-                  <li><FaRegClock style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p5}</li>
-                  <li><FaProjectDiagram style={{marginRight:"0.7rem"}}/>{loadedCourse.keyFeatures.p6}</li>
+              <div className="course-header">
+                <div className="c-header">
+                  <br />
+                  <h1 className="h1">⚪ {loadedCourse.title} </h1>
+                  {/* <h2>{loadedCourse.description}</h2> */}
+                  {/* <p className="course-about1"> Whole Era is changing. This is time of Everything Digital. We here at Surge Classes brought that unexplored digital world in your hand</p> */}
+                  {/* <p className="course-about2"> Join US </p> */}
+                  <p className="course-about3">
+                    MERN Stack is a Javascript Stack that is used for easier and
+                    faster deployment of full-stack web applications. MERN Stack
+                    comprises of 4 technologies namely: MongoDB, Express, React
+                    and Node.js. It is designed to make the development process
+                    smoother and easier.{" "}
+                  </p>
+                  {/* <p className="course-about4"> Interesting? <br/> Yes...Its More.. <br/> Enroll Now. </p> */}
+                  <div className="partition">
+                    <div className="banner">
+                      <div className="items">
+                        <div className="icon">
+                          <FaChalkboardTeacher
+                            style={{ marginRight: "0.4rem" }}
+                          />
+                          {loadedCourse.instructor.name}
+                        </div>
+                        <div className="icon">
+                          <FaRegStar style={{ marginRight: "0.4rem" }} />
+                          {loadedCourse.avgRating}
+                        </div>
+                        <div className="icon">
+                          <FaRegClock style={{ marginRight: "0.4rem" }} />
+                          {loadedCourse.duration}
+                        </div>
+                        <div className="icon">
+                          <FaRegCalendarAlt style={{ marginRight: "0.4rem" }} />
+                          {loadedCourse.startDate}{" "}
+                        </div>
+                        <div className="icon">
+                          <FaRegMoneyBillAlt
+                            style={{ marginRight: "0.4rem" }}
+                          />
+                          Fee: ₹{loadedCourse.fee}/-
+                        </div>
+                      </div>
+                    </div>
+                    <div className="banner2">
+                      <button onClick={() => alert("Successfully Enroll")}>
+                        Enroll
+                      </button>
+                    </div>
+                  </div>
+                  <br />
+                  <br />
+                </div>
               </div>
-            </div>
-            <hr/>
-            </div>
-            <div className="section-course">
-            <br/>
-            <h2>Who this course is for ?</h2>
-            <div className="point1">
-                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p1}</li>
-                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p2}</li>
-                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p3}</li>
-                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p4}</li>
-                  <li style={{listStyleType:"circle"}}>{loadedCourse.whoToLearn.p5}</li>
-                  
+              <div className="sec">
+                <div className="section2">
+                  <hr />
+                  <br />
+                  <br />
+                  <h2>
+                    <AiTwotoneAppstore /> Course Overview
+                  </h2>
+                  <h3>Key Features:</h3>
+                  <div className="point">
+                    <li>
+                      <FaIndustry style={{ marginRight: "0.7rem" }} />
+                      {loadedCourse.keyFeatures.p1}
+                    </li>
+                    <li>
+                      <FaChalkboardTeacher style={{ marginRight: "0.7rem" }} />
+                      {loadedCourse.keyFeatures.p2}
+                    </li>
+                    <li>
+                      <FaRProject style={{ marginRight: "0.7rem" }} />
+                      {loadedCourse.keyFeatures.p3}
+                    </li>
+                    <li>
+                      <FaLanguage style={{ marginRight: "0.7rem" }} />
+                      {loadedCourse.keyFeatures.p4}
+                    </li>
+                    <li>
+                      <FaRegClock style={{ marginRight: "0.7rem" }} />
+                      {loadedCourse.keyFeatures.p5}
+                    </li>
+                    <li>
+                      <FaProjectDiagram style={{ marginRight: "0.7rem" }} />
+                      {loadedCourse.keyFeatures.p6}
+                    </li>
+                  </div>
+                </div>
+                <br />
               </div>
-            </div>
-            <div className="section-course">
-            <h2>Top Skills or Tools you will Learn</h2>
-            <div className="image">
-            <img src={Pic1} width="70" height="70"></img>
-            <img src={Pic2} width="70" height="70"></img>
-            <img src={Pic3} width="135" height="70"></img>
-            <img src={Pic4} width="115" height="70"></img>
-            <img src={Pic5} width="125" height="70"></img>
-            <img src={Pic6} width="140" height="70"></img>
-            </div>
-            </div>
-            
-            <div className="section3">
+              <div className="course-details">
+                <div className="section-course">
+                  {/* <br/> */}
+                  <h2>Who this course is for ?</h2>
+                  <div className="point1">
+                    <li style={{ listStyleType: "circle" }}>
+                      {loadedCourse.whoToLearn.p1}
+                    </li>
+                    <li style={{ listStyleType: "circle" }}>
+                      {loadedCourse.whoToLearn.p2}
+                    </li>
+                    <li style={{ listStyleType: "circle" }}>
+                      {loadedCourse.whoToLearn.p3}
+                    </li>
+                    <li style={{ listStyleType: "circle" }}>
+                      {loadedCourse.whoToLearn.p4}
+                    </li>
+                    <li style={{ listStyleType: "circle" }}>
+                      {loadedCourse.whoToLearn.p5}
+                    </li>
+                  </div>
+                </div>
+                <div className="section-course">
+                  <h2>Top Skills or Tools you will Learn</h2>
+                  <div className="image">
+                    <img src={Pic1} width="70" height="70"></img>
+                    <img src={Pic2} width="70" height="70"></img>
+                    <img src={Pic3} width="135" height="70"></img>
+                    <img src={Pic4} width="115" height="70"></img>
+                    <img src={Pic5} width="125" height="70"></img>
+                    <img src={Pic6} width="140" height="70"></img>
+                  </div>
+                </div>
+
+                {/* <div className="section3">
             <h2>
                 <div>Syllabus</div>
                 <p>Best-in-class content by leading faculty and industry leaders in the form of videos, cases and projects.</p>
@@ -279,20 +358,48 @@ const CourseDetails = () => {
               </a> 
             </div>
             </h2>
-            </div>
-            <div className="footer1">
-            <div className="content">
-            <h2>Course Contents:</h2>
-             {loadedCourse.syllabus &&  (
-              <FullList items={loadedCourse.syllabus}/>
-            )}
-            </div>
-            </div>
+            </div> */}
+                <div className="footer1">
+                  <div className="content">
+                    <h2>Course Contents:</h2>
+                    {loadedCourse.syllabus && (
+                      <FullList items={loadedCourse.syllabus} />
+                    )}
+                  </div>
+                </div>
+
+                <div className="container">
+                  <h2 className="Syllabus-h2style">
+                    {" "}
+                    Download Syllabus from here:{" "}
+                  </h2>
+                  <div className="box">
+                    <div className="icon">
+                      <AiFillRead
+                        className="fa fa-search"
+                        aria-aria-hidden="true"
+                      />
+                    </div>
+                    <div className="content">
+                      <h3>Syllabus</h3>
+                      <p>
+                        Best-in-class content by leading faculty and industry
+                        leaders in the form of videos, cases and projects.
+                      </p>
+                      <a href={Syllabus} download="surgeclasses.pdf">
+                        <button className="download-button">
+                          <FaRegFilePdf style={{ marginRight: "0.4rem" }} />
+                          Download Syllabus
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </Fragment>
         )}
       </div>
-      
     </div>
   );
 };
