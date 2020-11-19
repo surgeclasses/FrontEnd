@@ -10,7 +10,6 @@ import Modal from "../../components/Modal";
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from "../../util/validators";
 import { useForm } from "../../hooks/form-hook";
 import "./AddCourse.css";
-import { FaMinus, FaPlus } from "react-icons/fa";
 
 const AddCourse = () => {
   const [loadedTechnologies, setLoadedTechnologies] = useState();
@@ -21,11 +20,7 @@ const AddCourse = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [editorState, setEditorState] = useState();
 
-  const [inputList, setInputList] = useState([{ keyFeatures: "" }]);
-  const [inputList2, setInputList2] = useState([{ whotoLearn: "" }]);
-  const [inputList3, setInputList3] = useState([{ tools: "" }]);
-
-  const [formState, inputHandler] = useForm(
+  const [formState, inputHandler, setFormData] = useForm(
     {
       title: {
         value: "",
@@ -54,6 +49,19 @@ const AddCourse = () => {
         value: "",
         isValid: false,
       },
+      keyFeatures: {
+        value: "",
+        isValid: false,
+      },
+      whotoLearn: {
+        value: "",
+        isValid: false,
+      },
+      tools: {
+        value: "",
+        isValid: false,
+      },
+      
     },
     false
   );
@@ -109,9 +117,11 @@ const AddCourse = () => {
           duration: formState.inputs.duration.value,
           isLive: isLive,
           startDate: formState.inputs.startDate.value,
-          keyFeatures: inputList ,
-          whotoLearn: inputList2,
-          tools:inputList3,
+          keyFeatures: formState.inputs.keyFeatures.value,
+          whotoLearn: formState.inputs.whotoLearn.value,
+          tools: formState.inputs.tools.value,
+
+
         }),
         {
           "Content-Type": "application/json",
@@ -134,58 +144,6 @@ const AddCourse = () => {
 
   const liveChangeHandler = (event) => {
     setIsLive(event.target.checked);
-  };
-
-  const handleInputChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...inputList];
-    list[index][name] = value;
-    setInputList(list);
-  };
-
-  const handleInputChange2 = (e, index) => {
-    const { name, value } = e.target;
-    const list2 = [...inputList2];
-    list2[index][name] = value;
-    setInputList2(list2);
-  };
-
-  const handleInputChange3 = (e, index) => {
-    const { name, value } = e.target;
-    const list3 = [...inputList3];
-    list3[index][name] = value;
-    setInputList(list3);
-  };
-   
-  // handle click event of the Remove button
-  const handleRemoveClick = index => {
-    const list = [...inputList];
-    list.splice(index, 1);
-    setInputList(list);
-  };
-
-  const handleRemoveClick2 = index => {
-    const list2 = [...inputList2];
-    list2.splice(index, 1);
-    setInputList2(list2);
-  };
-
-  const handleRemoveClick3 = index => {
-    const list3 = [...inputList3];
-    list3.splice(index, 1);
-    setInputList3(list3);
-  };
-
-  const handleAddClick = () => {
-    setInputList([...inputList, { keyFeatures: "" }]);
-  };
-
-  const handleAddClick2 = () => {
-    setInputList2([...inputList2, { whotoLearn: "" }]);
-  };
-
-  const handleAddClick3 = () => {
-    setInputList3([...inputList3, { tools: "" }]);
   };
 
   return (
@@ -286,65 +244,37 @@ const AddCourse = () => {
             errorText="Please enter a valid starting date."
             onInput={inputHandler}
           />
-          <p>KeyFeatures</p>
-          {inputList.map((x, i) => {
-            return (
-              <div className="box">
-                <input
-                  name="keyFeatures"
-                  value={x.keyFeatures}
-                  onChange={e => handleInputChange(e, i)}
-                />
-                <div className="btn-box">
-                {inputList.length !== 1 && <button className="mr10" onClick={() => handleRemoveClick(i)}><FaMinus/></button>}
-                {inputList.length - 1 === i && <button className="mr101" onClick={handleAddClick}><FaPlus/></button>}
-                
-                  
-                </div>
-                
-              </div>
-            );
-          })}
-          <p>Who to Learn</p>
-          {inputList2.map((x, i) => {
-            return (
-              <div className="box">
-                <input
-                  name="whotoLearn"
-                  value={x.whotoLearn}
-                  onChange={e => handleInputChange2(e, i)}
-                />
-               
-                <div className="btn-box">
-                  {inputList2.length !== 1 && <button className="mr10" onClick={() => handleRemoveClick2(i)}><FaMinus/></button>}
-                  {inputList2.length - 1 === i && <button className="mr101" onClick={handleAddClick2}><FaPlus/></button>}
-                </div>
-                
-              </div>
-            );
-          })}
-          <p>Tools and Programming Language</p>
-          {inputList3.map((x,i) => {
-            return (
-              <div className="box">
-                <input
-                  name="tools"
-                  value={x.tools}
-                  onChange={e => handleInputChange3(e, i)}
-                />
-               
-                <div className="btn-box">
-                  {inputList3.length !== 1 && <button className="mr10" onClick={() => handleRemoveClick3(i)}><FaMinus/></button>}
-                  {inputList3.length - 1 === i && <button className="mr101" onClick={handleAddClick3}><FaPlus/></button>}
-                </div>
-             </div>
-            );
-          })}
-          
+          <Input
+              id="keyFeatures"
+              element="input"
+              label="Key Features"
+              initialValue=""
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please enter valid key features."
+              onInput={inputHandler}
+            />
+            <Input
+            id="whotoLearn"
+            element="input"
+            label="Who to Learn"
+            initialValue=""
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter valid content."
+            onInput={inputHandler}
+          /> 
+          <Input
+          id="tools"
+          element="input"
+          label="Tools and Programming Language"
+          initialValue=""
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter valid tools."
+          onInput={inputHandler}
+        />
           <Button type="submit" disabled={!formState.isValid}>
             ADD COURSE
           </Button>
-        </form> 
+        </form>
       </div>
     </div>
   );

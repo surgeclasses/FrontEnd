@@ -55,6 +55,18 @@ const UpdateCourse = () => {
         value: "",
         isValid: false,
       },
+      keyFeatures: {
+        value: "",
+        isValid: false,
+      },
+      whotoLearn:{
+        value:"",
+        isValid: false,
+      },
+      tools:{
+        value:"",
+        isValid: false,
+      }
     },
     false
   );
@@ -94,6 +106,18 @@ const UpdateCourse = () => {
               value: responseData.startDate,
               isValid: true,
             },
+            keyFeatures: {
+              value: responseData.keyFeatures,
+              isValid: true,
+            },
+            whotoLearn: {
+              value: responseData.whotoLearn,
+              isValid: true ,
+            },
+            tools: {
+              value: responseData.tools,
+              isValid: true,
+            }
           },
           true
         );
@@ -154,6 +178,9 @@ const UpdateCourse = () => {
           duration: formState.inputs.duration.value,
           isLive: isLive,
           startDate: formState.inputs.startDate.value,
+          keyFeatures: formState.inputs.keyFeatures.value,
+          whotoLearn: formState.inputs.whotoLearn.value,
+          tools: formState.inputs.tools.value,
         }),
         {
           "Content-Type": "application/json",
@@ -277,6 +304,33 @@ const UpdateCourse = () => {
               errorText="Please enter a valid starting date."
               onInput={inputHandler}
             />
+            <Input
+              id="keyFeatures"
+              //element="input"
+              label="Key Features"
+              initialValue={loadedCourse.keyFeatures.map(p=>p.keyFeatures)}
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please enter valid key features."
+              onInput={inputHandler}
+            />
+            <Input
+            id="whotoLearn"
+            //element="input"
+            label="Who to Learn"
+            initialValue={loadedCourse.whotoLearn.map(p=>p.whotoLearn)}
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter valid content."
+            onInput={inputHandler}
+          /> 
+          <Input
+          id="tools"
+          //element="input"
+          label="Tools and Programming Language"
+          initialValue={loadedCourse.tools.map(p=>p.tools)}
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter valid tools."
+          onInput={inputHandler}
+        />
             <Button type="submit">Update Course</Button>
             <Button to={`/AddSyllabus/${loadedCourse._id}`}>Edit Syllabus</Button>
           </form>

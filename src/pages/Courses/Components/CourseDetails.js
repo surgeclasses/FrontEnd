@@ -254,7 +254,7 @@ const CourseDetails = () => {
                         </div>
                         <div className="icon">
                           <FaRegCalendarAlt style={{ marginRight: "0.4rem" }} />
-                          {loadedCourse.startDate}{" "}
+                          {loadedCourse.startDate}
                         </div>
                         <div className="icon">
                           <FaRegMoneyBillAlt
@@ -284,30 +284,7 @@ const CourseDetails = () => {
                   </h2>
                   <h3>Key Features:</h3>
                   <div className="point">
-                    <li>
-                      <FaIndustry style={{ marginRight: "0.7rem" }} />
-                      {loadedCourse.keyFeatures.p1}
-                    </li>
-                    <li>
-                      <FaChalkboardTeacher style={{ marginRight: "0.7rem" }} />
-                      {loadedCourse.keyFeatures.p2}
-                    </li>
-                    <li>
-                      <FaRProject style={{ marginRight: "0.7rem" }} />
-                      {loadedCourse.keyFeatures.p3}
-                    </li>
-                    <li>
-                      <FaLanguage style={{ marginRight: "0.7rem" }} />
-                      {loadedCourse.keyFeatures.p4}
-                    </li>
-                    <li>
-                      <FaRegClock style={{ marginRight: "0.7rem" }} />
-                      {loadedCourse.keyFeatures.p5}
-                    </li>
-                    <li>
-                      <FaProjectDiagram style={{ marginRight: "0.7rem" }} />
-                      {loadedCourse.keyFeatures.p6}
-                    </li>
+                   {loadedCourse.keyFeatures.map(p=><li style={{listStyleType:"circle"}}>{p.keyFeatures}</li>)}
                   </div>
                 </div>
                 <br />
@@ -317,21 +294,7 @@ const CourseDetails = () => {
                   {/* <br/> */}
                   <h2>Who this course is for ?</h2>
                   <div className="point1">
-                    <li style={{ listStyleType: "circle" }}>
-                      {loadedCourse.whoToLearn.p1}
-                    </li>
-                    <li style={{ listStyleType: "circle" }}>
-                      {loadedCourse.whoToLearn.p2}
-                    </li>
-                    <li style={{ listStyleType: "circle" }}>
-                      {loadedCourse.whoToLearn.p3}
-                    </li>
-                    <li style={{ listStyleType: "circle" }}>
-                      {loadedCourse.whoToLearn.p4}
-                    </li>
-                    <li style={{ listStyleType: "circle" }}>
-                      {loadedCourse.whoToLearn.p5}
-                    </li>
+                   {loadedCourse.whotoLearn.map(p=><li style={{listStyleType:"square"}}>{p.whotoLearn}</li>)}
                   </div>
                 </div>
                 <div className="section-course">
