@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { useHistory, Link, useLocation } from "react-router-dom";
+import {useParams, useHistory, Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState, Fragment } from "react";
+import firebase from "firebase";
+import { CSSTransition } from "react-transition-group";
 
 import "./Navlinks";
 import "./Navbar.css";
@@ -9,11 +11,23 @@ import Backdrop from "./Backdrop";
 import Logo from "../assets/logo.png";
 import Button from "./Button";
 
+import { useHttpClient } from "../hooks/http-hook";
+import Modal from "../components/Modal";
+import Card from "../components/Card";
+import LoadingSpinner from "../components/LoadingSpinner";
+
 const Navbar = (props) => {
-  const history = new useHistory();
+  const history = useHistory();
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const location = useLocation();
+  const [loadedCourse, setLoadedCourse] = useState();
+  const [loadedCourses, setLoadedCourses] = useState();
+  const [loadedTechnologies, setLoadedTechnologies] = useState();
+  const [isApplied, setIsApplied] = useState(false);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
   // console.log(location.pathname);
+  let { cid } = useParams();
 
   const openDrawer = () => {
     setDrawerIsOpen(true);
@@ -26,6 +40,152 @@ const Navbar = (props) => {
   const goToHome = () =>{
     history.push('/');
   }
+
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/courses/" + cid
+        );
+        console.log(responseData);
+        setLoadedCourse(responseData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchCourse();
+  }, [cid]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL +
+            "/user/" +
+            firebase.auth().currentUser.email
+        );
+        userData.attendingCourses.map((courseId) => {
+          if (courseId == cid) setIsApplied(true);
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  const applyCourse = async () => {
+    try {
+      await sendRequest(
+        process.env.REACT_APP_BACKEND_URL + "/user/addmycourse",
+        "PATCH",
+        JSON.stringify({
+          email: firebase.auth().currentUser.email,
+          courseId: loadedCourse._id,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const startCourse = () => {
+    history.push("/Lectures/" + cid);
+  };
+
+  const ListItem = ({ value }) => <li>{value}</li>;
+
+  const List = ({ items, show }) => (
+    <CSSTransition
+      in={show}
+      timeout={200}
+      classNames="slide-in-top"
+      mountOnEnter
+      unmountOnExit
+    >
+      <ul className="module-list">
+        {items.map((item, i) => (
+          <ListItem key={i} value={item.topic} />
+        ))}
+      </ul>
+    </CSSTransition>
+  );
+
+  const FullListItem = ({ module }) => {
+    const [isListOpen, setIsListOpen] = useState(false);
+    const openList = () => {
+      setIsListOpen(!isListOpen);
+    };
+    if (!!module) {
+      return (
+        <li>
+          <br />
+          <h3 onClick={openList}>{module.title}</h3>
+          {<List show={isListOpen} items={module.topics} />}
+        </li>
+      );
+    } else {
+      return "";
+    }
+  };
+
+  const FullList = ({ items }) => {
+    if (items.length > 0) {
+      return (
+        <ul className="syllabus-list">
+          {items.map((item, i) => (
+            <FullListItem key={i} module={item} />
+          ))}
+        </ul>
+      );
+    } else {
+      return "";
+    }
+  };
+  
+  useEffect(() => {
+    const fetchAllTechnologies = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/technologies"
+        );
+        setLoadedTechnologies(responseData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllTechnologies();
+  }, []);
+
+  useEffect(() => {
+    const fetchAllCourses = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/courses"
+        );
+        setLoadedCourses(responseData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllCourses();
+  }, []);
+
+  // const history = useHistory();
+  const itemClickListener = (id) => {
+    // history.push({ pathname: "/CourseDetails", state: props });
+    // history.push("/CourseDetails/" + courseId);
+    console.log(id)
+    const showCourses = loadedCourses.filter((el) => {
+      return el.technology == id
+    })
+    console.log(showCourses)
+    const courseId = showCourses[0]._id
+    history.push(process.env.REACT_APP_BACKEND_URL + "/CourseDetails/" + courseId);
+  };
 
   return (
     <React.Fragment>
@@ -54,9 +214,13 @@ const Navbar = (props) => {
           <div class="dropdown">
           <button class="dropbtn">Courses</button>
           <div class="dropdown-content">
-            <a href="/CourseDetails/5ef07fc2be4c7b29184c380c">MERN</a>
-            <a href="/CourseDetails/5ef347fb30245c415414dd1e">Data Science</a>
-            <a href="/CourseDetails/5eff00e64f2225332c39f8f5">Android</a>
+            {loadedTechnologies && loadedTechnologies.map((item, index) => (
+              <a key={index} onClick={()=>itemClickListener(item._id)}>
+                {item.title}
+                {/* <div className="list-card">           
+                </div> */}
+              </a>
+            ))}
           </div>
         </div>
         </div>
