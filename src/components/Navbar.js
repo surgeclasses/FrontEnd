@@ -184,7 +184,7 @@ const Navbar = (props) => {
     })
     console.log(showCourses)
     const courseId = showCourses[0]._id
-    history.push(process.env.REACT_APP_BACKEND_URL + "/CourseDetails/" + courseId);
+    history.push("/CourseDetails/" + courseId);
   };
 
   return (
