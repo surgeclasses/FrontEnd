@@ -184,6 +184,7 @@ function App() {
   }
 
   return (
+    
     <AuthContext.Provider
       value={{
         isLoggedIn: isLoggedIn,

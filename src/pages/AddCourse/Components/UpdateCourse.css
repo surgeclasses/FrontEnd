@@ -16,3 +16,28 @@
 .editor {
   height: max-content;
 }
+
+
+.box{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.7rem;
+}
+
+.mr10{
+  background-color: rgb(243, 37, 10);
+  border-radius: 0.6rem;
+  margin-left: 1rem;
+  height: 6px;
+  width: 2px;
+  text-align: center;
+}
+
+.mr101{
+  background-color: rgb(78, 84, 136);
+  border-radius: 0.6rem;
+  margin-left: 1rem;
+  height: 6px;
+  width: 2px;
+  text-align: center;
+}

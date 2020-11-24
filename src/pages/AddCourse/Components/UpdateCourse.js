@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
+import { FaMinus, FaPlus } from "react-icons/fa";
 import "./UpdateCourse.css";
 import { useHttpClient } from "../../../hooks/http-hook";
 import Modal from "../../../components/Modal";
@@ -24,6 +24,9 @@ const UpdateCourse = () => {
   const [isLive, setIsLive] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [editorState, setEditorState] = useState();
+  const [inputList, setInputList] = useState([{ keyFeatures: "" }]);
+  const [inputList2, setInputList2] = useState([{ whotoLearn: "" }]);
+  const [inputList3, setInputList3] = useState([{ tools: "" }]);
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -119,6 +122,7 @@ const UpdateCourse = () => {
               isValid: true,
             }
           },
+
           true
         );
         setIsLive(responseData.isLive);
@@ -178,9 +182,9 @@ const UpdateCourse = () => {
           duration: formState.inputs.duration.value,
           isLive: isLive,
           startDate: formState.inputs.startDate.value,
-          keyFeatures: formState.inputs.keyFeatures.value,
-          whotoLearn: formState.inputs.whotoLearn.value,
-          tools: formState.inputs.tools.value,
+          keyFeatures: inputList,
+          whotoLearn: inputList2,
+          tools: inputList3,
         }),
         {
           "Content-Type": "application/json",
@@ -213,6 +217,59 @@ const UpdateCourse = () => {
     setEditorState(editor.getData());
   };
 
+
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...inputList];
+    list[index][name] = value;
+    setInputList(list);
+  };
+
+  const handleInputChange2 = (e, index) => {
+    const { name, value } = e.target;
+    const list2 = [...inputList2];
+    list2[index][name] = value;
+    setInputList2(list2);
+  };
+
+  const handleInputChange3 = (e, index) => {
+    const { name, value } = e.target;
+    const list3 = [...inputList3];
+    list3[index][name] = value;
+    setInputList(list3);
+  };
+   
+  // handle click event of the Remove button
+  const handleRemoveClick = index => {
+    const list = [...inputList];
+    list.splice(index, 1);
+    setInputList(list);
+  };
+
+  const handleRemoveClick2 = index => {
+    const list2 = [...inputList2];
+    list2.splice(index, 1);
+    setInputList2(list2);
+  };
+
+  const handleRemoveClick3 = index => {
+    const list3 = [...inputList3];
+    list3.splice(index, 1);
+    setInputList3(list3);
+  };
+
+  const handleAddClick = () => {
+    setInputList([...inputList, { keyFeatures: "" }]);
+  };
+
+  const handleAddClick2 = () => {
+    setInputList2([...inputList2, { whotoLearn: "" }]);
+  };
+
+  const handleAddClick3 = () => {
+    setInputList3([...inputList3, { tools: "" }]);
+  };
+  
   return (
     <div className="body">
       <Modal error={error} clearError={clearError} />
@@ -304,33 +361,58 @@ const UpdateCourse = () => {
               errorText="Please enter a valid starting date."
               onInput={inputHandler}
             />
-            <Input
-              id="keyFeatures"
-              //element="input"
-              label="Key Features"
-              initialValue={loadedCourse.keyFeatures.map(p=>p.keyFeatures)}
-              validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter valid key features."
-              onInput={inputHandler}
-            />
-            <Input
-            id="whotoLearn"
-            //element="input"
-            label="Who to Learn"
-            initialValue={loadedCourse.whotoLearn.map(p=>p.whotoLearn)}
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter valid content."
-            onInput={inputHandler}
-          /> 
-          <Input
-          id="tools"
-          //element="input"
-          label="Tools and Programming Language"
-          initialValue={loadedCourse.tools.map(p=>p.tools)}
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter valid tools."
-          onInput={inputHandler}
-        />
+            <p>KeyFeatures</p>
+          {inputList.map((x, i) => {
+            return (
+              <div className="box">
+                <input
+                  name="keyFeatures"
+                  value={x.keyFeatures}
+                  onChange={e => handleInputChange(e, i)}
+                />
+                <div className="btn-box">
+                {inputList.length !== 1 && <button className="mr10" onClick={() => handleRemoveClick(i)}><FaMinus/></button>}
+                {inputList.length - 1 === i && <button className="mr101" onClick={handleAddClick}><FaPlus/></button>}  
+                </div> 
+              </div>
+            );
+          })}
+          <p>Who to Learn</p>
+          {inputList2.map((x, i) => {
+            return (
+              <div className="box">
+                <input
+                  name="whotoLearn"
+                  value={x.whotoLearn}
+                  onChange={e => handleInputChange2(e, i)}
+                />
+               
+                <div className="btn-box">
+                  {inputList2.length !== 1 && <button className="mr10" onClick={() => handleRemoveClick2(i)}><FaMinus/></button>}
+                  {inputList2.length - 1 === i && <button className="mr101" onClick={handleAddClick2}><FaPlus/></button>}
+                </div>
+                
+              </div>
+            );
+          })}
+          <p>Tools and Programming Language</p>
+          {inputList3.map((x,i) => {
+            return (
+              <div className="box">
+                <input
+                  name="tools"
+                  value={x.tools}
+                  onChange={e => handleInputChange3(e, i)}
+                />
+               
+                <div className="btn-box">
+                  {inputList3.length !== 1 && <button className="mr10" onClick={() => handleRemoveClick3(i)}><FaMinus/></button>}
+                  {inputList3.length - 1 === i && <button className="mr101" onClick={handleAddClick3}><FaPlus/></button>}
+                </div>
+             </div>
+            );
+          })}
+
             <Button type="submit">Update Course</Button>
             <Button to={`/AddSyllabus/${loadedCourse._id}`}>Edit Syllabus</Button>
           </form>

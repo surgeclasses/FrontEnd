@@ -6,12 +6,12 @@ import { CSSTransition } from "react-transition-group";
 import HotTechnologies from "../../HomePage/Components/HotTechnologies";
 import { Scrollbars } from "react-custom-scrollbars";
 import Syllabus from "./syllabus123.pdf";
-import Pic1 from "../../../assets/htlm-removebg-preview.png";
-import Pic2 from "../../../assets/css-removebg-preview.png";
-import Pic3 from "../../../assets/react-removebg-preview.png";
-import Pic4 from "../../../assets/node-removebg-preview.png";
-import Pic5 from "../../../assets/express-removebg-preview.png";
-import Pic6 from "../../../assets/mongodb-removebg-preview.png";
+import html from "../../../assets/html.png";
+import css from "../../../assets/css.png";
+import react from "../../../assets/react.png";
+import node from "../../../assets/node.png";
+import express from "../../../assets/express.png";
+import mongodb from "../../../assets/mongodb.png";
 import "./CourseDetails.css";
 import { useHttpClient } from "../../../hooks/http-hook";
 import Modal from "../../../components/Modal";
@@ -300,12 +300,13 @@ const CourseDetails = () => {
                 <div className="section-course">
                   <h2>Top Skills or Tools you will Learn</h2>
                   <div className="image">
-                    <img src={Pic1} width="70" height="70"></img>
-                    <img src={Pic2} width="70" height="70"></img>
-                    <img src={Pic3} width="135" height="70"></img>
-                    <img src={Pic4} width="115" height="70"></img>
-                    <img src={Pic5} width="125" height="70"></img>
-                    <img src={Pic6} width="140" height="70"></img>
+                  
+                    <img src={html} width="70" height="70"></img>
+                    <img src={css} width="70" height="70"></img>
+                    <img src={react} width="135" height="70"></img>
+                    <img src={node} width="115" height="70"></img>
+                    <img src={express} width="125" height="70"></img>
+                    <img src={mongodb} width="140" height="70"></img>
                   </div>
                 </div>
 

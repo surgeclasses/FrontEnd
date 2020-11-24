@@ -180,12 +180,13 @@
 .module-list {
   list-style: none;
   padding: 0.3rem;
-  margin-left: 0.7rem;
+  margin-left: 2.8rem;
   visibility: inherit;
 }
 
 .module-list li {
   padding: 5px;
+  color: #181d1b;
 }
 
 .banner {

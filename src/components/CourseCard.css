@@ -1,0 +1,13 @@
+.cardd {
+    width: 40%;
+    position: relative;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 6px rgba(42, 40, 40, 0.794);
+    border-radius: 12px;
+    border: solid;
+    border-color: rgb(47, 46, 46);
+    padding: 0.5rem;
+    background:linear-gradient(rgb(78, 65, 155),rgb(107, 77, 207),rgb(134, 118, 228));
+  }
+
+  
