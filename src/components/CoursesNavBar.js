@@ -10,18 +10,18 @@ const  CoursesNavBar=(props)=>{
     const title=props.title;
     const description=props.description;
 
-    // const coursePath=()=>{
-    //     history.push("/CourseDetails/" + courseId);
-    // }
+    const coursePath=()=>{
+        history.push("/CourseDetails/" + courseId);
+    }
 
     return (
     
-        <li>
+        <li onClick={coursePath}>
          <CourseCard>
-         <a href={`/CourseDetails/${courseId}`}>
+         
           <h2>{title}</h2>
           <p>{description}</p>
-          </a>
+        
          </CourseCard>
         </li>    
     

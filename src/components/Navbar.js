@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link, useLocation } from "react-router-dom";
+import { useHistory, Link, useLocation,useParams } from "react-router-dom";
 import "./Navlinks";
 import "./Navbar.css";
 import Navlinks from "./Navlinks";
 import SideDrawer from "./SideDrawer";
 import Backdrop from "./Backdrop";
 import CoursesNavBar from './CoursesNavBar';
-import Logo from "../assets/logo.png";
-import Button from "./Button";
 import {useHttpClient} from '../hooks/http-hook';
 
 
@@ -17,9 +15,14 @@ const Navbar = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [loadedTechnologies, setLoadedTechnologies] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
   const location = useLocation();
+  const [loadedCourse, setLoadedCourse] = useState();
+  const [loadedCourses, setLoadedCourses] = useState();
+  
+  
+
   // console.log(location.pathname);
+  let { cid } = useParams();
 
   const openDrawer = () => {
     setDrawerIsOpen(true);
@@ -32,6 +35,24 @@ const Navbar = (props) => {
   const goToHome = () =>{
     history.push('/');
   }
+
+  useEffect(() => {
+
+    const fetchCourse = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/courses/" + cid
+        );
+        console.log(responseData);
+        setLoadedCourse(responseData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchCourse();
+  }, [cid]);
+
+ 
 
   useEffect(() => {
     const fetchAllTechnologies = async () => {
@@ -47,17 +68,27 @@ const Navbar = (props) => {
     fetchAllTechnologies();
   }, []);
 
+  useEffect(() => {
+    const fetchAllCourses = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/courses"
+        );
+        setLoadedCourses(responseData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllCourses();
+  }, []);
 
   
-
-  
-  
+ 
 
   return (
     <React.Fragment>
       {drawerIsOpen && <Backdrop onClick={closeDrawer} />}
-
-      <SideDrawer show={drawerIsOpen} onClick={closeDrawer}>
+     <SideDrawer show={drawerIsOpen} onClick={closeDrawer}>
         <nav className="main-navigation__drawer-nav">
           <Navlinks />
         </nav>
@@ -76,37 +107,12 @@ const Navbar = (props) => {
             Surge Classes
             {/* <sub className="classes-subscript">
               <sub>classes</sub>
-            </sub>            */}
+            </sub> */}
           </h1>
           </div>
           <div>
-          <nav>
-          <ul class="nav">
-            
-            <li><a>Courses</a>
-              <ul>
-              {loadedTechnologies && loadedTechnologies.map((item, index) => (
-                <li 
-                  key={index} 
-                >
-                <a>{item.title}</a>
-                <ul>
-                    {item.courses.map(p=>
-                      <CoursesNavBar 
-                        title={p.title}
-                        description={p.description}
-                        cid={p.cid}/>
-                     
-                      )}
-                </ul>
-              </li>
-              ))}
-             </ul>
-            </li>
-          </ul>
-        </nav>
+         
         </div>
-        
         </div>
         <nav className="main-navigation__header-nav">
           <Navlinks />

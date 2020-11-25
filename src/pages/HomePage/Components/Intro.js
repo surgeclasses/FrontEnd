@@ -1,9 +1,11 @@
-import React from "react";
+import React,{useState,useEffect,useHistory} from "react";
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
 import "normalize.css/normalize.css";
 import "./slider-animations.css";
 import "./intro.css"
+import {useHttpClient} from '../../../hooks/http-hook'
+import CoursesNavBar from "../../../components/CoursesNavBar";
 
 const content = [
   {
@@ -33,10 +35,63 @@ const content = [
   }
 ];
 
+
+
+
 const Intro = () => {
+
+  
+  const [loadedTechnologies, setLoadedTechnologies] = useState();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  
+ 
+
+
+  useEffect(() => {
+    const fetchAllTechnologies = async () => {
+      try {
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/technologies"
+        );
+        setLoadedTechnologies(responseData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllTechnologies();
+  }, []);
+
+
   return (
     <div className="top" > {/* style={{backgroundImage: `url('https://i.imgur.com/DvmN8Hx.jpg')`}}> */}
         <div class="bg-text">
+          <div class="yash">
+          <nav>
+          <ul class="nav">
+            
+            <li><a>Courses</a>
+              <ul>
+              {loadedTechnologies && loadedTechnologies.map((item, index) => (
+                <li 
+                  key={index} 
+                >
+                <a>{item.title}</a>
+                <ul>
+                    {item.courses.map(p=>
+                      <CoursesNavBar 
+                        title={p.title}
+                        description={p.description}
+                        cid={p.cid}/>
+                     
+                      )}
+                </ul>
+              </li>
+              ))}
+             </ul>
+            </li>
+          </ul>
+        </nav>
+          </div>
           <h1>Surge Classes is here</h1>
           <h3>
             Surge Classes is here. The place to learn and gain experience in various technologies
