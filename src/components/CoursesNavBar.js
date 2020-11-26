@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import CourseCard from './CourseCard'
+import Card from './Card'
+import './CoursesNavBar.css'
 
 
 const  CoursesNavBar=(props)=>{
@@ -17,12 +18,14 @@ const  CoursesNavBar=(props)=>{
     return (
     
         <li onClick={coursePath}>
-         <CourseCard>
-         
-          <h2>{title}</h2>
+         <Card className="cardcoursehover">
+         <div className="cardcontent-hover">
+         <div className="contents">
+          <h4>{title}</h4>
           <p>{description}</p>
-        
-         </CourseCard>
+          </div>
+          </div>
+         </Card>
         </li>    
     
     )

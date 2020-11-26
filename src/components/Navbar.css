@@ -9,7 +9,7 @@
   background: var(--primaryColor);
   /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26); */
   padding: 0 1rem;
-  /* z-index: 5; */
+  z-index: 2;
   transition: all 0.3s ease-in-out;
 }
 /* .header.main-header.false{
@@ -49,6 +49,8 @@
 
 .main-navigation__brand{
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
 }
 
 .main-navigation__brand h1{
@@ -97,3 +99,4 @@
     display: block;
   }
 }
+

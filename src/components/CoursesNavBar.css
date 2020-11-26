@@ -1,3 +1,25 @@
-.course h2{
-    width: fit-content;
+
+.cardcoursehover{
+    background: url(../assets/card.jpg);
+    width: 18rem;
+    margin-bottom: 0.6rem;
+    border: solid;
+    border-color: #d8d8d8;
+    border-width: 6px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+
+.contents{
+    width: 0.3px;
+}
+
+.contents h4{
+    margin-left: 0.7rem;
+    color: rgba(29, 26, 212, 0.986);
+    font-size: large;
 }
