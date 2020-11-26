@@ -235,3 +235,32 @@
     text-align: -webkit-center;
 }
 
+
+
+@media (max-width: 768px) {
+  .container {
+    width: 120vw;
+    margin-left: 6rem;
+   
+  }
+}
+
+@media(max-width:768px){
+  .col-md-3 {
+    width: 35vw;
+    height: 8vw;
+   
+  }
+}
+
+@media(max-width:768px){
+  .col-md-9 {
+   
+    width: 25vw;
+    height: 10vw;
+  }
+}
+
+
+
+
