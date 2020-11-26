@@ -10,6 +10,7 @@ const  CoursesNavBar=(props)=>{
     const courseId = props.cid;
     const title=props.title;
     const description=props.description;
+    const instructor=props.instructor;
 
     const coursePath=()=>{
         history.push("/CourseDetails/" + courseId);
@@ -23,6 +24,7 @@ const  CoursesNavBar=(props)=>{
          <div className="contents">
           <h4>{title}</h4>
           <p>{description}</p>
+          <h6>‣ {instructor}</h6>
           </div>
           </div>
          </Card>

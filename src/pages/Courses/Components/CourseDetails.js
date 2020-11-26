@@ -34,6 +34,7 @@ import {
 } from "react-icons/fa";
 
 import { AiTwotoneAppstore, AiFillRead } from "react-icons/ai";
+import CoursesNavBar from "../../../components/CoursesNavBar";
 
 const CourseDetails = () => {
   const [loadedCourse, setLoadedCourse] = useState();
@@ -220,6 +221,33 @@ const CourseDetails = () => {
         {loadedCourse && (
           <Fragment>
             <div className="header">
+              <div class="course-hover-nav">
+                <nav>
+                  <ul class="nav">
+                    <li>
+                      <a>Courses</a>
+                      <ul>
+                        {loadedTechnologies &&
+                          loadedTechnologies.map((item, index) => (
+                            <li key={index}>
+                              <a>{item.title}</a>
+                              <ul>
+                                {item.courses.map((p) => (
+                                  <CoursesNavBar
+                                    title={p.title}
+                                    description={p.description}
+                                    instructor={p.instructor}
+                                    cid={p.cid}
+                                  />
+                                ))}
+                              </ul>
+                            </li>
+                          ))}
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
               <div className="course-header">
                 <div className="c-header">
                   <br />
@@ -227,9 +255,7 @@ const CourseDetails = () => {
                   {/* <h2>{loadedCourse.description}</h2> */}
                   {/* <p className="course-about1"> Whole Era is changing. This is time of Everything Digital. We here at Surge Classes brought that unexplored digital world in your hand</p> */}
                   {/* <p className="course-about2"> Join US </p> */}
-                  <p className="course-about3">
-                  {loadedCourse.description}{" "}
-                  </p>
+                  <p className="course-about3">{loadedCourse.description} </p>
                   {/* <p className="course-about4"> Interesting? <br/> Yes...Its More.. <br/> Enroll Now. </p> */}
                   <div className="partition">
                     <div className="banner">
@@ -280,7 +306,11 @@ const CourseDetails = () => {
                   </h2>
                   <h3>Key Features:</h3>
                   <div className="point">
-                   {loadedCourse.keyFeatures.map(p=><li style={{listStyleType:"circle"}}>{p.keyFeatures}</li>)}
+                    {loadedCourse.keyFeatures.map((p) => (
+                      <li style={{ listStyleType: "circle" }}>
+                        {p.keyFeatures}
+                      </li>
+                    ))}
                   </div>
                 </div>
                 <br />
@@ -290,7 +320,11 @@ const CourseDetails = () => {
                   {/* <br/> */}
                   <h2>Who this course is for ?</h2>
                   <div className="point1">
-                   {loadedCourse.whotoLearn.map(p=><li style={{listStyleType:"square"}}>{p.whotoLearn}</li>)}
+                    {loadedCourse.whotoLearn.map((p) => (
+                      <li style={{ listStyleType: "square" }}>
+                        {p.whotoLearn}
+                      </li>
+                    ))}
                   </div>
                 </div>
                 <div className="section-course">

@@ -78,6 +78,7 @@ const Intro = () => {
                       <CoursesNavBar 
                         title={p.title}
                         description={p.description}
+                        instructor={p.instructor}
                         cid={p.cid}/>
                      
                       )}

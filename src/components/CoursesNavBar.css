@@ -1,25 +1,46 @@
 
 .cardcoursehover{
-    background: url(../assets/card.jpg);
+    /* background: url(../assets/card.jpg); */
     width: 18rem;
     margin-bottom: 0.6rem;
-    border: solid;
-    border-color: #d8d8d8;
-    border-width: 6px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    margin-left:5px;
+    display: block;
+    background: rgba(29,53,87,0.6);
+    /* background: rgba(235,233,233,0.7); */
+    width:45vw;
+    height:7vw;
+    padding-top: 1rem;
+    /* border: solid; */
+    /* border-color: #d8d8d8; */
+    /* border-width: 6px; */
+    /* border-bottom-left-radius: 15px; */
+    /* border-bottom-right-radius: 15px; */
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
 }
 
 
 
 .contents{
-    width: 0.3px;
+    width: 0.2px;
 }
 
 .contents h4{
     margin-left: 0.7rem;
-    color: rgba(29, 26, 212, 0.986);
-    font-size: large;
+    color: #22223b;
+    font-size: 30px;
+}
+
+.contents p{
+    margin-left: 0.7rem;
+    color: #f2e9e4;
+    font-size:20px;
+    margin-top:5px;
+}
+
+.contents h6{
+    margin-left: 0.7rem;
+    color: #c9ada7;
+    font-size:20px;
+    margin-top:5px;
 }
