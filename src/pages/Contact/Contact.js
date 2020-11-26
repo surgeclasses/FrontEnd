@@ -19,6 +19,14 @@ import "./Contact.css";
 
 const Contact = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  
+  const registerDemoClass = () => {
+    history.push("/Register_Demo_Class");
+  };
+  const becomeInstructor = () => {
+    history.push("/Become_Instructor");
+  };
+  
   const [formState, inputHandler, setFormData] = useForm(
     {
       first_name: {
@@ -98,6 +106,7 @@ const Contact = () => {
   };
 
   return (
+    <div className="contact-box">
     <div class="flex-container ">
       <div class="flex-child">
         <form className="contactForm" onSubmit={submitHandler}>
@@ -200,7 +209,7 @@ const Contact = () => {
             <br/>
 */}
         <div className="css-Features">
-        <div className="css-outerFeature">
+        <div className="css-outerFeature" onClick={registerDemoClass} >
           <div className="css-inerFeature">
             <h3 className="css-h3"> Register for a Demo </h3>
             <br />
@@ -214,7 +223,7 @@ const Contact = () => {
         <br />
         <hr />
         <br />
-        <div className="css-outerFeature">
+        <div className="css-outerFeature" onClick={becomeInstructor}>
           <div className="css-inerFeature">
             <h3 className="css-h3"> Become a Instructor </h3>
             <br />
@@ -256,6 +265,7 @@ const Contact = () => {
           <br />
         </div>
       </div>
+    </div>
     </div>
   );
 };

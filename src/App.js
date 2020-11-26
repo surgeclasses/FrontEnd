@@ -35,6 +35,8 @@ import Instructor from "./pages/Instructor/Instructor";
 import ManageCourse from "./pages/Instructor/Components/ManageCourse";
 import MyCourses from "./pages/UserHome/Components/MyCourses";
 import Enquiries from "./pages/Admin/Components/Enquiries";
+import DemoClass from "./pages/HomePage/Components/DemoClass";
+import BecomeInstructor from "./pages/HomePage/Components/BecomeInstructor";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -175,6 +177,12 @@ function App() {
         <Route path="/Contact" exact>
           <Contact />
         </Route>
+        <Route path="/Register_Demo_Class" exact>
+          <DemoClass />
+        </Route>
+        <Route path="/Become_Instructor" exact>
+          <BecomeInstructor/>
+        </Route>
         <Route path="/Admin">
           <Admin />
         </Route>
@@ -184,7 +192,6 @@ function App() {
   }
 
   return (
-    
     <AuthContext.Provider
       value={{
         isLoggedIn: isLoggedIn,

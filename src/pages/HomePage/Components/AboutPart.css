@@ -1,6 +1,6 @@
-.about-img{
+.about-img {
   /* position: absolute; */
-  width: 1840px;
+  /* width: 1840px; */
   height: 300px;
   background: linear-gradient(
       180deg,
@@ -20,7 +20,6 @@
   /* background-blend-mode: screen; */
   background-blend-mode: lighten;
   transform: scaleX(-1);
-
 }
 
 .about-WeAre {
@@ -67,7 +66,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transform: scaleX(-1);
-  width:320px;
+  width: 320px;
 }
 
 .about-surgeText {
@@ -118,4 +117,10 @@
   -webkit-text-fill-color: transparent;
   border-radius: 50%;
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .about-img {
+    width: 258vw;
+  }
 }

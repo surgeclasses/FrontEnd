@@ -1,0 +1,105 @@
+/* <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> */
+/* <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> */
+/* <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> */
+.DemoClass-Body {
+  background-color: rgba(29, 53, 87, 0.95);
+}
+
+.DemoClass-outerBox {
+  text-align: -webkit-center;
+}
+
+.DemoClass-form {
+  background: #fff;
+  margin-top: 10%;
+  margin-bottom: 5%;
+  width: 70%;
+  border-radius: 4rem;
+}
+.DemoClass-form .form-control {
+  /* border-radius: 1rem; */
+  text-align: left;
+  /* min-inline-size: -webkit-fill-available; */
+  width:85%
+}
+.DemoClass-image {
+  text-align: center;
+}
+.DemoClass-image img {
+  border-radius: 6rem;
+  width: 11%;
+  margin-top: -3%;
+  transform: rotate(29deg);
+}
+.DemoClass-form form {
+  /* padding-top: 11%; */
+  /* padding: 14%; */
+  padding-left: 10%;
+  padding-bottom: 15%;
+  padding-right: 10%;
+}
+.DemoClass-form form {
+  margin-bottom: -7%;
+}
+
+.DemoClass-form h3 {
+  margin-bottom: 8%;
+  margin-top: 1%;
+  text-align: center;
+  color: #0062cc;
+  font-size: xx-large;
+}
+.DemoClass-form .btnContact {
+  width: 50%;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.5%;
+  background: #dc3545;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+.btnContactSubmit {
+  width: 50%;
+  border-radius: 1rem;
+  padding: 1.5%;
+  color: #fff;
+  background-color: #0062cc;
+  border: none;
+  cursor: pointer;
+}
+
+.flexParent-demoClass {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 10%;
+  padding-top: 0px;
+  margin-top: 10%;
+  text-align: -webkit-center;
+  padding-bottom: 5%;
+}
+
+.flexChild-demoClass {
+  flex: 1;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  margin-left: 10%;
+  color: #1d3557;
+}
+
+.textarea-message{
+    display: block;
+    width: 85%;
+    height: 169px;
+    /* border: solid thin #1d3557; */
+    margin-top: 1rem;
+    border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+  .DemoClass-outerBox {
+    width: 270vw;
+  }
+}
