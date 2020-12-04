@@ -59,7 +59,7 @@ function App() {
           logout();
         }
       })
-  },[]);
+  },[userEmail]);
 
   const login = useCallback((email) => {
     setIsLoggedIn(true);
@@ -87,9 +87,9 @@ function App() {
   });
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("userData"));
+    
     if (!!firebase.auth().currentUser){
-      login(storedData.email);
+      login();
     }else{
       logout();
     }
