@@ -24,7 +24,7 @@ const  CoursesNavBar=(props)=>{
          <div className="contents">
           <h4>{title}</h4>
           <p>{description}</p>
-          <h6>‣ {instructor}</h6>
+          <h6>{instructor}</h6>
           </div>
           </div>
          </Card>

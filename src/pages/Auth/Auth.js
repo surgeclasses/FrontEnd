@@ -13,7 +13,7 @@ const Auth = () => {
     <div className="body auth-page">
       {!auth.isLoggedIn && (
         <Card className="authentication">
-          <h2>Please Signin</h2>
+          <h2>Please SignIn</h2>
           <hr />
           <FirebaseAuth className="firebase-auth-card" />
         </Card>

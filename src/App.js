@@ -42,23 +42,38 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isInstructor, setIsInstructor] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [userEmail, setUserEmail]=useState(null);
   const auth = useContext(AuthContext);
 
   useEffect(() => {    
       firebase.auth().onAuthStateChanged(user => {
-        if(!!user)
-          login();
-        else
+        if(!!user){
+          login(user.email);
+          setUserEmail(user.email);
+          console.log(userEmail);
+        
+        }
+        else{
           logout();
+        }
       })
   },[]);
 
-  const login = useCallback(() => {
+  const login = useCallback((email) => {
     setIsLoggedIn(true);
+    localStorage.setItem(
+      "userData",
+      JSON.stringify({
+       email: email,
+        
+      })
+    );
   });
 
   const logout = useCallback(() => {
     setIsLoggedIn(false);
+    localStorage.removeItem("userData");
+    
   });
 
   const loginAdmin = useCallback(() => {
@@ -70,8 +85,9 @@ function App() {
   });
 
   useEffect(() => {
-    if (!!firebase.auth().currentUser) {
-      login();
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    if (!!firebase.auth().currentUser){
+      login(storedData.email);
     }else{
       logout();
     }
@@ -79,7 +95,7 @@ function App() {
 
   let routes;
 
-  if (isLoggedIn) {
+  if (isLoggedIn){
     routes = (
       <Switch>
         <Route path="/ManageCourse/:cid">

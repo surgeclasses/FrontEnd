@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-
 import { AuthContext } from "../../context/auth-context";
 
 firebase.initializeApp({
@@ -19,6 +18,7 @@ class FirebaseAuth extends Component {
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      
     ],
     callbacks: {
       signInSuccess: () => false,

@@ -2,6 +2,7 @@ import { createContext } from "react";
 
 let authModel = {
   userid: "",
+  email:'',
   isLoggedIn: false,
   isInstructor: false,
   login: () => {},
