@@ -37,6 +37,8 @@ import MyCourses from "./pages/UserHome/Components/MyCourses";
 import Enquiries from "./pages/Admin/Components/Enquiries";
 import DemoClass from "./pages/HomePage/Components/DemoClass";
 import BecomeInstructor from "./pages/HomePage/Components/BecomeInstructor";
+import ChatApp from "./pages/ChatDiscussion/ChatApp";
+import Chat from "./pages/ChatDiscussion/Chat";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -182,6 +184,12 @@ function App() {
         </Route>
         <Route path="/Become_Instructor" exact>
           <BecomeInstructor/>
+        </Route>
+        <Route path="/chat" exact>
+          <ChatApp/>
+        </Route>
+        <Route path="/discussionPage/:email" exact>
+          <Chat/>
         </Route>
         <Route path="/Admin">
           <Admin />
