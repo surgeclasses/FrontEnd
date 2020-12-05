@@ -136,6 +136,12 @@ function App() {
         <Route path="/Instructor" exact>
           <Instructor />
         </Route>
+        <Route path="/chat" exact>
+          <ChatApp/>
+        </Route>
+        <Route path="/discussionPage/:name/:email" exact>
+          <ChatApp/>
+        </Route>
         <Redirect to="/" />
       </Switch>
     );
@@ -204,8 +210,8 @@ function App() {
         <Route path="/chat" exact>
           <ChatApp/>
         </Route>
-        <Route path="/discussionPage/:email" exact>
-          <Chat/>
+        <Route path="/discussionPage/:name/:email" exact>
+          <ChatApp/>
         </Route>
         <Route path="/Admin">
           <Admin />
@@ -220,6 +226,7 @@ function App() {
       value={{
         isLoggedIn: isLoggedIn,
         isInstructor: isInstructor,
+        email: userEmail,
         login: login,
         logout: logout,
       }}

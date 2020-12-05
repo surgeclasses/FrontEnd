@@ -1,6 +1,7 @@
 import React, { useState,useEffect ,useContext} from 'react'
 import { useHttpClient } from "../../hooks/http-hook";
 import {useParams} from 'react-router-dom'
+import Chat from './Chat';
 
 const  ReceiveChats=()=> {
    const [messages,setMessages]=useState([]);
@@ -26,13 +27,9 @@ const  ReceiveChats=()=> {
 
     return(
       
-        messages.map(m=>
-         (<div className={`container ${(m.creatorId._id===receiverId) && 'darker'}`}>
-          <img src={`${process.env.REACT_APP_ASSET_URL}/${m.creatorId.image}`} 
-            className={` ${(m.creatorId._id!==receiverId) && 'right'}`} />
-          <p>{m.message}</p>
-          </div>)
-          )
+        <div>
+            <Chat/>
+        </div>
         
        
      )

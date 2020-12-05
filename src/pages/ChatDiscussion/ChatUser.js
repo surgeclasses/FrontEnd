@@ -8,10 +8,10 @@ import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import { Avatar, IconButton } from "@material-ui/core";
-// import {AuthContext} from '../../Shared/Context/AuthContext'
+import {AuthContext} from '../../context/auth-context';
 
 const ChatUser = () => {
-  // const auth=useContext(AuthContext);
+  const auth=useContext(AuthContext);
   const [loadedUsers, setLoadedUsers] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -24,7 +24,7 @@ const ChatUser = () => {
           null,
           {
             "Content-Type": "application/json",
-            //   Authorization: 'Bearer '+ auth.token
+              // Authorization: 'Bearer '+ auth.token
           }
         );
         setLoadedUsers(responseData);
@@ -45,7 +45,7 @@ const ChatUser = () => {
             alt="Raman"
           />
           <div className="sidebar__headerRight">
-            <IconButton>
+            {/* <IconButton>
               <DonutLargeIcon />
             </IconButton>
             <IconButton>
@@ -53,7 +53,7 @@ const ChatUser = () => {
             </IconButton>
             <IconButton>
               <MoreVertIcon />
-            </IconButton>
+            </IconButton> */}
           </div>
         </div>
         <div className="sidebar__search">
@@ -64,7 +64,11 @@ const ChatUser = () => {
         </div>
         <div className="sidebar__chats">
           {loadedUsers &&
-            loadedUsers.map((user) => <SidebarChat users={user} />)}
+            loadedUsers.map((user) => {
+              if(user.email!==auth.email){
+                  return ( <SidebarChat users={user} /> );
+              }
+              })}
         </div>
       </div>
     </React.Fragment>
