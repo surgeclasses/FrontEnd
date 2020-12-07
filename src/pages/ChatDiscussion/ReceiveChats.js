@@ -7,7 +7,7 @@ const  ReceiveChats=()=> {
    const [messages,setMessages]=useState([]);
    const { isLoading, error, sendRequest, clearError } = useHttpClient();
    const email=useParams().email;
-   const receiverId="yash"
+   
    useEffect(() => {
       const fetchMessage = async()=>{
         try {

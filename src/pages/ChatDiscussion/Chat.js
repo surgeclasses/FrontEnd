@@ -23,7 +23,7 @@ const Chat = () => {
   const [formState, inputHandler] = useForm(
     {
       input_message: {
-        value: "Tirupati",
+        value: "",
         isValid: false,
       },
     },

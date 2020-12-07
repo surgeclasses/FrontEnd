@@ -47,36 +47,39 @@ function App() {
   const [userEmail, setUserEmail]=useState(null);
   const auth = useContext(AuthContext);
 
+  const login = useCallback(() => {
+    setIsLoggedIn(true);
+  });
+
+  
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+    
+  });
+
+
   useEffect(() => {    
       firebase.auth().onAuthStateChanged(user => {
         if(!!user){
-          login(user.email);
           setUserEmail(user.email);
-          console.log(userEmail);
+          localStorage.setItem(
+            "userData",
+            JSON.stringify({
+             email: user.email,
+            })
+          );
+          login();
+          
         
         }
         else{
+          localStorage.removeItem("userData");
           logout();
         }
       })
-  },[userEmail]);
+  },[]);
 
-  const login = useCallback((email) => {
-    setIsLoggedIn(true);
-    localStorage.setItem(
-      "userData",
-      JSON.stringify({
-       email: email,
-        
-      })
-    );
-  });
-
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    localStorage.removeItem("userData");
-    
-  });
+  
 
   const loginAdmin = useCallback(() => {
     setIsAdmin(true);
@@ -89,7 +92,14 @@ function App() {
   useEffect(() => {
     
     if (!!firebase.auth().currentUser){
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+         email: userEmail,
+        })
+      );
       login();
+    
     }else{
       logout();
     }
