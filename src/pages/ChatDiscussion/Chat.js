@@ -14,7 +14,7 @@ import Input from "../../components/Input";
 import {
   VALIDATOR_REQUIRE} from "../../util/validators";
 
-const Chat = () => {
+const Chat = ({roomid}) => {
   const [messages, setMessages] = useState([]);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const receiver_email = useParams().email;

@@ -6,12 +6,12 @@ import ChatUser from './ChatUser';
 import SidebarChat from './SidebarChat';
 import ReceiveChats from './ReceiveChats';
 
-const ChatApp = () => {
+const ChatApp = ({roomid}) => {
   return (
     <div className = "chatApp">
         <div className = "chatApp__body">
           <ChatUser/>
-          <Chat/>
+          <Chat roomid={roomid} />
         </div>
     </div>
     

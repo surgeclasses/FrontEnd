@@ -7,6 +7,7 @@ import {
   Switch,
 } from "react-router-dom";
 import firebase from "firebase";
+import { useHttpClient } from "./hooks/http-hook";
 
 import HomePage from "./pages/HomePage/HomePage";
 import UserHome from "./pages/UserHome/UserHome";
@@ -39,47 +40,61 @@ import DemoClass from "./pages/HomePage/Components/DemoClass";
 import BecomeInstructor from "./pages/HomePage/Components/BecomeInstructor";
 import ChatApp from "./pages/ChatDiscussion/ChatApp";
 import Chat from "./pages/ChatDiscussion/Chat";
+import StartChat from "./pages/ChatDiscussion/StartChat";
 
 function App() {
+  const auth = useContext(AuthContext);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isInstructor, setIsInstructor] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [userEmail, setUserEmail]=useState(null);
-  const auth = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   const login = useCallback(() => {
     setIsLoggedIn(true);
   });
 
-  
   const logout = useCallback(() => {
     setIsLoggedIn(false);
-    
   });
 
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!!user) {
+        console.log(user);
+        setUserEmail(user.email);
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            email: user.email,
+          })
+        );
+        login();
+      } else {
+        localStorage.removeItem("userData");
+        logout();
+      }
+    });
+  }, []);
 
-  useEffect(() => {    
-      firebase.auth().onAuthStateChanged(user => {
-        if(!!user){
-          setUserEmail(user.email);
-          localStorage.setItem(
-            "userData",
-            JSON.stringify({
-             email: user.email,
-            })
+  useEffect(() => {
+    const createUpdateUser = async () => {
+        //check if the user already exists
+        try {
+          const responseData = await sendRequest(
+            process.env.REACT_APP_BACKEND_URL +
+              "/user/" +
+              firebase.auth().currentUser.email
           );
-          login();
-          
-        
+          console.log("sending response", responseData._id);
+          setUserId(responseData._id);
+        } catch (err) {
+          console.log(err);
         }
-        else{
-          localStorage.removeItem("userData");
-          logout();
-        }
-      })
-  },[]);
-
-  
+    };
+    createUpdateUser();
+  }, [isLoggedIn]);
 
   const loginAdmin = useCallback(() => {
     setIsAdmin(true);
@@ -90,24 +105,22 @@ function App() {
   });
 
   useEffect(() => {
-    
-    if (!!firebase.auth().currentUser){
+    if (!!firebase.auth().currentUser) {
       localStorage.setItem(
         "userData",
         JSON.stringify({
-         email: userEmail,
+          email: userEmail,
         })
       );
       login();
-    
-    }else{
+    } else {
       logout();
     }
   }, [login, isLoggedIn]);
 
   let routes;
 
-  if (isLoggedIn){
+  if (isLoggedIn) {
     routes = (
       <Switch>
         <Route path="/ManageCourse/:cid">
@@ -147,10 +160,13 @@ function App() {
           <Instructor />
         </Route>
         <Route path="/chat" exact>
-          <ChatApp/>
+          <ChatApp roomid={null}/>
+        </Route>
+        <Route path="/startChat/:uid" exact>
+          <StartChat />
         </Route>
         <Route path="/discussionPage/:name/:email" exact>
-          <ChatApp/>
+          <ChatApp />
         </Route>
         <Redirect to="/" />
       </Switch>
@@ -215,13 +231,13 @@ function App() {
           <DemoClass />
         </Route>
         <Route path="/Become_Instructor" exact>
-          <BecomeInstructor/>
+          <BecomeInstructor />
         </Route>
         <Route path="/chat" exact>
-          <ChatApp/>
+          <ChatApp roomid={null}/>
         </Route>
         <Route path="/discussionPage/:name/:email" exact>
-          <ChatApp/>
+          <ChatApp />
         </Route>
         <Route path="/Admin">
           <Admin />
@@ -237,6 +253,7 @@ function App() {
         isLoggedIn: isLoggedIn,
         isInstructor: isInstructor,
         email: userEmail,
+        userid: userId,
         login: login,
         logout: logout,
       }}

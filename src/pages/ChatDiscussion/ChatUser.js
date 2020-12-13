@@ -1,19 +1,41 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHttpClient } from "../../hooks/http-hook";
 import SidebarChat from "./SidebarChat";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 
 import "./Sidebar.css";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
-import { Avatar, IconButton } from "@material-ui/core";
-import {AuthContext} from '../../context/auth-context';
+import { Avatar, Button, IconButton } from "@material-ui/core";
+import { AuthContext } from "../../context/auth-context";
+import StartChat from "./StartChat";
+import MyButton from "../../components/Button";
 
 const ChatUser = () => {
-  const auth=useContext(AuthContext);
+  const auth = useContext(AuthContext);
   const [loadedUsers, setLoadedUsers] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+  const startChat = (user_id) => {
+    return (
+      <div>
+        {
+          <Router>
+            
+          </Router>
+        }
+        alert("Main Chal raha hu.. bas room nahi create kar raha");
+      </div>
+    );
+  };
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -24,7 +46,7 @@ const ChatUser = () => {
           null,
           {
             "Content-Type": "application/json",
-              // Authorization: 'Bearer '+ auth.token
+            // Authorization: 'Bearer '+ auth.token
           }
         );
         setLoadedUsers(responseData);
@@ -45,13 +67,29 @@ const ChatUser = () => {
             alt="Raman"
           />
           <div className="sidebar__headerRight">
+            <div class="dropdown">
+              <IconButton class="dropbtn" >
+                <ChatIcon />
+              </IconButton>
+              <div class="dropdown-content">
+                {loadedUsers &&
+                  loadedUsers.map((user) => {
+                    if (user.email !== auth.email) {
+                      return (
+                        <a> {user.name}
+                        <MyButton className="join-button" to={`/startChat/${user._id}`}> start chat </MyButton>
+                        </a>);
+                    }
+                  })}
+              </div>
+            </div>
             {/* <IconButton>
               <DonutLargeIcon />
-            </IconButton>
-            <IconButton>
+            </IconButton> */}
+            {/* <IconButton class="dropbtn">
               <ChatIcon />
-            </IconButton>
-            <IconButton>
+            </IconButton> */}
+            {/* <IconButton>
               <MoreVertIcon />
             </IconButton> */}
           </div>
@@ -63,12 +101,12 @@ const ChatUser = () => {
           </div>
         </div>
         <div className="sidebar__chats">
-          {loadedUsers &&
+          {/* {loadedUsers &&
             loadedUsers.map((user) => {
               if(user.email!==auth.email){
                   return ( <SidebarChat users={user} /> );
               }
-              })}
+              })} */}
         </div>
       </div>
     </React.Fragment>
