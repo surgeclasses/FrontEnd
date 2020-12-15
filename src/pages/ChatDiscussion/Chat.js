@@ -1,5 +1,5 @@
 import { Avatar, IconButton } from "@material-ui/core";
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Chat.css";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
@@ -13,12 +13,12 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import {
   VALIDATOR_REQUIRE} from "../../util/validators";
+import { AuthContext } from "../../context/auth-context";
 
 const Chat = ({roomid}) => {
+  const auth = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const receiver_email = useParams().email;
-  const receiver_name = useParams().name;
   
 
   const [formState, inputHandler] = useForm(
@@ -36,7 +36,7 @@ const Chat = ({roomid}) => {
     console.log(formState.inputs);
     try {
       await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${receiver_email}`,
+        `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${roomid}`,
         "POST",
         JSON.stringify({
           message: formState.inputs.input_message.value,
@@ -55,7 +55,7 @@ const Chat = ({roomid}) => {
     const fetchMessage = async () => {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${receiver_email}`,
+          `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${roomid}`,
           "GET",
           null
         );
@@ -67,7 +67,7 @@ const Chat = ({roomid}) => {
     fetchMessage();
   }, [messages]);
 
-  return receiver_email ? (
+  return roomid ? (
     <div className="chat">
       <div className="chat__header">
         <Avatar
@@ -77,7 +77,7 @@ const Chat = ({roomid}) => {
           alt=""
         />
         <div className="chat__headerInfo">
-          <h3> {receiver_name} </h3>
+          <h3> Jay shree Ram </h3>
         </div>
         <div className="chat__headerRight">
           <IconButton>
@@ -94,13 +94,13 @@ const Chat = ({roomid}) => {
 
       <React.Fragment>
         <div className="chat__body">
-          {messages.map((message) => (
+          {messages.map((m) => (
             <p
               className={`chat__message ${
-                message.email === receiver_email && "chat__receiver"
+                m.userId !==  auth.userid && "chat__receiver"
               }`}
             >
-              {message.message}
+              {m.message}
             </p>
           ))}
         </div>

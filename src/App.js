@@ -166,7 +166,7 @@ function App() {
           <StartChat />
         </Route>
         <Route path="/discussionPage/:name/:email" exact>
-          <ChatApp />
+          <ChatApp roomid={null}/>
         </Route>
         <Redirect to="/" />
       </Switch>
@@ -237,7 +237,7 @@ function App() {
           <ChatApp roomid={null}/>
         </Route>
         <Route path="/discussionPage/:name/:email" exact>
-          <ChatApp />
+          <ChatApp roomid={null}/>
         </Route>
         <Route path="/Admin">
           <Admin />
