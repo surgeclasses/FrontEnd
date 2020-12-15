@@ -17,6 +17,7 @@ import { AuthContext } from "../../context/auth-context";
 
 const Chat = ({roomid}) => {
   const auth = useContext(AuthContext);
+  console.log({roomIdinchat: roomid});
   const [messages, setMessages] = useState([]);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   
@@ -55,17 +56,16 @@ const Chat = ({roomid}) => {
     const fetchMessage = async () => {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${roomid}`,
-          "GET",
-          null
+          `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${roomid}`
         );
         setMessages(responseData.chats);
+        console.log(responseData.chats);
       } catch (err) {
-        console.log(err);
+        console.log({fetchmessage :err});
       }
     };
     fetchMessage();
-  }, [messages]);
+  }, []);
 
   return roomid ? (
     <div className="chat">
@@ -93,7 +93,7 @@ const Chat = ({roomid}) => {
       </div>
 
       <React.Fragment>
-        <div className="chat__body">
+        {!isLoading && <div className="chat__body">
           {messages.map((m) => (
             <p
               className={`chat__message ${
@@ -103,28 +103,27 @@ const Chat = ({roomid}) => {
               {m.message}
             </p>
           ))}
-        </div>
+        </div>}
 
         <div className="chat__footer">
           <IconButton>
             <InsertEmoticonIcon />
           </IconButton>
-          <form onSubmit={submitHandler}>
+          <form >
             <div>
             <Input
               id="input_message"
               type="text"
-              element="input"
-              errorText="Enter a valid message"
-              validators={[VALIDATOR_REQUIRE()]}
               onInput={inputHandler}
               value=""
+              rows="1"
+              validators={[]}
               placeholder="Type in a message..."
               className="chat_footer-input"
             />
             </div>
             <div>
-            <button
+            <button onClick={submitHandler}
               type="submit"
             >
               Send Message

@@ -9,19 +9,17 @@ const StartChat = () => {
   const auth = useContext(AuthContext);
   const user_id = useParams().uid;
 
-  const [RoomID, setRoomID] = useState(1234);
-  const [NewRoomId, SetNewRoomId] = useState(1234);
+  const [RoomID, setRoomID] = useState(null);
+  const [NewRoomId, SetNewRoomId] = useState(null);
 
   useEffect(() => {
     const fetchRoomID_or_Null = async () => {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${auth.userid}/${user_id}`,
-          "GET",
-          null
+          `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${auth.userid}/${user_id}`
         );
-        // alert("Main bhi call ho raha hu");
-        // console.log({Roomidapnawala: {RoomID}});
+         alert("Main bhi call ho raha hu");
+         console.log({Roomidapnawala: responseData.roomid});
         setRoomID(responseData.roomid);
         
       } catch (err) { 
@@ -40,7 +38,7 @@ const StartChat = () => {
             "Content-Type": "application/json",
           }
         );
-        SetNewRoomId(responseData.roomId);
+        setRoomID(responseData.roomId);
       } catch (err) {
         console.log(err);
       }
@@ -49,26 +47,17 @@ const StartChat = () => {
     }
     if(RoomID===null){
     createNewRoom();}
-  }, [RoomID]);
+  }, []);
 
   
   return (
-    RoomID?(
     <div>
-      <ChatApp roomid={RoomID} />
+      { RoomID && <ChatApp roomid={RoomID} />}
       <h1>
         Created {auth.userid} {user_id} {RoomID}
       </h1>
     </div>
-  ) : (
-    <div>
-      <ChatApp roomid={NewRoomId} />
-      <h1>
-        Creating {auth.userid} {user_id} {RoomID} {NewRoomId}
-      </h1>
-    </div>
-  )
-  );
+  ); 
 };
 
 export default StartChat;

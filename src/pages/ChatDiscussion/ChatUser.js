@@ -18,7 +18,7 @@ import { AuthContext } from "../../context/auth-context";
 import StartChat from "./StartChat";
 import MyButton from "../../components/Button";
 
-const ChatUser = () => {
+const ChatUser = ({senduserid}) => {
   const auth = useContext(AuthContext);
   const [loadedUsers, setLoadedUsers] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -77,7 +77,7 @@ const ChatUser = () => {
                     if (user.email !== auth.email) {
                       return (
                         <a> {user.name}
-                        <MyButton className="join-button" to={`/startChat/${user._id}`}> start chat </MyButton>
+                        <MyButton className="join-button" onClick={()=>senduserid(user._id)}> start chat </MyButton>
                         </a>);
                     }
                   })}

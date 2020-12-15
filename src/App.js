@@ -160,13 +160,10 @@ function App() {
           <Instructor />
         </Route>
         <Route path="/chat" exact>
-          <ChatApp roomid={null}/>
+          <ChatApp/>
         </Route>
         <Route path="/startChat/:uid" exact>
           <StartChat />
-        </Route>
-        <Route path="/discussionPage/:name/:email" exact>
-          <ChatApp roomid={null}/>
         </Route>
         <Redirect to="/" />
       </Switch>
@@ -234,11 +231,11 @@ function App() {
           <BecomeInstructor />
         </Route>
         <Route path="/chat" exact>
-          <ChatApp roomid={null}/>
+          <ChatApp/>
         </Route>
-        <Route path="/discussionPage/:name/:email" exact>
+        {/* <Route path="/discussionPage/:name/:email" exact>
           <ChatApp roomid={null}/>
-        </Route>
+        </Route> */}
         <Route path="/Admin">
           <Admin />
         </Route>

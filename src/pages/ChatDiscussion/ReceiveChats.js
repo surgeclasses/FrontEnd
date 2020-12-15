@@ -28,7 +28,7 @@ const  ReceiveChats=()=> {
     return(
       
         <div>
-            <Chat/>
+            {/* <Chat/> */}
         </div>
         
        
