@@ -36,16 +36,19 @@ const Chat = ({roomid}) => {
     event.preventDefault();
     console.log(formState.inputs);
     try {
-      await sendRequest(
+     await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${roomid}`,
         "POST",
         JSON.stringify({
           message: formState.inputs.input_message.value,
+          sendby: auth.userName,
+          userId: auth.userid,
         }),
         {
           "Content-Type": "application/json",
         }
       );
+      // setMessages(responseData.chat)
       console.log(formState.inputs);
     } catch (err) {
       console.log(err);

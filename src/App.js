@@ -49,6 +49,7 @@ function App() {
   const [isInstructor, setIsInstructor] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userEmail, setUserEmail] = useState(null);
+  const [userName,setUserName]=useState(null);
   const [userId, setUserId] = useState(null);
 
   const login = useCallback(() => {
@@ -64,15 +65,11 @@ function App() {
       if (!!user) {
         console.log(user);
         setUserEmail(user.email);
-        localStorage.setItem(
-          "userData",
-          JSON.stringify({
-            email: user.email,
-          })
-        );
+        setUserName(user.displayName);
+        
         login();
       } else {
-        localStorage.removeItem("userData");
+        
         logout();
       }
     });
@@ -106,12 +103,7 @@ function App() {
 
   useEffect(() => {
     if (!!firebase.auth().currentUser) {
-      localStorage.setItem(
-        "userData",
-        JSON.stringify({
-          email: userEmail,
-        })
-      );
+     
       login();
     } else {
       logout();
@@ -250,6 +242,7 @@ function App() {
         isLoggedIn: isLoggedIn,
         isInstructor: isInstructor,
         email: userEmail,
+        userName: userName,
         userid: userId,
         login: login,
         logout: logout,
