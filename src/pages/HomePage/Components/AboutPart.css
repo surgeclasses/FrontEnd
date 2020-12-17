@@ -121,6 +121,6 @@
 
 @media (max-width: 768px) {
   .about-img {
-    width: 258vw;
+    width: 100%;
   }
 }

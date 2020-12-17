@@ -18,24 +18,13 @@ import { AuthContext } from "../../context/auth-context";
 import StartChat from "./StartChat";
 import MyButton from "../../components/Button";
 
-const ChatUser = ({senduserid}) => {
+const ChatUser = ({ senduserid }) => {
   const auth = useContext(AuthContext);
-  const [loadedUsers, setLoadedUsers] = useState();
+  const userid = auth.userid;
+  const [isVisible, setVisible] = useState(false);
+  const [loadedUsers, setLoadedUsers] = useState([]);
+  const [roomUser, setRoomUser] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
-  const startChat = (user_id) => {
-    return (
-      <div>
-        {
-          <Router>
-            
-          </Router>
-        }
-        alert("Main Chal raha hu.. bas room nahi create kar raha");
-      </div>
-    );
-  };
-
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -58,6 +47,29 @@ const ChatUser = ({senduserid}) => {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    const fetchRoomUser = async () => {
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/discussionPage/user/${userid}`,
+          "GET",
+          null,
+          {
+            "Content-Type": "application/json",
+          }
+        );
+        setRoomUser(responseData);
+        // alert(` calling maharaj: ${auth.userid} ${responseData}`);
+        console.log({ hvdfvbfhikfkffbdk: userid });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (userid) {
+      fetchRoomUser();
+    }
+  }, [userid]);
+
   return (
     <React.Fragment>
       <div className="sidebar">
@@ -67,21 +79,36 @@ const ChatUser = ({senduserid}) => {
             alt="Raman"
           />
           <div className="sidebar__headerRight">
-            <div class="dropdown">
-              <IconButton class="dropbtn" >
+            <div class="dropdownn">
+              <IconButton
+                class="dropbtnn"
+                onClick={() => setVisible(!isVisible)}
+              >
                 <ChatIcon />
               </IconButton>
-              <div class="dropdown-content">
-                {loadedUsers &&
-                  loadedUsers.map((user) => {
-                    if (user.email !== auth.email) {
-                      return (
-                        <a> {user.name}
-                        <MyButton className="join-button" onClick={()=>senduserid(user._id)}> start chat </MyButton>
-                        </a>);
-                    }
-                  })}
-              </div>
+              {isVisible && (
+                <div class="dropdownn-content">
+                  {loadedUsers &&
+                    loadedUsers.map((user) => {
+                      if (user.email !== auth.email) {
+                        return (
+                          <a>
+                            {user.name}
+                            <MyButton
+                              className="join-button"
+                              onClick={() => {
+                                senduserid(user._id);
+                                setVisible(!isVisible);
+                              }}
+                            >
+                              start chat
+                            </MyButton>
+                          </a>
+                        );
+                      }
+                    })}
+                </div>
+              )}
             </div>
             {/* <IconButton>
               <DonutLargeIcon />
@@ -101,12 +128,16 @@ const ChatUser = ({senduserid}) => {
           </div>
         </div>
         <div className="sidebar__chats">
-          {/* {loadedUsers &&
-            loadedUsers.map((user) => {
-              if(user.email!==auth.email){
-                  return ( <SidebarChat users={user} /> );
-              }
-              })} */}
+          {userid && roomUser && 
+          roomUser.map((userinfo) => { 
+            <SidebarChat userinfo={userinfo} /> 
+            })
+          }
+
+          {/* {roomUser.map((value, index) => {
+            return <h1> {value} </h1>;
+          })} */}
+
         </div>
       </div>
     </React.Fragment>

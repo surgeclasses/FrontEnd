@@ -2,19 +2,18 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top:4rem;
+  /* margin-top:4rem;
   justify-content: space-evenly;
   margin-bottom: 4rem;
   margin-left: 19%;
-  margin-right: 13rem;
+  margin-right: 13rem; */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     border-radius: 5px;
-    overflow: hidden;
-    /* background: rgb(255, 255, 255); */
+    /* overflow: hidden; */
    padding: 2rem;
-   width: 55rem;
+   /* width: 55rem; */
    background: rgb(233,234,238);
-   transform: scale(1.15);
+   /* transform: scale(1.15); */
 }
 
 .body{
@@ -131,11 +130,12 @@ font-family: system-ui;
     padding: 7px;
     background: #eeeeee;
     padding: 7px;
+    padding-bottom: 2.5vw;
 }
 
 
 @media (max-width: 768px) {
   .contact-box {
-    width: 260vw;
+    width: 100%;
   }
 }

@@ -25,7 +25,6 @@ const ChatApp = () => {
       const responseData = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${auth.userid}/${uid}`
       );
-       alert("Main bhi call ho raha hu");
        console.log({Roomidapnawala: responseData.roomid});
       setRoomID(responseData.roomid);
       if(responseData.roomid===null){
@@ -68,7 +67,7 @@ const ChatApp = () => {
     <div className = "chatApp">
         <div className = "chatApp__body">
           <ChatUser senduserid={getuserId}/>
-          {RoomID && <Chat roomid={RoomID} />}
+          { <Chat roomid={RoomID} />}
         </div>
     </div>
     

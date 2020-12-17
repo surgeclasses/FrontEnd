@@ -36,7 +36,7 @@ const Chat = ({roomid}) => {
     event.preventDefault();
     console.log(formState.inputs);
     try {
-     await sendRequest(
+     const responseData = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/discussionPage/${roomid}`,
         "POST",
         JSON.stringify({
@@ -48,7 +48,7 @@ const Chat = ({roomid}) => {
           "Content-Type": "application/json",
         }
       );
-      // setMessages(responseData.chat)
+      setMessages(responseData.chat);
       console.log(formState.inputs);
     } catch (err) {
       console.log(err);
@@ -68,7 +68,7 @@ const Chat = ({roomid}) => {
       }
     };
     fetchMessage();
-  }, []);
+  }, [roomid]);
 
   return roomid ? (
     <div className="chat">
@@ -96,7 +96,7 @@ const Chat = ({roomid}) => {
       </div>
 
       <React.Fragment>
-        {!isLoading && <div className="chat__body">
+        { <div className="chat__body">
           {messages.map((m) => (
             <p
               className={`chat__message ${

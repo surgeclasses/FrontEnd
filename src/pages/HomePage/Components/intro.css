@@ -390,6 +390,7 @@ nav ul {
     -1px 1px -1px 1px #fff, 
     0 0 6px 3px #fff;
   border-radius:6px;
+  cursor:context-menu;
 }
 .nav li {
   position: relative;

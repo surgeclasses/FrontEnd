@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Card from './Card'
 import './CoursesNavBar.css'
+import { FaChalkboardTeacher } from "react-icons/fa";
 
 
 const  CoursesNavBar=(props)=>{
@@ -24,7 +25,7 @@ const  CoursesNavBar=(props)=>{
          <div className="contents">
           <h4>{title}</h4>
           <p>{description}</p>
-          <h6>{instructor}</h6>
+          <h6><FaChalkboardTeacher className="instructor-icon" /> {instructor}</h6>
           </div>
           </div>
          </Card>

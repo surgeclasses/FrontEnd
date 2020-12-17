@@ -154,9 +154,6 @@ function App() {
         <Route path="/chat" exact>
           <ChatApp/>
         </Route>
-        <Route path="/startChat/:uid" exact>
-          <StartChat />
-        </Route>
         <Redirect to="/" />
       </Switch>
     );

@@ -5,24 +5,22 @@ import Chat from './Chat';
 import { Link } from 'react-router-dom';
 
 
-const SidebarChat = ({users}) => {
+const SidebarChat = ({userinfo}) => {
 
-
-
+    
 
     return (
-        <Link to = {`/discussionPage/${users.name}/${users.email}`}>
             <div className = "sidebarChat" >
                 <Avatar 
                     src = "https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png"
                     alt = "Raman Avatar"
                 />
                 <div className = "sidebarChat__info">
-                    <h2>{users.name}</h2>
-                    <p>This is the Last Message</p>
+                    <h2>{userinfo.userName}</h2>
+                    <p>{userinfo.lastMessageValue}</p>
+                    
                 </div>
             </div>
-        </Link>
     )
 }
 

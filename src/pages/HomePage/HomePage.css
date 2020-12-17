@@ -115,6 +115,33 @@
   background-color: yellow;
 }
 
+.flex-homePage{
+  border: 10px solid #222;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-homeItem{
+  border: 5px solid mediumvioletred
+}
+
+
+.homeItem-1{
+  border: 3px solid red;
+}
+
+.homeItem-2{
+  border: 3px solid green;
+}
+
+.homeItem-3{
+  border: 3px solid blue;
+}
+
+.homeItem-4{
+  border: 3px solid orange;
+}
+
 
 @media (max-width: 768px) {
   .top {
@@ -128,11 +155,12 @@
   
     left: 0;
     z-index: -1;
-    width: 258vw;
+    width: 100%;
   }
 
   .gradient-overlay{
-    width:258vw;
+    width:100%;
   }
+
   
 }

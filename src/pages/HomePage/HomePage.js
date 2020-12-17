@@ -14,26 +14,47 @@ import AboutPart from "./Components/AboutPart";
 const HomePage = () => {
   return (
     <div className="body">
+    <div className="flex-homePage">
+    <div className="flex-homeItem homeItem-1">
       <Intro />
-      {/* <Features/> */}
-      {/*<div className="block-overlay">
-      <br/>
-  </div> */}
-      <div className="gradient-overlay">
+    </div>
+
+    <div className="flex-homeItem homeItem-2">
+    <div className="gradient-overlay">
       <TopCourses />
       {/* <CourseSlider /> */}
       </div>
-      <section id="about">
+    </div>
+
+    <div className="flex-homeItem homeItem-3">
+    <section id="about">
+      <Features/>
       <AboutPart/>
-      {/*<About /> */}
+      {/* <About /> */}
       </section>
-      <Contact />
+    </div>
+
+    <div className="flex-homeItem homeItem-4">
+    <Contact />
+    </div>
+
+    <div>
+      {/*<div className="block-overlay">
+      <br/>
+  </div> */}
+      
+      
+      
       {/* <div className="technologies-section">
         <HotTechnologies />
       </div> */}
       {/* <Testimonials /> */}
+    </div>
       
       
+      
+      
+    </div>
     </div>
   );
 };
