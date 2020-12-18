@@ -15,7 +15,6 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import { Avatar, Button, IconButton } from "@material-ui/core";
 import { AuthContext } from "../../context/auth-context";
-import StartChat from "./StartChat";
 import MyButton from "../../components/Button";
 
 const ChatUser = ({ senduserid }) => {
@@ -68,7 +67,7 @@ const ChatUser = ({ senduserid }) => {
     if (userid) {
       fetchRoomUser();
     }
-  }, [userid]);
+  }, [userid,isLoading]);
 
   return (
     <React.Fragment>
@@ -101,7 +100,7 @@ const ChatUser = ({ senduserid }) => {
                                 setVisible(!isVisible);
                               }}
                             >
-                              start chat
+                              Start chat
                             </MyButton>
                           </a>
                         );
@@ -128,16 +127,14 @@ const ChatUser = ({ senduserid }) => {
           </div>
         </div>
         <div className="sidebar__chats">
-          {userid && roomUser && 
-          roomUser.map((userinfo) => { 
-            <SidebarChat userinfo={userinfo} /> 
-            })
-          }
-
-          {/* {roomUser.map((value, index) => {
-            return <h1> {value} </h1>;
-          })} */}
-
+      {
+        roomUser && (
+            roomUser.map((userInfo)=>{
+            return(
+               <SidebarChat userinfo={userInfo} />
+            )
+             } ))
+      }
         </div>
       </div>
     </React.Fragment>

@@ -40,7 +40,7 @@ import DemoClass from "./pages/HomePage/Components/DemoClass";
 import BecomeInstructor from "./pages/HomePage/Components/BecomeInstructor";
 import ChatApp from "./pages/ChatDiscussion/ChatApp";
 import Chat from "./pages/ChatDiscussion/Chat";
-import StartChat from "./pages/ChatDiscussion/StartChat";
+import SideBar2Chat from "./pages/ChatDiscussion/SideBar2Chat";
 
 function App() {
   const auth = useContext(AuthContext);
@@ -154,6 +154,9 @@ function App() {
         <Route path="/chat" exact>
           <ChatApp/>
         </Route>
+        <Route path="/chat/redirecting/:roomid" exact>
+        <SideBar2Chat/>
+      </Route>
         <Redirect to="/" />
       </Switch>
     );
@@ -222,6 +225,9 @@ function App() {
         <Route path="/chat" exact>
           <ChatApp/>
         </Route>
+        <Route path="/chat/redirecting/:roomid" exact>
+        <SideBar2Chat/>
+      </Route>
         {/* <Route path="/discussionPage/:name/:email" exact>
           <ChatApp roomid={null}/>
         </Route> */}

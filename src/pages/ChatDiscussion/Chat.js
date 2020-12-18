@@ -17,6 +17,7 @@ import { AuthContext } from "../../context/auth-context";
 
 const Chat = ({roomid}) => {
   const auth = useContext(AuthContext);
+  const userId= auth.userid;
   console.log({roomIdinchat: roomid});
   const [messages, setMessages] = useState([]);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -80,7 +81,7 @@ const Chat = ({roomid}) => {
           alt=""
         />
         <div className="chat__headerInfo">
-          <h3> Jay shree Ram </h3>
+          <h3> Surge Chat Room</h3>
         </div>
         <div className="chat__headerRight">
           <IconButton>
@@ -100,7 +101,7 @@ const Chat = ({roomid}) => {
           {messages.map((m) => (
             <p
               className={`chat__message ${
-                m.userId !==  auth.userid && "chat__receiver"
+                m.userId ===userId && "chat__receiver"
               }`}
             >
               {m.message}
