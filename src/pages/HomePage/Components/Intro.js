@@ -90,11 +90,12 @@ const Intro = () => {
           </ul>
         </nav>
           </div>
-          
+          <div className="homeBanner-Text">
           <h1>Surge Classes is here</h1>
           <h3>
             Surge Classes is here. The place to learn and gain experience in various technologies
           </h3>
+          </div>
           
         </div>
         <div>

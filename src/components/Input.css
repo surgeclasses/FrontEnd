@@ -1,5 +1,6 @@
 .form-control {
   margin: 1rem 0;
+  flex-grow: 1;
 }
 
 .textArea-Name{
