@@ -69,7 +69,7 @@ const Chat = ({roomid}) => {
       }
     };
     fetchMessage();
-  }, [roomid]);
+  }, [roomid,isLoading]);
 
   return roomid ? (
     <div className="chat">
