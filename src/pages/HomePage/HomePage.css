@@ -147,7 +147,7 @@
   .top {
     background-color: var(--matteRed); /* Fallback color */
     
-    background-image: linear-gradient(to bottom, transparent, transparent, transparent,transparent,transparent,rgba(2,18,44,0.1),rgba(2,18,44,0.2),rgba(2,18,44,0.3),rgba(2,18,44,0.5),rgba(2,18,44,0.6),rgba(2,18,44,0.7),rgba(2,18,44,0.8), rgba(2,18,44,0.9),rgba(2,18,44,0.9),#02122c), url("../../assets/MobileBannerSurge.png");
+    background-image: linear-gradient(to bottom, transparent, transparent, transparent,transparent,transparent,rgba(2,18,44,0.1),rgba(2,18,44,0.2),rgba(2,18,44,0.3),rgba(2,18,44,0.5),rgba(2,18,44,0.6),rgba(2,18,44,0.7),rgba(2,18,44,0.8), rgba(2,18,44,0.9),rgba(2,18,44,0.9),#02122c), url("../../assets/mobile-Surge-Banner.png");
     /* background-size: cover; */
     height: 150vw;
     /* background-position: center; */
@@ -166,6 +166,10 @@
 
   .homeItem-1{
     flex-grow: 1;
+  }
+
+  .bg-text{
+    left:18vw;
   }
 
   

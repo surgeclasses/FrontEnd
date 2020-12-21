@@ -28,7 +28,7 @@ const CourseItem = (props) => {
         {/* <p className="course-image"> Course </p> */}
         <h4>{props.title}</h4>
         <p>{ReactHtmlParser(props.description)}</p>
-        <span>₹{props.fee}</span>
+        {/* <span>₹{props.fee}</span> */}
       </Card>
     </li>
   );

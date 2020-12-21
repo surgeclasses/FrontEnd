@@ -101,6 +101,28 @@
     margin-top: 8rem;
     margin-bottom: 9.5rem;
   }
+
+  .flexParent-demoClass{
+    padding: 0px;
+  }
+
+  .DemoClass-image img{
+    width: 41%;
+    margin-top: -15%;
+  }
+
+  .flexChild-demoClass{
+    flex:none;
+    margin-left:0px;
+  }
+
+  .DemoClass-form .form-control{
+    width:100%;
+  }
+
+  .textarea-message{
+    width:100%;
+  }
 }
 
 @media (max-width: 468px){

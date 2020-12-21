@@ -232,3 +232,15 @@ nav ul {
   border-right-color: #e63946;
   right: 10px; 
 }
+
+
+@media (max-width: 768px) {
+  .course-image{
+    width:100%;
+  }
+
+  .courseList-card {
+    width:120%;
+    margin-left:-18vw;
+  }
+}

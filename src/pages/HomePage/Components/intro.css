@@ -474,6 +474,18 @@ nav ul {
   right: 10px; 
 }
 
+@media (max-width: 768px) {
 .homeBanner-Text{
-  color: whitesmoke;
+  color: #4a5d79;
+  position: absolute;
+  top: -25vh;
+  width: 60vw;
+  left: -10vw
+}
+/* 
+.nav{
+  position: relative;
+  top: 12vh;
+  left: 8vw;
+} */
 }

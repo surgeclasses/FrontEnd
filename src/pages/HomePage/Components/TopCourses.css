@@ -37,3 +37,18 @@
   color: white;
   padding-right: 4rem;
 }
+
+@media (max-width: 768px) {
+  .caret-left {
+    display: none;
+  }
+
+  .caret-right {
+    display: none;
+  }
+
+  .horizontal-scroll {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}

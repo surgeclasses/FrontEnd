@@ -122,5 +122,105 @@
 @media (max-width: 768px) {
   .about-img {
     width: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(245, 246, 243, 0.88) 2.6%,
+      rgba(245, 246, 243, 0.73),
+      rgb(203, 203, 203) 99%,
+      rgb(203, 203, 203) 99.9%,
+      rgb(203, 203, 203) 100%
+    ),
+    url("../../../assets/mobile-about-banner.png");
+
+    box-shadow: 0px;
+    height:80vh;
+    background-size: 100%;
+    /* margin-bottom: 1rem; */
+    inline-size: auto;
+    /* background-repeat: round; */
+    background-repeat: no-repeat;
+    /* background-blend-mode: screen; */
+    background-blend-mode: normal;
+    transform: scaleX(1);
+  }
+  
+  .about-WeAre {
+    position: absolute;
+    height: 30vh;
+    left: 4vw;
+    padding-top: 1vh;
+  
+    font-family: Rockwell;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    background: -webkit-linear-gradient(
+      270deg,
+      #02122c 10%,
+      rgba(215, 216, 214, 0.67) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: scaleX(1);
+    width: 55%;
+  }
+  
+  .about-yourneed {
+    position: absolute;
+    /* height: 42px; */
+    left: 60%;
+    padding-top: 41px;
+  
+    font-family: Rockwell;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 42px;
+    background: -webkit-linear-gradient(
+      270deg,
+      rgba(215, 216, 214, 0.54),
+      #02122c 100%
+    );
+  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: scaleX(1);
+    width: 35%;
+  }
+  
+  .about-surgeText {
+    position: absolute;
+    /* width: 635px; */
+    /* height: 250px; */
+    padding-left: 4vw;
+    padding-right: 4vw;
+    /* padding-top: 99px; */
+  
+    font-family: auto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: large;
+    /* line-height: 23px; */
+    color: #525c6a;
+    text-align: justify;
+  }
+  
+  .about-surgeBox {
+    position: absolute;
+    height: 50%;
+    left: 4vw;
+    margin-top: 0px;
+    top:15vh;
+    /* font-size: large; */
+  
+    background: linear-gradient(
+      180deg,
+      rgba(166, 209, 233, 0.51) 0%,
+      rgba(255, 255, 255, 0.54) 100%
+    );
+    border-radius: 33px;
+    transform: scaleX(1);
+    width: 85%;
+    /* padding-bottom: 1rem; */
   }
 }
