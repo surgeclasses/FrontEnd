@@ -22,11 +22,7 @@
   margin-top: 5rem;
 } */
 
-@media (min-width: 768px) {
-  .main-header {
-    justify-content: space-between;
-  }
-}
+
 
 .main-navigation__menu-btn {
   width: 3rem;
@@ -100,3 +96,27 @@
   }
 }
 
+
+@media (min-width: 491px) and (max-width: 768px) {
+  .main-header {
+    justify-content: space-between;
+    
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .main-header {
+    justify-content: space-between;
+  }
+}
+
+
+
+@media (max-width: 491px){
+  .main-header {
+    justify-content: space-between;
+    
+  
+  }
+}

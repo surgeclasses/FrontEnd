@@ -146,9 +146,8 @@ const CourseDetails = () => {
               className="Scollbars"
               autoHide
               autoHideTimeout={1000}
-              autoHideDuration={200}
-              autoHeight
-              autoHeightMin={0}
+              autoHideDuration={310}
+              autoHeightMin={300}
               autoHeightMax={500}
               thumbMinSize={30}
               universal={true}
@@ -251,13 +250,12 @@ const CourseDetails = () => {
               <div className="course-header">
                 <div className="c-header">
                   <br />
-                  <h1 className="h1">⚪ {loadedCourse.title} </h1>
+                  <h1 className="h1">{loadedCourse.title} </h1>
                   {/* <h2>{loadedCourse.description}</h2> */}
                   {/* <p className="course-about1"> Whole Era is changing. This is time of Everything Digital. We here at Surge Classes brought that unexplored digital world in your hand</p> */}
                   {/* <p className="course-about2"> Join US </p> */}
                   <p className="course-about3">{loadedCourse.description} </p>
                   {/* <p className="course-about4"> Interesting? <br/> Yes...Its More.. <br/> Enroll Now. </p> */}
-                  <div className="partition">
                     <div className="banner">
                       <div className="items">
                         <div className="icon">
@@ -291,7 +289,6 @@ const CourseDetails = () => {
                         Enroll
                       </button>
                     </div>
-                  </div>
                   <br />
                   <br />
                 </div>
@@ -317,7 +314,6 @@ const CourseDetails = () => {
               </div>
               <div className="course-details">
                 <div className="section-course">
-                  {/* <br/> */}
                   <h2>Who this course is for ?</h2>
                   <div className="point1">
                     {loadedCourse.whotoLearn.map((p) => (
@@ -338,20 +334,6 @@ const CourseDetails = () => {
                     <img src={Pic6} width="140" height="70"></img>
                   </div>
                 </div>
-
-                {/* <div className="section3">
-            <h2>
-                <div>Syllabus</div>
-                <p>Best-in-class content by leading faculty and industry leaders in the form of videos, cases and projects.</p>
-                <div className='syllabus'>
-              <a href={Syllabus} download="surgeclasses.pdf">  
-              <button>
-              <FaRegFilePdf style={{marginRight:"0.4rem"}}/>Download Syllabus
-              </button>
-              </a> 
-            </div>
-            </h2>
-            </div> */}
                 <div className="footer1">
                   <div className="content">
                     <h2>Course Contents:</h2>
@@ -359,14 +341,11 @@ const CourseDetails = () => {
                       <FullList items={loadedCourse.syllabus} />
                     )}
                   </div>
-                </div>
-
-                <div className="container-syllabus">
-                  <h2 className="Syllabus-h2style">
-                    {" "}
-                    Download Syllabus from here:{" "}
-                  </h2>
-                  <div className="box">
+                  <div className="container-syllabus">
+                    <h2 className="Syllabus-h2style">
+                         Download Syllabus from here:{" "}
+                    </h2>
+                    <div className="box">
                     <div className="icon">
                       <AiFillRead
                         className="fa fa-search"
@@ -381,12 +360,13 @@ const CourseDetails = () => {
                       </p>
                       <a href={Syllabus} download="surgeclasses.pdf">
                         <button className="download-button">
-                          <FaRegFilePdf style={{ marginRight: "0.4rem" }} />
+                         
                           Download Syllabus
                         </button>
                       </a>
                     </div>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
