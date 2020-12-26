@@ -214,8 +214,7 @@ const Contact = () => {
             <h3 className="css-h3"> Register for a Demo </h3>
             <br />
             <p className="css-para">
-              {" "}
-              Register for a demo of one of our programs.{" "}
+              Register for a demo of one of our programs.
             </p>
           </div>
           <BsCaretRightFill className="css-caret" />

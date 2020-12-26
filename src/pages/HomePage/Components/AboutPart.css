@@ -72,12 +72,12 @@
 .about-surgeText {
   position: absolute;
   /* width: 635px; */
-  height: 250px;
+  /* height: 250px; */
   padding-left: 18px;
   padding-right: 18px;
   /* padding-top: 99px; */
 
-  font-family: cursive;
+  font-family: system-ui;
   font-style: normal;
   font-weight: normal;
   font-size: large;

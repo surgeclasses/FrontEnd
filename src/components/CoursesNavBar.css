@@ -46,3 +46,21 @@
     font-size:17px;
     padding-right:2px;
 }
+
+@media (max-width: 768px) {
+
+    .contents h4{
+        white-space: break-spaces;
+        font-size: 20px;
+    }
+    
+    .contents p{
+        white-space: break-spaces;
+        font-size: 15px;
+    }
+    
+    .contents h6{
+        white-space: break-spaces;
+        font-size: 15px;
+    }
+}
