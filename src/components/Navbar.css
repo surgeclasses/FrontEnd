@@ -94,6 +94,20 @@
   .main-navigation__header-nav {
     display: block;
   }
+
+}
+
+@media (max-width: 768px) {
+
+  .main-navigation__brand h1{
+    margin-right: 0rem;
+    font-size: 25px;
+    border: solid;
+  }
+
+  .main-navigation__title{
+    margin-left: 15vw;
+  }
 }
 
 

@@ -8,7 +8,7 @@ const AboutPart = () => {
               We Are
               </div>
               <div className="about-yourneed">
-              Surge....
+              Surge..
       </div>
       {/* <div className="about-WeAre">About Us:</div>  */}
       <div className="about-surgeBox">

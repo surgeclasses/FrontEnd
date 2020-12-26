@@ -25,6 +25,7 @@
   /* padding-top: 60px; */
   color: white;
   padding-left: 4rem;
+  cursor: grab;
 }
 
 .caret-right {
@@ -36,6 +37,7 @@
   /* padding-top: 60px; */
   color: white;
   padding-right: 4rem;
+  cursor: grab;
 }
 
 @media (max-width: 768px) {
