@@ -334,14 +334,14 @@ const CourseDetails = () => {
                     <img src={Pic6} width="140" height="70"></img>
                   </div>
                 </div>
-                <div className="footer1">
-                  <div className="content">
-                    <h2>Course Contents:</h2>
+                <h2 className="courseContent-heading">Course Contents:</h2>
+                <div className="content-syllabus">
+                  <div className="content topics-box">
                     {loadedCourse.syllabus && (
                       <FullList items={loadedCourse.syllabus} />
                     )}
                   </div>
-                  <div className="container-syllabus">
+                  <div className="content syllabus-box">
                     <h2 className="Syllabus-h2style">
                          Download Syllabus from here:{" "}
                     </h2>
@@ -352,7 +352,7 @@ const CourseDetails = () => {
                         aria-aria-hidden="true"
                       />
                     </div>
-                    <div className="content">
+                    <div className="syllabus-words">
                       <h3>Syllabus</h3>
                       <p>
                         Best-in-class content by leading faculty and industry
