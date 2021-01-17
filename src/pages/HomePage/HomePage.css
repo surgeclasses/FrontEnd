@@ -1,7 +1,7 @@
 .top {
   background-color: var(--matteRed); /* Fallback color */
   
-  background-image: linear-gradient(to bottom, transparent, transparent, transparent,transparent,transparent,rgba(2,18,44,0.1),rgba(2,18,44,0.2),rgba(2,18,44,0.3),rgba(2,18,44,0.5),rgba(2,18,44,0.6),rgba(2,18,44,0.7),rgba(2,18,44,0.8), rgba(2,18,44,0.9),rgba(2,18,44,0.9),#02122c), url("../../assets/homeBanner.jpg");
+  background-image: linear-gradient(to bottom, transparent, transparent, transparent,transparent,transparent,rgba(2,18,44,0.1),rgba(2,18,44,0.2),rgba(2,18,44,0.3),rgba(2,18,44,0.5),rgba(2,18,44,0.6),rgba(2,18,44,0.7),rgba(2,18,44,0.8), rgba(2,18,44,0.9),rgba(2,18,44,0.9),#02122c), url("../../assets/homeBanner.png");
   background-size: cover;
   /* filter: opacity(70%); */
   /* -webkit-filter: opacity(70%); */
@@ -37,6 +37,7 @@
   /* z-index: 3; */
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+  
 }
 
 .features ul {
@@ -47,14 +48,21 @@
   padding: 0 0.5rem;
   font-family: system-ui;
   color:#1d3557;
-  border-bottom: #1d3557 5px solid;
-  height:80vh;
+  /* border-bottom: #1d3557 5px solid; */
+  height:60vh;
+  flex-wrap: wrap;
+  margin-bottom: 1%;
   /* justify-content: space-around; */
+  overflow: hidden;
 
 }
 
+.features:hover{
+  /* height: max-content; */
+}
+
 .features li{
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
   text-align: center;
   display: block;
   /* border: solid 5px #1d3557; */
@@ -62,8 +70,8 @@
   white-space: break-spaces;
   width:10%;
   /* padding:10% */
-  padding-left: 6%;
-  padding-right: 6%;
+  padding-left: 5%;
+  padding-right: 5%;
   display:flex;
   flex-direction: column;
   justify-content: right;
@@ -75,17 +83,15 @@
 
 .features li:hover{
   flex-grow: 5;
-  padding-left: 7%;
-  padding-right: 7%;
 }
 
 .features li:hover .feature-icons{
-  font-size: 90px;
+  font-size: 50px;
 }
 
 .features li:hover .feature-h1Fonts{
   font-weight: 600;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .features li:hover .feature-pFonts{
@@ -94,17 +100,18 @@
 }
 
 .feature-icons{
-  font-size: 70px;
+  font-size: 40px;
   text-align: center;
 }
 
 .feature-h1Fonts{
   font-weight: 600;
-  font-size: 40px;
+  font-size: 35px;
+  top:5%;
 }
 
 .feature-pFonts{
-  font-size:18.5px;
+  font-size:17.5px;
   font-weight: 300;
 }
 

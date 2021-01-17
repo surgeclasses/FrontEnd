@@ -29,7 +29,7 @@ const HomePage = () => {
     <div className="flex-homeItem homeItem-3">
     <section id="about">
       <Features/>
-      <div className="wave"> ‎‎‎‎‎‎ </div>
+      {/* <div className="wave"> ‎‎‎‎‎‎ </div> */}
       <AboutPart/>
       {/* <About /> */}
       </section>

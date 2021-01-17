@@ -11,7 +11,7 @@ function Features() {
             <ul>
                 <li className="feature-box1">
                 <RiLiveFill className="feature-icons" />
-                <h1 className="feature-h1Fonts">Live Classes</h1>
+                <h1 className="feature-h1Fonts">Surge Live Classes</h1>
                 <p className="feature-pFonts">• Online classes taught through video have already proven their effectiveness and preference for the vast majority of viewers.
                 Through recorded classes the student is able to see and hear the teacher, facilitating the dynamics and connection that occurs in a classroom. •</p>
                 </li>
